@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+$thingiview_prep$
+</head>
+<body>
+<table>
+  <tr><td>
+      $title_$
+      <p>$short_description$</p>
+      <p>$gallery$</p>
+      $description$
+    </td>
+    <td>
+      <table><tr><td>
+            $author_$
+        </td></tr>
+        <tr><td>
+            $tags$
+            <br>
+            $license$
+      </td></tr></table>
+</td></tr></table>
+
+<span id="say">silent</span>
+
+<span onclick="to_img(0)">to first</span>
+
+</body>
+</html>
