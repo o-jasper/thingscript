@@ -15,14 +15,15 @@ for el in `tail -n+2 $1`; do
     echo ',"'$el'"'
 done
 #Ends the list and some functions to switch to images.
+DESIGN_JS_DIR=$PROJECT_DIR/output/design_js/
 echo '];
 var designs =[];'
 for el in `grep -P '.+\.(stl|obj)' $1`; do #TODO overly specific
-    mkdir -p design_js/
+    mkdir -p $DESIGN_JS_DIR
     bel=`basename $el`
-    echo 'designs["'$el'"]='`sh otherscripts/json_file.sh testpage/$el`';' >  design_js/$bel.js
+    echo 'designs["'$el'"]='`sh otherscripts/json_file.sh testpage/$el`';' >  $DESIGN_JS_DIR/$bel.js
     echo '</script>
-<script src="'../design_js/$bel.js'"></script>
+<script src="'output/design_js/$bel.js'"></script>
 <script>'
 done
 
@@ -58,7 +59,13 @@ I=0
 echo '<table><tr>'
 for el in `cat $1`; do
 #TODO generate image from 3d models.
-    echo '<td><img onclick="to_img_re_url('$I')" src="'$el'"></td>'
+    img=$el
+    echo $img | grep -P '(stl|obj)' > /dev/null
+    if [ "$?" == "0" ]; then
+        #TODO generate an image.
+        img=$img.jpg
+    fi
+    echo '<td><img onclick="to_img_re_url('$I')" src="'$img'"></td>'
     I=`expr $I + 1`
 done
 # ...a set of images with which to navigate.

@@ -1,0 +1,63 @@
+#!/bin/bash
+#
+#  Copyright (C) 18-05-2013 Jasper den Ouden.
+#
+#  This is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+
+if [ WHICH_TYPE=="" ]; then
+    WHICH_TYPE="main"
+fi
+
+#Dont know why the double loop didnt work, bash sucks.
+get_locations()
+{
+    for el in `echo $@`; do #First what the user tells you to do.
+        echo $PROJECT_DIR/thingscript/$el
+    done
+    for el in `echo $@`; do #Then what he prefers.
+        echo ~/.thingscript/$WHICH_TYPE/$el
+    done
+    for el in `echo $@`; do #Then what the admin suggests.
+        echo /etc/thingscript/$WHICH_TYPE/$el
+    done
+    for el in `echo $@`; do #Then what the dev suggests.
+        echo /usr/share/thingscript/$WHICH_TYPE/$el
+    done
+    
+    for el in `echo $@`; do #Then what he prefers.
+        echo ~/.thingscript/main/$el
+    done
+    for el in `echo $@`; do #Then what the admin suggests.
+        echo /etc/thingscript/main/$el
+    done
+    for el in `echo $@`; do #Then what the dev suggests.
+        echo /usr/share/thingscript/main/$el
+    done
+}
+
+#Gets layout information.
+get()
+{   for el in `get_locations $@`; do
+        test -e $el
+        if [ "$?" == "0" ]; then 
+            echo $el
+            return #Have one.
+        fi
+    done
+}
+
+case "$1" in
+    get)
+        get $2;;
+    get_page)
+        get $2.html $2.md $2.html_ $2.md_ $2;;
+    mkpage)
+        sh `get bin/mkpage.sh` $2;;
+
+    thingscript_version)
+        cat /usr/share/thingscript/version;;
+esac
