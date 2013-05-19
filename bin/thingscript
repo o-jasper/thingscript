@@ -41,8 +41,8 @@ get_locations()
 
 #Gets layout information.
 get()
-{   for el in `get_locations $@`; do
-        test -e $el
+{   for el in `get_locations $@`; do #Go through all the files.
+        test -e $el #See if the file exists.
         if [ "$?" == "0" ]; then 
             echo $el
             return #Have one.
@@ -55,9 +55,14 @@ case "$1" in
         get $2;;
     get_page)
         get $2.html $2.md $2.html_ $2.md_ $2;;
+    get_image)
+        get $2.png $2.gif $2.jpg;;
+    
     mkpage)
         sh `get bin/mkpage.sh` $2;;
 
     thingscript_version)
         cat /usr/share/thingscript/version;;
+    *)
+        echo Did not recognize thingscript command $1
 esac

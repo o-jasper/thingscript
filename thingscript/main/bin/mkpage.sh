@@ -44,11 +44,7 @@ if [ "$MISSING" != "" ]; then
 fi
 #(Beyond the above things are optional, missing ignored)
 
-handle_page()
-{   handle $@
-}
-
-#TODO write proper comment here.
+#Handles pages, possibly doing scripts/substitutions within.
 handle()
 {
     if [ "$1" == "" ]; then #Nothing here.
@@ -97,48 +93,23 @@ cat_or_run() #List
     fi
 }
 
+#TODO make handling external. (Its needed top make things elements.)
+#Warning, dont use single loose words.
 handle_whole()
 {
-    tr '$' '\n' | _handle_whole 
-}
-
-#Warning, dont use single loose words.
-_handle_whole()
-{
-    while read LINE; do
+    tr '$' '\n' | while read LINE; do
+        FIRST=`echo "$LINE" | cut -f 1 -d ' '`
+        if [ "$FIRST" == "" ]; then
+            echo $LINE
+            continue
+        fi
+        GOT=`get elements/$FIRST`
+        if [ "$GOT" != "" ]; then  #Got something, yay.
+            $GOT $LINE #Run it
+            continue
+        fi
         case "$LINE" in
-            thingiview_prep) #Prepare for thingiviewer.
-                echo '
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  
-<script src="../javascripts/Three.js"></script>
-<script src="../javascripts/plane.js"></script>
-<script src="../javascripts/thingiview.js"></script>
-
-  <script>
-    window.onload = function() {
-      thingiurlbase = "../javascripts";
-      thingiview = new Thingiview("viewer");
-      thingiview.setObjectColor('\'\#C0D8F0\'');
-      thingiview.initScene();
-    }
-  </script>';;
-            logo)
-                echo '"'`get_image pics/logo`'"';;
             #Some things are forced to be just data.
-            category)
-                cat `get category`;;
-            title)
-                cat `get title`;;
-            link)
-                cat `get link`;;
-            author) #Author
-                cat `get author` ;;
-            author_img)
-                echo '"'`get_image pics/author`'"';;
-            author_link)
-                LINKFILE=`get link`
-                echo '"'`cat $LINKFILE`'"' ;;
             short_description)
                 handle `get short_description` ;;
             #Various
@@ -207,7 +178,12 @@ torrent"
             *_) #Layout stuff.
                 handle_get `echo $LINE | head -c-2` ;;
             *.sh) #Scripts.
-                sh `get scripts/$LINE`;;
+                SCRIPTFILE=`get scripts/$FIRST`
+                if [ "$SCRIPTFILE" == "" ]; then
+                    echo Could not find this script: $FIRST> /dev/stderr
+                fi
+                ARGS=`echo $LINE |cut -f2- -d' '`
+                sh $SCRIPTFILE $ARGS ;;
             :*) #Some pages.
                 handle_get `echo $LINE | tail -c+2`;;
             *)
