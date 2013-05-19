@@ -1,0 +1,7 @@
+#!/bin/bash
+
+TAGSFILE=`thingscript get tags`
+echo '<span class="tag">'`head -n 1 $TAGSFILE`'</span> '
+tail -n+2 $TAGSFILE | while read TAG; do
+     echo ', <span class="tag">'$TAG'</span>'
+done

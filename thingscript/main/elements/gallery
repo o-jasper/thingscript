@@ -1,0 +1,9 @@
+#!/bin/bash
+
+GALLERY_LIST_FILE=`thingscript get gallery_list` #TODO stream it instead?
+if [ "$GALLERY_LIST_FILE" == "" ]; then #Doesnt exist yet.
+    ls $PROJECT_NAME/pics | grep -P '(png|gif|jpg|jpeg)'\
+       | while read line; do echo pics/$line; done > $PROJECT_DIR/page/gallery_list 
+    GALLERY_LIST_FILE=$PROJECT_DIR/page/gallery_list
+fi
+sh `thingscript get scripts/gallery.sh` $GALLERY_LIST_FILE

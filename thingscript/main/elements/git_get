@@ -1,0 +1,2 @@
+#!/bin/bash
+echo 'Get using git: <code>git clone '`get git_link`'</code>'

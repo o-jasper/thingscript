@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#  /usr/bin/tail -n+2 seems to not work always?(crazy but wanna do it)
+
+echo '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+<script src="../javascripts/Three.js"></script>
+<script src="../javascripts/plane.js"></script>
+<script src="../javascripts/thingiview.js"></script>
+
+  <script>
+    window.onload = function() {
+      thingiurlbase = "../javascripts";
+      thingiview = new Thingiview("viewer");
+      thingiview.setObjectColor('\'\#C0D8F0\'');
+      thingiview.initScene();
+    }
+</script>'

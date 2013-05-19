@@ -50,19 +50,122 @@ get()
     done
 }
 
+get_page()
+{   get $2.html $2.md $2.html_ $2.md_ $2
+}
+
+get_image()
+{ 
+    get $1.png $1.jpg $1.svg $1.gif
+}
+
+handle_get()
+{
+    handle `get_page $@`
+}
+
+#Handles pages, possibly doing scripts/substitutions within.
+handle()
+{
+    if [ "$1" == "" ]; then #Nothing here.
+        return
+    fi
+    test -e $1
+    if [ "$?" != "0" ]; then #File doesnt exist.
+        exit #TODO do something?
+    fi
+    VAL=`echo $1 | cut -f 3 -d'.'`
+    if [ "$VAL" = "" ]; then
+        VAL=`echo $1 | cut -f 2 -d'.'`
+    fi
+    case "$VAL" in
+        html)
+            cat $1;;
+        md)
+            markdown $1;;
+        html_)  #Recurse.
+            cat $1 | handle_whole;;
+        md_)
+            markdown $1 | handle_whole ;;
+        *) 
+            cat $1 ;;
+    esac
+}
+
+cat_or_run() #List 
+{
+    if [ "$1" == "" ]; then
+        $2
+    else
+        cat $1
+    fi
+}
+
+#TODO make handling external. (Its needed top make things elements.)
+#Warning, dont use single loose words.
+handle_whole()
+{
+    tr '$' '\n' | while read LINE; do
+        FIRST=`echo "$LINE" | cut -f 1 -d ' '`
+        if [ "$FIRST" == "" ]; then
+            echo $LINE
+            continue
+        fi
+        GOT=`get elements/$FIRST`
+        if [ "$GOT" != "" ]; then  #Got something, yay.
+            $GOT $LINE #Run it
+            continue
+        fi
+        case "$LINE" in
+            zip_file)
+                DOWNLOADS=$DOWNLOADS"
+zip"
+                echo '"downloads/'$PROJECT_NAME.zip'"' ;;
+            tar_gz_file)
+                DOWNLOADS=$DOWNLOADS"
+tar.gz"
+                echo '"downloads/'$PROJECT_NAME.tar.gz'"' ;;
+            tar_bz2_file)
+                DOWNLOADS=$DOWNLOADS"
+tar.bz2"
+                echo '"downloads/'$PROJECT_NAME.tar.bz2'"' ;;
+            torrent)
+                DOWNLOADS=$DOWNLOADS"
+torrent"
+                echo '"downloads/'$PROJECT_NAME.torrent'"' ;;
+            *_) #Layout stuff.
+                handle_get `echo $LINE | head -c-2` ;;
+            *.sh) #Scripts.
+                SCRIPTFILE=`get scripts/$FIRST`
+                if [ "$SCRIPTFILE" == "" ]; then
+                    echo Could not find this script: $FIRST> /dev/stderr
+                fi
+                ARGS=`echo $LINE |cut -f2- -d' '`
+                sh $SCRIPTFILE $ARGS ;;
+            *) #Just a plain line to be outputted.
+                echo $LINE ;;
+        esac
+    done
+}
+
 case "$1" in
     get)
-        get $2;;
+        get $@;;
     get_page)
-        get $2.html $2.md $2.html_ $2.md_ $2;;
+        get_page $@;;
     get_image)
-        get $2.png $2.gif $2.jpg;;
+        get_image $@;;
     
     mkpage)
         sh `get bin/mkpage.sh` $2;;
 
     thingscript_version)
         cat /usr/share/thingscript/version;;
+
+    handle)
+        handle $2;;
+    handle_get)
+        handle `get_page $@`;;
     *)
-        echo Did not recognize thingscript command $1
+        echo Did not recognize thingscript command $1 > /dev/stderr
 esac

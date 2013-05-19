@@ -1,0 +1,2 @@
+#!/bin/bash
+thingscript handle_get widget/download
