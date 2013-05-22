@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ "$1" != "" ]
+    `thingscript get scripts/gallery` $1
+fi
+
 GALLERY_LIST_FILE=`thingscript get gallery_list` #TODO stream it instead?
 if [ "$GALLERY_LIST_FILE" == "" ]; then #Doesnt exist yet.
     ls $PROJECT_NAME/pics | grep -P '(png|gif|jpg|jpeg)'\

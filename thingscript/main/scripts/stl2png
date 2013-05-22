@@ -10,15 +10,18 @@
 
 #Uses povray to generate an image from an .stl
 
+FILE=$1
+
 #Exists and is up to date.
-test $FILE.pov -nt $FILE
+test "$FILE.png" -nt "$FILE"
 if [ "$?" == "0" ]; then
     echo skipping: stl2png $@\; already done > /dev/stderr
+    exit
 fi
 echo running: stl2png $@ > /dev/stderr
 
 #Generate povray file.
-TMP_INC=`date +%s`$RANDOM.inc
+TMP_INC=/tmp/`date +%s`$RANDOM.inc
 stl2pov.py $FILE $TMP_INC
 
 # Produces crud infront, with unusable variable name, fix that.
@@ -61,4 +64,4 @@ echo location \<`expr 2 \* $TX - $FX`, `expr 2 \* $TY - $FY`, `expr 2 \* $FZ - $
 cat `thingscript get other/template_post.pov` >> $FILE.pov
 
 #Actually run povray.
-povray $FILE.pov +W$2+H$3 +O$FILE.png
+povray $FILE.pov +W$2+H$3 +O$FILE.png > /dev/null
