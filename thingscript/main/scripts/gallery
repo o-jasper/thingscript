@@ -9,21 +9,35 @@
 #
 
 #Lays out a list of the images in javascript.
-echo '<script>
-var imgs = ["'`head -n 1 $1`'"'
-for el in `tail -n+2 $1`; do
-    echo ',"'$el'"'
+FIRST="true"
+for el in `grep -vxP "#.+" $1`; do
+    if [ $FIRST == "true" ]; then
+        echo '<script>
+var imgs = ["'$el\"
+        FIRST="false"
+    else
+        echo ',"'$el'"'
+    fi
 done
-
-#Ends the list and some functions to switch to images.
 echo '];
+
 var designs =[];</script>'
-STL2JS=`thingscript get scripts/stl2js`
-for el in `grep -P '.+\.(stl|obj)' $1`; do
-    $STL2JS $el > /dev/null
-    echo '<script src="'$el.js'"></script>'
+
+STL2JS=`thingscript get scripts/bin/stl2js`
+for el in `grep -xP '.+\.(stl|obj)' $1 | grep -vxP '#.+'`; do
+    #Exists and is up to date.
+    test $el.js -nt $el
+    if [ "$?" == "0" ]; then
+        echo skipping: stl2js $@\; already done > /dev/stderr
+    else
+        echo 'designs["'$el'"]=' > $PROJECT_DIR/$el.js
+        $STL2JS $PROJECT_DIR$el >> $PROJECT_DIR/$el.js
+        echo >> ';'
+    fi
+#    echo '<script src="'$el.js'"></script>' #Is imported at the last moment.
 done
 
+#Some functions to switch to images.
 echo '<script>
 var cur_gal_index = 1;
 function to_img_re_url(index)
@@ -43,8 +57,9 @@ function to_img(index)
     {   document.getElementById("viewer").src = file;
     }
     else if( ext==".stl" || ext==".obj" ) //Disable image, put design.
-    {  thingiview.loadArray(designs[file]);
-       document.getElementById("viewer").src = null;
+    {    js_import(file + ".js");
+         thingiview.loadArray(designs[file]);
+         document.getElementById("viewer").src = null;
     }
 }
 </script>'
@@ -54,7 +69,7 @@ FIRST=`head -n 1 $1`
 echo '<img id="viewer" style="width:400px;height:400px">'
 I=0
 echo '<table><tr>'
-for el in `cat $1`; do
+for el in `grep -vxP '#.+' $1`; do
     img=$el
     echo $img | grep .stl > /dev/null
     if [ "$?" == "0" ]; then

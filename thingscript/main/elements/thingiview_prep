@@ -6,6 +6,7 @@ echo '
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   
 <script src="../javascripts/import.js"></script>
+
 <script src="../javascripts/thingiview/Three.js"></script>
 <script src="../javascripts/thingiview/plane.js"></script>
 <script src="../javascripts/thingiview/thingiview.js"></script>

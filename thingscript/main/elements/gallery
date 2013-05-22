@@ -1,7 +1,8 @@
 #!/bin/bash
 
-if [ "$1" != "" ]
-    `thingscript get scripts/gallery` $1
+if [ "$2" != "" ]; then
+    echo gallery from arg $2 > /dev/stderr
+    `thingscript get scripts/gallery` $2
 fi
 
 GALLERY_LIST_FILE=`thingscript get gallery_list` #TODO stream it instead?

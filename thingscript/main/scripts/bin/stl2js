@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#Converts stl files to an javascript array that thingiview can use.
+
+FILE=$1
+
+test -e $FILE
+if [ "$?" != "0" ]; then
+    echo stl2js: couldnt find file: $FILE > /dev/stderr
+    exit
+fi
+
+echo running: stl2js $@ > /dev/stderr
+
+#TODO use php more directly or convert the source code to something.
+
+PHP_FILE=/tmp/`date +%s`$RANDOM.php #Make .php file with file in question.
+echo '<?php
+include('\'`thingscript get scripts/stl2js_data/convert.php`\'');
+
+$file = "'$FILE'";'>  $PHP_FILE
+cat `thingscript get scripts/stl2js_data/json_cli.php_`  >> $PHP_FILE
+
+echo //output
+php -f $PHP_FILE -- 'file=$TO_FILE' #Use it.
+
+rm $PHP_FILE > /dev/null #Delete temporary file.
