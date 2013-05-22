@@ -15,33 +15,27 @@ fi
 
 export PROJECT_DIR=$1
 export PROJECT_NAME=`basename $PROJECT_DIR`
-mkdir -p $PROJECT_DIR/page/
-
-get()
-{   thingscript get $@
-}
-get_page()
-{   thingscript get_page $@
-}
 
 #See if we have the required stuff.
 MISSING=''
 for el in `echo author category title`; do
-    if [ "`get $el`" == "" ]; then
+    if [ "`thingscript get $el`" == "" ]; then
         MISSING=$MISSING" $el"
     fi
 done
 for el in `echo short_description license layout`; do
-    if [ "`get_page $el`" == "" ]; then
+    if [ "`thingscript get_page $el`" == "" ]; then
         MISSING=$MISSING" $el"
     fi
 done
 if [ "$MISSING" != "" ]; then
     echo > /dev/stderr
-    echo Error: For each line, one of the files is required: > /dev/stderr
+    echo Error: For each line, _one_ of the files is required: > /dev/stderr
     echo $MISSING | tr ' ' '\n'
+    echo \(TODO following not yet implemented\)
+    echo Use \`thingscript get help/\$FILE\` for information about the file.
     exit
 fi
 #(Beyond the above things are optional, missing ignored)
 
-thingscript handle `get_page layout` > $PROJECT_DIR/page.html
+thingscript handle `thingscript get_page layout` > $PROJECT_DIR/page.html

@@ -1,0 +1,4 @@
+# Command `get_page`
+
+Does `thingscript get $2.html $2.md $2.html_ $2.md_ $2` which are effectively
+all the pages that could be under that name.

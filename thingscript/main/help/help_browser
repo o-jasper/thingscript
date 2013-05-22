@@ -1,0 +1,17 @@
+# Command `help_browser`
+Same as the command help, but uses markdown to generate a html file and opens it
+with the browser indicated in `thingscript cat_get prefer/browser`. 
+
+If nothing is indicated, it uses `xdg-open`.(it does file type - application 
+association)
+
+Effectively does:
+
+    thingscript cat_get help/$INPUT > some.html
+    `thingscript cat_get prefer/browser` some.html
+
+## Notes
+Currently leaves some crap in `/tmp/thingscript/`.
+
+## Related
+prefer/browser

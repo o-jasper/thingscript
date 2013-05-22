@@ -21,7 +21,7 @@ var imgs = ["'$el\"
 done
 echo '];
 
-var designs =[];</script>'
+var designs =[];'
 
 STL2JS=`thingscript get scripts/bin/stl2js`
 for el in `grep -xP '.+\.(stl|obj)' $1 | grep -vxP '#.+'`; do
@@ -30,15 +30,16 @@ for el in `grep -xP '.+\.(stl|obj)' $1 | grep -vxP '#.+'`; do
     if [ "$?" == "0" ]; then
         echo skipping: stl2js $@\; already done > /dev/stderr
     else
-        echo 'designs["'$el'"]=' > $PROJECT_DIR/$el.js
-        $STL2JS $PROJECT_DIR$el >> $PROJECT_DIR/$el.js
-        echo >> ';'
+        js_file=$PROJECT_DIR$el.js
+        echo 'designs["'$el'"]=' > $js_file
+        $STL2JS $PROJECT_DIR$el >> $js_file
+        echo ';' >> $js_file
     fi
-#    echo '<script src="'$el.js'"></script>' #Is imported at the last moment.
+    #TODO optional delayed loads? 
 done
 
 #Some functions to switch to images.
-echo '<script>
+echo '
 var cur_gal_index = 1;
 function to_img_re_url(index)
 {   var to_ind = location.href.indexOf("#");
@@ -73,7 +74,7 @@ for el in `grep -vxP '#.+' $1`; do
     img=$el
     echo $img | grep .stl > /dev/null
     if [ "$?" == "0" ]; then
-        `thingscript get scripts/stl2png` $PROJECT_DIR/$img 80 80 >> /dev/null
+        `thingscript get scripts/bin/stl2png` $PROJECT_DIR/$img 80 80 >> /dev/null
         img=$img.png
     fi
     echo '<td><img onclick="to_img_re_url('$I')" src="'$img'"></td>'

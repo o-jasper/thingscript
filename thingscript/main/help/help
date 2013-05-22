@@ -1,0 +1,5 @@
+# Command `help`
+Provides help about a command or file. Outputs it to stdout, in (human readable)
+markdown.
+
+Works very simply; effectively `thingscript cat_get help/$ASKED_PAGE`

@@ -1,0 +1,15 @@
+The text of this file contains the preferred browser binary. 
+
+Use it by symlinking it; for instance
+
+    mkdir -p ~/.thingscript/main/prefer/
+    cd ~/.thingscript/main/prefer/
+    ln -s /usr/bin/firefox browser
+
+Or put a small script in there:
+
+    mkdir -p ~/.thingscript/main/prefer/
+    cd ~/.thingscript/main/prefer/
+    echo '#!/bin/bash
+    firefox $@' > browser
+    chmod +x browser
