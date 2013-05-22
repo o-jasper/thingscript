@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (C) 18-05-2013 Jasper den Ouden.
+#  Copyright (C) 22-05-2013 Jasper den Ouden.
 #
 #  This is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published

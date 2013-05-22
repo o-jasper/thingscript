@@ -3,3 +3,7 @@
 */.#*
 */*/.#*
 */*/*/.#*
+
+testpage/output/*.stl.png
+testpage/output/*.stl.pov
+testpage/output/design_js/

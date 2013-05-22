@@ -1,0 +1,59 @@
+#!/bin/bash
+
+echo STL: $1 > /dev/stderr
+
+FILE=$1
+test -e $FILE.pov
+
+#Exists and is up to date.
+if [ "$?" == "0" ]; then
+    if [ "`stat $FILE -c %Z`" == "`stat $FILE.pov -c %Z`" ]; then
+        exit
+    fi
+fi
+
+#Generate povray file.
+TMP_INC=`date +%s`$RANDOM.inc
+stl2pov.py $FILE $TMP_INC
+
+# Produces crud infront, with unusable variable name, fix that.
+echo '# declare draw_model = mesh {' > $FILE.pov
+tail -n+14 $TMP_INC >> $FILE.pov
+# Dont need the temporary anymore.
+rm $TMP_INC
+#Add the actual drawing of the thing
+#TODO better way of using templates..
+# export WHICH_TYPE=povray hmm maybe i can extend thingscript.
+cat `thingscript get other/template_pre.pov` >> $FILE.pov
+
+#Use admesh info.. Yeah program writes should provide better access to data.
+#TODO get stl info stores data more neatly.
+INFOBIN=`thingscript get scripts/get_stl_info`
+val() #Expr sucks. Well, bash sucks.
+{   cut -f1 -d.
+}
+gi()
+{   $INFOBIN $FILE | grep "Min $1" | cut -f$2 -d= | cut -f1 -d, | val
+}
+
+FX=`gi X 2`
+TX=`gi X 3`
+
+FY=`gi Y 2`
+TY=`gi Y 3`
+
+FZ=`gi Z 2`
+TZ=`gi Z 3`
+
+av()
+{   expr 1000 \* \( $1 + $2 \) / 2000 
+}
+#Look at center.
+echo look_at \<`av $FX $TX`, `av $FY $TY`, `av $FZ $TZ`\> >> $FILE.pov
+#Look from slight distance.
+echo location \<`expr 2 \* $TX - $FX`, `expr 2 \* $TY - $FY`, `expr 2 \* $FZ - $TZ`\> >> $FILE.pov
+
+cat `thingscript get other/template_post.pov` >> $FILE.pov
+
+#Actually run povray.
+povray $FILE.pov +W$2+H$3 +O$FILE.png

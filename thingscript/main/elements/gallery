@@ -6,4 +6,4 @@ if [ "$GALLERY_LIST_FILE" == "" ]; then #Doesnt exist yet.
        | while read line; do echo pics/$line; done > $PROJECT_DIR/page/gallery_list 
     GALLERY_LIST_FILE=$PROJECT_DIR/page/gallery_list
 fi
-sh `thingscript get scripts/gallery.sh` $GALLERY_LIST_FILE
+`thingscript get scripts/gallery` $GALLERY_LIST_FILE

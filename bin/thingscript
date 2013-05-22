@@ -135,7 +135,7 @@ torrent"
                 echo '"downloads/'$PROJECT_NAME.torrent'"' ;;
             *_) #Layout stuff.
                 handle_get `echo $LINE | head -c-2` ;;
-            *.sh) #Scripts.
+            *.sh) #Shell scripts.
                 SCRIPTFILE=`get scripts/$FIRST`
                 if [ "$SCRIPTFILE" == "" ]; then
                     echo Could not find this script: $FIRST> /dev/stderr
@@ -166,6 +166,6 @@ case "$1" in
         handle $2;;
     handle_get)
         handle `get_page $@`;;
-    *)
+    *) #TODO more info, `help`
         echo Did not recognize thingscript command $1 > /dev/stderr
 esac
