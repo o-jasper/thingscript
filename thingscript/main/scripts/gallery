@@ -14,18 +14,16 @@ var imgs = ["'`head -n 1 $1`'"'
 for el in `tail -n+2 $1`; do
     echo ',"'$el'"'
 done
-#TODO Put in separate script, and record if already up to date.
+
 #Ends the list and some functions to switch to images.
-DESIGN_JS_DIR=$PROJECT_DIR/output/design_js/
 echo '];
 var designs =[];'
-for el in `grep -P '.+\.(stl|obj)' $1`; do #TODO overly specific
-    bel=`basename $el`
-    echo Gen JS: $DESIGN_JS_DIR/$bel.js > /dev/stderr
-    mkdir -p $DESIGN_JS_DIR
-    echo 'designs["'$el'"]='`sh otherscripts/json_file.sh testpage/$el`';' >  $DESIGN_JS_DIR/$bel.js
+STL2JS=`thingscript get scripts/stl2js`
+for el in `grep -P '.+\.(stl|obj)' $1`; do
+    echo Gen JS: $el.js > /dev/stderr
+    echo 'designs["'$el'"]='`$STL2JS testpage/$el`';' >  $el.js
     echo '</script>
-<script src="'output/design_js/$bel.js'"></script>
+<script src="'$el.js'"></script>
 <script>'
 done
 
@@ -62,7 +60,7 @@ echo '<table><tr>'
 for el in `cat $1`; do
 #TODO generate image from 3d models.
     img=$el
-    echo $img | grep -P '(stl|obj)' > /dev/null
+    echo $img | grep .stl > /dev/null
     if [ "$?" == "0" ]; then
         `thingscript get scripts/stl2png` $PROJECT_DIR/$img 80 80 >> /dev/null
         img=$img.png

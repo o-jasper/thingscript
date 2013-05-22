@@ -1,16 +1,21 @@
 #!/bin/bash
+#
+#  Copyright (C) 22-05-2013 Jasper den Ouden.
+#
+#  This is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
 
-echo STL: $1 > /dev/stderr
-
-FILE=$1
-test -e $FILE.pov
+#Uses povray to generate an image from an .stl
 
 #Exists and is up to date.
+test $FILE.pov -nt $FILE
 if [ "$?" == "0" ]; then
-    if [ "`stat $FILE -c %Z`" == "`stat $FILE.pov -c %Z`" ]; then
-        exit
-    fi
+    echo skipping: stl2png $@\; already done > /dev/stderr
 fi
+echo running: stl2png $@ > /dev/stderr
 
 #Generate povray file.
 TMP_INC=`date +%s`$RANDOM.inc
