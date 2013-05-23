@@ -152,7 +152,7 @@ case "$1" in
         get_image $@;;
     
     help) #Help stdout.
-        get_help $2
+        cat "`get_help $2`"
         if [ "$?" != "0" ]; then
             echo Turns out no help page for $2 exists.
         fi;;

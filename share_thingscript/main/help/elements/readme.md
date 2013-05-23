@@ -9,6 +9,3 @@ There are 'special elements' ending with:
 
 * `_` are taken to point at an file in which elements must again be replaced.
 * `.cat` are taken to aim at files that should be outputted verbatim.
-
-
-
