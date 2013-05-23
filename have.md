@@ -18,8 +18,7 @@ From these to `.js`
 <table>
 <tr>
 <td><code>.stl</code>,<code>.obj</code></td>
-<td>Using <a href="http://povray.org/">povray</a>,
-<a href="http://rsmith.home.xs4all.nl/software/py-stl-stl2pov.html">stl2pov</a></td></tr>
+<td>Using <a href="https://github.com/tbuser/thingiview.js">thingiview.js</a></td></tr>
 </table>
 
 However, lots of projects out there just have `.stl`, and 
