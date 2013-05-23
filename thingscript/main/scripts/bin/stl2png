@@ -61,7 +61,7 @@ echo look_at \<`av $FX $TX`, `av $FY $TY`, `av $FZ $TZ`\> >> $FILE.pov
 #Look from slight distance.
 echo location \<`expr 2 \* $TX - $FX`, `expr 2 \* $TY - $FY`, `expr 2 \* $FZ - $TZ`\> >> $FILE.pov
 
-cat `thingscript get other/template_post.pov` >> $FILE.pov
+thingscript cat_get scripts/share/stl2png/template_post.pov >> $FILE.pov
 
 #Actually run povray.
 povray $FILE.pov +W$2+H$3 +O$FILE.png > /dev/null
