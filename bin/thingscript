@@ -62,7 +62,7 @@ get_image()
 
 handle_get()
 {
-    handle `get_page $@`
+    handle "`get_page $@`"
 }
 
 cat_get()
