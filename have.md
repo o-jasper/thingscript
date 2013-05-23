@@ -21,5 +21,26 @@ From these to `.js`
 <td>Using <a href="https://github.com/tbuser/thingiview.js">thingiview.js</a></td></tr>
 </table>
 
-However, lots of projects out there just have `.stl`, and 
+Just a few however, lots of projects out there just have `.stl`, and 
 images can be added manually. (Still, more is better)
+
+## Problems
+One problem that many programs out there dont do computer-readable output. 
+Well for instance `admesh` you can, and it does read that data from stdout.
+However it requires some work and no guarantee that output will stay the same, a next
+version might easily break it.(For no good reason at all)
+
+This is a *persistant* problem. Firefox is a widely used program, 11 years old
+now, older if you count predecessors. Go fucking try getting which tabs are open.
+No. There is none. Whereas programs like `mpd` clearly show this sort of data 
+transfer is perfectly doable!
+
+Probably not because their priorities lie completely different and windows works
+differently. But still, i think for a project like `firefox` this is a relatively
+easy thing to do.
+
+## Potential additional
+[View3dscene](http://castle-engine.sourceforge.net/view3dscene.php) can load,
+make screen shots and convert a bunch of file types. More aimed at game models, 
+so lower priority.(Note but being able to print `.md3` is nice; convert to `x3d`
+and then use blender to export to `.stl`)
