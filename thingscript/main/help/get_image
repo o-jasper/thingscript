@@ -1,4 +1,4 @@
 # Command `get_image`
 
-Does `thingscript get get $1.png $1.jpg $1.svg $1.gif`; effectively all the 
+Does `thingscript get $1.png $1.jpg $1.svg $1.gif`; effectively all the 
 images that could go under that name.

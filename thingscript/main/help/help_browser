@@ -5,7 +5,7 @@ with the browser indicated in `thingscript cat_get prefer/browser`.
 If nothing is indicated, it uses `xdg-open`.(it does file type - application 
 association)
 
-Effectively does:
+Roughly does:
 
     thingscript cat_get help/$INPUT > some.html
     `thingscript cat_get prefer/browser` some.html

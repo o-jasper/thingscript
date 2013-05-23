@@ -3,4 +3,7 @@
 
 Effectively:
 
-    cat `thingscript get $input`
+    cat "`thingscript get $input`"
+
+The quotes `"` matter; otherwise finding nothing will make it output the input
+from stdin at that time.(potentially very confusing)
