@@ -65,6 +65,10 @@ handle_get()
     handle `get_page $@`
 }
 
+cat_get()
+{   cat "`get $@`"
+}
+
 #Handles pages, possibly doing scripts/substitutions within.
 handle()
 {
@@ -118,40 +122,16 @@ handle_whole()
             continue
         fi
         case "$LINE" in
-            zip_file)
-                DOWNLOADS=$DOWNLOADS"
-zip"
-                echo '"downloads/'$PROJECT_NAME.zip'"' ;;
-            tar_gz_file)
-                DOWNLOADS=$DOWNLOADS"
-tar.gz"
-                echo '"downloads/'$PROJECT_NAME.tar.gz'"' ;;
-            tar_bz2_file)
-                DOWNLOADS=$DOWNLOADS"
-tar.bz2"
-                echo '"downloads/'$PROJECT_NAME.tar.bz2'"' ;;
-            torrent)
-                DOWNLOADS=$DOWNLOADS"
-torrent"
-                echo '"downloads/'$PROJECT_NAME.torrent'"' ;;
+            *.cat)
+                cat_get `echo $LINE | head -c-2` ;;
             *_) #Layout stuff.
                 handle_get `echo $LINE | head -c-2` ;;
-            *.sh) #Shell scripts.
-                SCRIPTFILE=`get scripts/$FIRST`
-                if [ "$SCRIPTFILE" == "" ]; then
-                    echo Could not find this script: $FIRST> /dev/stderr
-                fi
-                ARGS=`echo $LINE |cut -f2- -d' '`
-                sh $SCRIPTFILE $ARGS ;;
             *) #Just a plain line to be outputted.
                 echo $LINE ;;
         esac
     done
 }
 
-cat_get()
-{   cat "`get $@`"
-}
 
 get_help()
 {   FILE=`get help/$1`

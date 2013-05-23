@@ -9,6 +9,6 @@ testpage/output/*.stl.png
 testpage/output/*.stl.pov
 testpage/output/*.stl.js
 
-thingscript/main/prefer/browser
+share_thingscript/main/prefer/browser
 
 mess/
