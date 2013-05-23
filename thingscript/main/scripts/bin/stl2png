@@ -32,7 +32,7 @@ rm $TMP_INC
 #Add the actual drawing of the thing
 #TODO better way of using templates..
 # export WHICH_TYPE=povray hmm maybe i can extend thingscript.
-cat `thingscript get other/template_pre.pov` >> $FILE.pov
+cat `thingscript get scripts/share/stl2png/template_pre.pov` >> $FILE.pov
 
 #Use admesh info.. Yeah program writes should provide better access to data.
 #TODO get stl info stores data more neatly.
