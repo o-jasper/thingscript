@@ -27,16 +27,17 @@ get_locations()
     for el in `echo $@`; do #Then what the dev suggests.
         echo /usr/share/thingscript/$WHICH_TYPE/$el
     done
-    
-    for el in `echo $@`; do #Then what he prefers.
-        echo ~/.thingscript/main/$el
-    done
-    for el in `echo $@`; do #Then what the admin suggests.
-        echo /etc/thingscript/main/$el
-    done
-    for el in `echo $@`; do #Then what the dev suggests.
-        echo /usr/share/thingscript/main/$el
-    done
+    if [ "$WHICH_TYPE" != "main" ]; then #Try main anyway.
+        for el in `echo $@`; do 
+            echo ~/.thingscript/main/$el
+        done
+        for el in `echo $@`; do
+            echo /etc/thingscript/main/$el
+        done
+        for el in `echo $@`; do
+            echo /usr/share/thingscript/main/$el
+        done
+    fi
 }
 
 #Gets layout information.
@@ -148,6 +149,20 @@ torrent"
     done
 }
 
+cat_get()
+{  cat `get $@`
+}
+
+get_help()
+{   FILE=`get help/$1`
+    test -d $FILE
+    if [ "$?" == "0" ]; then
+        echo $FILE/readme.md
+    else
+        echo $FILE
+    fi
+}
+
 case "$1" in
     get)
         get $@;;
@@ -156,16 +171,36 @@ case "$1" in
     get_image)
         get_image $@;;
     
+    help) #Help stdout.
+        get_help $2
+        if [ "$?" != "0" ]; then
+            echo Turns out no help page for $2 exists.
+        fi;;
+    help_browser) #Help into browser. TODO probably want CSS.
+        mkdir -p /tmp/thingscript/
+        HTML_FILE=/tmp/thingscript/`date +%s`$RANDOM.html
+        markdown `get_help $2` > $HTML_FILE
+        if [ "$?" != "0" ]; then
+            echo Turns out no help page for $2 exists.
+        fi
+        PREFERRED=`get prefer/browser`
+        if [ "$PREFERRED" == "" ]; then
+            PREFERRED="xdg-open"
+        fi
+        $PREFERRED $HTML_FILE;;
+    
     mkpage)
         sh `get bin/mkpage.sh` $2;;
 
-    thingscript_version)
+    version)
         cat /usr/share/thingscript/version;;
 
     handle)
         handle $2;;
     handle_get)
         handle `get_page $@`;;
+    cat_get)
+        cat_get $@;;
     *) #TODO more info, `help`
         echo Did not recognize thingscript command $1 > /dev/stderr
 esac

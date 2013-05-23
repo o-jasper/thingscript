@@ -2,4 +2,7 @@
 Provides help about a command or file. Outputs it to stdout, in (human readable)
 markdown.
 
-Works very simply; effectively `thingscript cat_get help/$ASKED_PAGE`
+Roughly: `thingscript cat_get help/$ASKED_PAGE`
+
+More specifically, it uses `test -d $cat_get_result` to see if it is a directory
+and if it is, opens the `readme.md` there.

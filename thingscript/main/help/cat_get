@@ -1,0 +1,6 @@
+# Command `cat_get`
+`get` but immediately outputs the file to stdout;
+
+Effectively:
+
+    cat `thingscript get $input`

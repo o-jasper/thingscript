@@ -32,7 +32,7 @@ if [ "$MISSING" != "" ]; then
     echo > /dev/stderr
     echo Error: For each line, _one_ of the files is required: > /dev/stderr
     echo $MISSING | tr ' ' '\n'
-    echo \(TODO following not yet implemented\)
+    echo
     echo Use \`thingscript get help/\$FILE\` for information about the file.
     exit
 fi

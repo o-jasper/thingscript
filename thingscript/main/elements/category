@@ -1,2 +1,2 @@
 #!/bin/bash
-cat `thingscript get category`
+thingscript cat_get category

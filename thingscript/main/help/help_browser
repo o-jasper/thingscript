@@ -10,6 +10,9 @@ Effectively does:
     thingscript cat_get help/$INPUT > some.html
     `thingscript cat_get prefer/browser` some.html
 
+If in the future css will be added to make the pages nices, it will be in
+ `prefer/help_browser.css`.
+
 ## Notes
 Currently leaves some crap in `/tmp/thingscript/`.
 

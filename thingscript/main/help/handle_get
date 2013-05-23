@@ -1,0 +1,6 @@
+# Command handle_get
+Finds a page and 'handles' it. (See command `handle`)
+
+Effectively the same as 
+
+    thingscript handle `thingscript get_page $input`
