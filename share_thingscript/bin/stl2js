@@ -4,6 +4,8 @@
 
 FILE=$1
 
+STL2JS_DIR=$ROOTLIKE/share/stl2js/
+
 test -e $FILE
 if [ "$?" != "0" ]; then
     echo stl2js: couldnt find file: $FILE > /dev/stderr
@@ -16,10 +18,10 @@ echo running: stl2js $@ > /dev/stderr
 
 PHP_FILE=/tmp/`date +%s`$RANDOM.php #Make .php file with file in question.
 echo '<?php
-include('\'`thingscript get scripts/share/stl2js/convert.php`\'');
+include('\'$STL2JS_DIR/convert.php\'');
 
 $file = "'$FILE'";'>  $PHP_FILE
-cat `thingscript get scripts/share/stl2js/json_cli.php_`  >> $PHP_FILE
+cat $STL2JS_DIR/json_cli.php_  >> $PHP_FILE
 
 echo //output
 php -f $PHP_FILE -- 'file=$TO_FILE' #Use it.

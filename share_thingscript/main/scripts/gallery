@@ -23,7 +23,6 @@ echo '];
 
 var designs =[];'
 
-STL2JS=`thingscript get scripts/bin/stl2js`
 for el in `grep -xP '.+\.(stl|obj)' $1 | grep -vxP '#.+'`; do
     #Exists and is up to date.
     file=$PROJECT_DIR$el
@@ -31,7 +30,7 @@ for el in `grep -xP '.+\.(stl|obj)' $1 | grep -vxP '#.+'`; do
         echo skipping: stl2js $file\; already done > /dev/stderr
     else
         echo 'designs["'$el'"]=' > $file.js
-        $STL2JS $file >> $file.js
+        $ROOTLIKE/bin/stl2js $file >> $file.js
         echo ';' >> $file.js
     fi
     #TODO optional delayed loads? 
@@ -78,7 +77,7 @@ for el in `grep -vxP '#.+' $1`; do
             echo skipping: stl2png $file\; already done > /dev/stderr
         else
             echo running: stl2png $img > /dev/stderr
-            `thingscript get scripts/bin/stl2png` $file 80 80 >> /dev/null
+            $ROOTLIKE/bin/stl2png $file $file.png  +W80+H80 >> /dev/null
         fi
         img=$img.png #(always convert to the image)
     fi

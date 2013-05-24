@@ -11,6 +11,13 @@
 #Uses povray to generate an image from an .stl
 
 FILE=$1
+OUT_FILE=$2
+if [ "$OUT_FILE" == ""]; then
+    OUT_FILE=$FILE.png
+fi
+POV_ARGS=$3
+
+STL2PNG_DIR=$ROOTLIKE/share/stl2png/
 
 #Generate povray file.
 TMP_INC=/tmp/`date +%s`$RANDOM.inc
@@ -23,17 +30,15 @@ tail -n+14 $TMP_INC >> $FILE.pov
 rm $TMP_INC
 #Add the actual drawing of the thing
 #TODO better way of using templates..
-# export WHICH_TYPE=povray hmm maybe i can extend thingscript.
-cat `thingscript get scripts/share/stl2png/template_pre.pov` >> $FILE.pov
+cat $STL2PNG_DIR/template_pre.pov >> $FILE.pov
 
 #Use admesh info.. Yeah program writes should provide better access to data.
 #TODO get stl info stores data more neatly.
-INFOBIN=`thingscript get scripts/get_stl_info`
 val() #Expr sucks. Well, bash sucks.
 {   cut -f1 -d.
 }
 gi()
-{   $INFOBIN $FILE | grep "Min $1" | cut -f$2 -d= | cut -f1 -d, | val
+{   $ROOTLIKE/bin/get_stl_info $FILE | grep "Min $1" | cut -f$2 -d= | cut -f1 -d, | val
 }
 
 FX=`gi X 2`
@@ -53,7 +58,7 @@ echo look_at \<`av $FX $TX`, `av $FY $TY`, `av $FZ $TZ`\> >> $FILE.pov
 #Look from slight distance.
 echo location \<`expr 2 \* $TX - $FX`, `expr 2 \* $TY - $FY`, `expr 2 \* $FZ - $TZ`\> >> $FILE.pov
 
-thingscript cat_get scripts/share/stl2png/template_post.pov >> $FILE.pov
+cat $STL2PNG_DIR/template_post.pov >> $FILE.pov
 
 #Actually run povray.
-povray $FILE.pov +W$2+H$3 +O$FILE.png > /dev/null
+povray $FILE.pov $POV_ARGS +O$OUT_FILE > /dev/null

@@ -8,6 +8,9 @@
 # (at your option) any later version.
 #
 
+#Currently a userspace install.(hrmm perhaps overkill)
+export ROOTLIKE=/home/$USER/.thingscript/
+
 if [ WHICH_TYPE=="" ]; then
     WHICH_TYPE="main"
 fi
