@@ -1,0 +1,15 @@
+#!/bin/bash
+#For moving git subdirectories so you can put them somewhere without any git
+# bits to them.
+#
+#Probably is a better way to do it, please make a quick remark in the issues if
+# you care to divulge.
+
+cd $1 #Need to be in the directory to be sure git will work.
+FILES=`git ls-files`
+cd - # go back
+
+for el in $FILES; do
+    mkdir -p $2/`dirname $el`
+    cp -u $1/$el $2/$el
+done

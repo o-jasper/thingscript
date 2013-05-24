@@ -171,7 +171,7 @@ case "$1" in
     
     mkpage)
         sh "`get bin/mkpage.sh`" $2;;
-
+    
     version)
         cat /usr/share/thingscript/version;;
 
@@ -183,6 +183,10 @@ case "$1" in
         cat_get $@;;
     markdown_get)
         markdown "`get $@`";;
+    
+    ibin) #Runs an internal bin file intended to be basically a separate entity.
+        $ROOTLIKE/bin/`echo $@ | cut -f2- -d' '`;;
+    
     *) #TODO more info, `help`
         echo Did not recognize thingscript command $1 > /dev/stderr
 esac

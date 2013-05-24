@@ -1,8 +1,7 @@
 
 # Script for making a website with physibles
-
 Thats were it started at least. Lets keep it at that for now. 
-Not at all stable yet.
+Still changing quite a bit at the moment.
 
 It uses [povray](http://povray.org/), [stl2pov](http://rsmith.home.xs4all.nl/software/py-stl-stl2pov.html"),
 [admesh](http://www.varlog.com/admesh-htm) 
