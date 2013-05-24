@@ -1,8 +1,6 @@
 
-[admesh](http://www.varlog.com/admesh-htm) should be able to convert from `.stl` to
-`.stl`, `.vrml`, `.off`, and `.dxf` files
-
-There are lots of file types.. Some more are `.skp`, `.blend`, `.amf`. 
+There are lots of file types.. Some more are `.skp`, `.blend`, `.amf`, `.step`. 
+`.dxf`, `.pdf`, `.svg`, `.tx`, `ad_prt` (dont even know what some of those are)
 And circuit boards are physibles too! We wont be requiring all the dependencies,
 what you have should work and the rest fails gracefully?
 
@@ -24,7 +22,7 @@ From these to `.js`
 Just a few however, lots of projects out there just have `.stl`, and 
 images can be added manually. (Still, more is better)
 
-## Problems
+### Problems
 One problem that many programs out there dont do computer-readable output. 
 Well for instance `admesh` you can, and it does read that data from stdout.
 However it requires some work and no guarantee that output will stay the same, a next
@@ -39,8 +37,12 @@ Probably not because their priorities lie completely different and windows works
 differently. But still, i think for a project like `firefox` this is a relatively
 easy thing to do.
 
+## Used
+[admesh](http://www.varlog.com/admesh-htm) should be able to convert from `.stl` to
+`.stl`, `.vrml`, `.off`, and `.dxf` files
+
 ## Potential additional
-[View3dscene](http://castle-engine.sourceforge.net/view3dscene.php) can load,
+[**View3dscene**](http://castle-engine.sourceforge.net/view3dscene.php) can load,
 make screen shots and convert a bunch of file types. More aimed at game models, 
 so lower priority.(Note but being able to print `.md3` is nice; convert to `x3d`
 and then use blender to export to `.stl`)

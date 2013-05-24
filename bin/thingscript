@@ -27,7 +27,7 @@ get_locations()
     for el in `echo $@`; do #Then what the dev suggests.
         echo /usr/share/thingscript/$WHICH_TYPE/$el
     done
-    if [ "$WHICH_TYPE" != "main" ]; then #Try main anyway.
+    if [ "$WHICH_TYPE" != "main" ]; then #If you run out try main anyway.
         for el in `echo $@`; do 
             echo ~/.thingscript/main/$el
         done
@@ -43,8 +43,7 @@ get_locations()
 #Gets layout information.
 get()
 {   for el in `get_locations $@`; do #Go through all the files.
-        test -e $el #See if the file exists.
-        if [ "$?" == "0" ]; then 
+        if `test -e $el`; then  #See if the file exists.
             echo $el
             return #Have one.
         fi
@@ -75,8 +74,7 @@ handle()
     if [ "$1" == "" ]; then #Nothing here.
         return
     fi
-    test -e $1
-    if [ "$?" != "0" ]; then #File doesnt exist.
+    if [ ! -e $1 ]; then #File doesnt exist.
         exit #TODO do something?
     fi
     VAL=`echo $1 | cut -f 3 -d'.'`
@@ -135,8 +133,7 @@ handle_whole()
 
 get_help()
 {   FILE=`get help/$1`
-    test -d $FILE
-    if [ "$?" == "0" ]; then
+    if `test -d $FILE"`; then
         echo $FILE/readme.md
     else
         echo $FILE

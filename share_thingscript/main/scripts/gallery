@@ -26,14 +26,13 @@ var designs =[];'
 STL2JS=`thingscript get scripts/bin/stl2js`
 for el in `grep -xP '.+\.(stl|obj)' $1 | grep -vxP '#.+'`; do
     #Exists and is up to date.
-    test $el.js -nt $el
-    if [ "$?" == "0" ]; then
-        echo skipping: stl2js $@\; already done > /dev/stderr
+    file=$PROJECT_DIR$el
+    if [ $file.js -nt $file ]; then
+        echo skipping: stl2js $file\; already done > /dev/stderr
     else
-        js_file=$PROJECT_DIR$el.js
-        echo 'designs["'$el'"]=' > $js_file
-        $STL2JS $PROJECT_DIR$el >> $js_file
-        echo ';' >> $js_file
+        echo 'designs["'$el'"]=' > $file.js
+        $STL2JS $file >> $file.js
+        echo ';' >> $file.js
     fi
     #TODO optional delayed loads? 
 done
@@ -72,10 +71,16 @@ I=0
 echo '<table><tr>'
 for el in `grep -vxP '#.+' $1`; do
     img=$el
+    file=$PROJECT_DIR$el
     echo $img | grep .stl > /dev/null
-    if [ "$?" == "0" ]; then
-        `thingscript get scripts/bin/stl2png` $PROJECT_DIR/$img 80 80 >> /dev/null
-        img=$img.png
+    if [ "$?" == "0" ]; then #Make image for .stl
+        if [ $file.png -nt $file ]; then #Check if up to date.
+            echo skipping: stl2png $file\; already done > /dev/stderr
+        else
+            echo running: stl2png $img > /dev/stderr
+            `thingscript get scripts/bin/stl2png` $file 80 80 >> /dev/null
+        fi
+        img=$img.png #(always convert to the image)
     fi
     echo '<td><img onclick="to_img_re_url('$I')" src="'$img'"></td>'
     I=`expr $I + 1`

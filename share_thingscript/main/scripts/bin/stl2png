@@ -12,14 +12,6 @@
 
 FILE=$1
 
-#Exists and is up to date.
-test "$FILE.png" -nt "$FILE"
-if [ "$?" == "0" ]; then
-    echo skipping: stl2png $@\; already done > /dev/stderr
-    exit
-fi
-echo running: stl2png $@ > /dev/stderr
-
 #Generate povray file.
 TMP_INC=/tmp/`date +%s`$RANDOM.inc
 stl2pov.py $FILE $TMP_INC
