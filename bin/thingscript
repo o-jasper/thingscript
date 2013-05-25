@@ -124,9 +124,9 @@ handle_whole()
         fi
         case "$LINE" in
             *.cat)
-                cat_get `echo $LINE | head -c-2` ;;
+                cat_get elements/`echo $LINE | head -c-2` ;;
             *_) #Layout stuff.
-                handle_get `echo $LINE | head -c-2` ;;
+                handle_get elements/`echo $LINE | head -c-2` ;;
             *) #Just a plain line to be outputted.
                 echo $LINE ;;
         esac
@@ -136,7 +136,8 @@ handle_whole()
 
 get_help()
 {   FILE=`get help/$1`
-    if `test -d $FILE"`; then
+    test -d $FILE
+    if [ "$?" == "0" ]; then
         echo $FILE/readme.md
     else
         echo $FILE

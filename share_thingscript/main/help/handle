@@ -1,2 +1,6 @@
 # Command `handle`
-TODO (big one too)
+Goes through a file looking for `$` characters, when it takes the text from the
+`$` sign to another `$` sign or a newline to be a command to run a program
+in `elements/`, with space-separated arguments.
+
+Commands ending in `_` or `.cat` are taken a little differently, see `elements`.
