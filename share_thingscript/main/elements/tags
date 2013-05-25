@@ -1,7 +1,17 @@
 #!/bin/bash
 
 TAGSFILE=`thingscript get tags`
-echo '<span class="tag">'`head -n 1 $TAGSFILE`'</span> '
-tail -n+2 $TAGSFILE | while read TAG; do
-     echo ', <span class="tag">'$TAG'</span>'
-done
+if [ "$2" == "" ]; then
+    echo '<span class="tag">'`head -n 1 $TAGSFILE`'</span> '
+    tail -n+2 $TAGSFILE | while read TAG; do
+        echo ', <span class="tag">'$TAG'</span>'
+    done
+else
+    if [ "$2" != "plain" ]; then #TODO better
+        echo E: What way do you want the tags? $2 > /dev/stderr
+    fi
+    head -n 1 $TAGSFILE
+    tail -n+2 $TAGSFILE | while read TAG; do
+        echo ,$TAG
+    done
+fi

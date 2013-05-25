@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (C) 18-05-2013 Jasper den Ouden.
+#  Copyright (C) 25-05-2013 Jasper den Ouden.
 #
 #  This is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published
@@ -11,7 +11,7 @@
 #Currently a userspace install.(hrmm perhaps overkill)
 export ROOTLIKE=/home/$USER/.thingscript/rootlike/
 
-if [ WHICH_TYPE=="" ]; then
+if [ "$WHICH_TYPE" == "" ]; then
     WHICH_TYPE="main"
 fi
 
@@ -56,7 +56,7 @@ get()
 export IS_TEST=`get is_test`
 
 get_page()
-{   get $2.html $2.md $2.html_ $2.md_ $2
+{   get $1.html $1.md $1.html_ $1.md_ $1
 }
 
 get_image()
@@ -73,7 +73,7 @@ cat_get()
 {   cat "`get $@`"
 }
 
-#Handles pages, possibly doing scripts/substitutions within.
+#Handles pages, doing scripts/substitutions within.
 handle()
 {
     if [ "$1" == "" ]; then #Nothing here.
@@ -109,8 +109,7 @@ cat_or_run() #List
     fi
 }
 
-#TODO make handling external. (Its needed top make things elements.)
-#Warning, dont use single loose words.
+#TODO how it works and the lack of escaping is less-than optimal.
 handle_whole()
 {
     tr '$' '\n' | while read LINE; do
@@ -135,7 +134,6 @@ handle_whole()
     done
 }
 
-
 get_help()
 {   FILE=`get help/$1`
     test -d $FILE
@@ -148,11 +146,11 @@ get_help()
 
 case "$1" in
     get)
-        get $@;;
+        get $2;;
     get_page)
-        get_page $@;;
+        get_page $2;;
     get_image)
-        get_image $@;;
+        get_image $2;;
     
     help) #Help stdout.
         cat "`get_help $2`"
@@ -181,7 +179,7 @@ case "$1" in
     handle)
         handle $2;;
     handle_get)
-        handle "`get_page $@`";;
+        handle_get $2;;
     cat_get)
         cat_get $@;;
     markdown_get)

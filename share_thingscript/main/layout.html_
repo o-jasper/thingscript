@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>$title$</title>
+<meta name=author   content="$author$">
+<meta name=keywords content="$tags plain$">
 <script src="../javascripts/import.js"></script>
 $cat src/thingiview_prep.html$
 <script src="../javascripts/gallery.js"></script>
@@ -24,9 +27,6 @@ $cat src/thingiview_prep.html$
       </td></tr></table>
 </td></tr></table>
 
-<span id="say">silent</span>
-
-<span onclick="to_img(0)">to first</span>
-
+<span id="say"></span>
 </body>
 </html>
