@@ -1,0 +1,57 @@
+#!/bin/bash
+#
+#  Copyright (C) 22-05-2013 Jasper den Ouden.
+#
+#  This is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+
+#Uses stl2pov.py to generate a povray file.
+
+#TODO stl2pov should get --help, man page, stdout option.
+
+FILE=$1
+
+STL2POV_DIR=$ROOTLIKE/share/stl2pov/
+
+echo '# declare draw_model = mesh {'
+
+mkdir -p /tmp/thingscript/
+TMP_INC=/tmp/thingscript/`date +%s`$RANDOM$RANDOM.inc
+# Produces crud infront, with unusable variable name, `tail` cuts that off.
+stl2pov.py $FILE $TMP_INC > /dev/null
+tail -n+14 $TMP_INC
+rm $TMP_INC
+
+#Add the actual drawing of the thing #TODO could be better here.
+cat $STL2POV_DIR/template_pre.pov
+
+#Use admesh info.. Yeah program writes should provide better access to data.
+#TODO get stl info stores data more neatly.
+val() #Expr sucks. Well, bash sucks.
+{   cut -f1 -d.
+}
+gi()
+{   $ROOTLIKE/bin/get_stl_info $FILE | grep "Min $1" | cut -f$2 -d= | cut -f1 -d, | val
+}
+
+FX=`gi X 2`
+TX=`gi X 3`
+
+FY=`gi Y 2`
+TY=`gi Y 3`
+
+FZ=`gi Z 2`
+TZ=`gi Z 3`
+
+av()
+{   expr 1000 \* \( $1 + $2 \) / 2000 
+}
+#Look at center.
+echo look_at \<`av $FX $TX`, `av $FY $TY`, `av $FZ $TZ`\>
+#Look from slight distance.
+echo location \<`expr 2 \* $TX - $FX`, `expr 2 \* $TY - $FY`, `expr 2 \* $FZ - $TZ`\>
+
+cat $STL2POV_DIR/template_post.pov

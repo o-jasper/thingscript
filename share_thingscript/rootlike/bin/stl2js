@@ -23,7 +23,6 @@ include('\'$STL2JS_DIR/convert.php\'');
 $file = "'$FILE'";'>  $PHP_FILE
 cat $STL2JS_DIR/json_cli.php_  >> $PHP_FILE
 
-echo //output
 php -f $PHP_FILE -- 'file=$TO_FILE' #Use it.
 
 rm $PHP_FILE > /dev/null #Delete temporary file.
