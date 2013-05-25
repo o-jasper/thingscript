@@ -53,6 +53,8 @@ get()
     done
 }
 
+export IS_TEST=`get is_test`
+
 get_page()
 {   get $2.html $2.md $2.html_ $2.md_ $2
 }

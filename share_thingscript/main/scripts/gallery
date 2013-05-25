@@ -10,8 +10,12 @@
 
 #Lays out a list of the images in javascript.
 
-# TODO nicer if the preparing is distinct from the gallery itself.
-#Also, what about multiple galleries, all URL-adressable?
+# TODO
+# * More choices with 3d files, at least
+#   + on gallery just picture/picture-3d-model clickthrough/right away 3d model.
+#   + Wider approach? Like taking into account other options than povray?
+# * Nicer if the preparing is distinct from the gallery itself.
+#   Also, what about multiple galleries, all URL-adressable?
 
 to() #Thingscript out file to keep things slightly more organized.
 {   
@@ -43,7 +47,7 @@ for el in `grep -xP '.+\.(stl|obj)' $1 | grep -vxP '#.+'`; do
     #Exists and is up to date.
     file=$PROJECT_DIR$el
     ofile=`to $file yes`
-    if [ $ofile.js -nt $file ]; then
+    if [ "$IS_TEST" == "" -a  $ofile.js -nt $file ]; then
         echo skipping: stl2js $file\; already done > /dev/stderr
     else #Note: $ofile includes $PROJECT_DIR
         echo 'designs["'`to $el`'"]=' > $ofile.js
@@ -66,13 +70,13 @@ for el in `grep -vxP '#.+' $1`; do
     echo $el | grep -xP '.+\.stl' > /dev/null
     if [ "$?" == "0" ]; then #Make image for .stl
         ofile=`to $file yes`
-        if [ $ofile.png -nt $file ]; then #Check if up to date.
+        if [ "$IS_TEST" == "" -a $ofile.png -nt $file ]; then #Check if up to date.
             echo skipping: stl2pov $file\; already done > /dev/stderr
         else
             echo running: stl2pov $file > /dev/stderr
             $ROOTLIKE/bin/stl2pov $file > $ofile.pov
-            #Actually run povray.
-            povray $ofile.pov $POV_ARGS +O$ofile.png > /dev/null
+         #Actually run povray.(thumbnail arguments)
+            povray $ofile.pov `thingscript cat_get etc/pov_thumb_args` +O$ofile.png > /dev/null
         fi
         img=`to $el`.png #Linked image.
     fi
@@ -81,14 +85,4 @@ for el in `grep -vxP '#.+' $1`; do
 done
 # ...I want the URL to be able to indicate an selection:
 echo '</tr></table>
-<script>
-var any_p =0;
-for (var i=0 ; i<imgs.length ; i++)
-{   if( location.href.indexOf("#img_"+i)!= -1 )
-    {   to_img(i);
-        any_p=1;
-        break;
-    }
-}
-if( any_p==0 ){ to_img(0); }
-</script>'
+<script>by_url(location.href);</script>'

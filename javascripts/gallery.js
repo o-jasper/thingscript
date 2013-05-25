@@ -25,3 +25,15 @@ function to_img(index)
          document.getElementById("viewer").src = null;
     }
 }
+
+function by_url(url) //Pick image based on url.
+{   var any_p=0;
+    for (var i=0 ; i<imgs.length ; i++)
+    {   if( url.indexOf("#img_"+i)!= -1 )
+        {   to_img(i);
+            any_p=1;
+            break;
+        }
+    }
+    if( any_p==0 ){ to_img(0); }
+}
