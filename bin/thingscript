@@ -123,7 +123,7 @@ handle_whole()
             continue
         fi
         case "$LINE" in
-            *.cat)
+            *'.cat')
                 cat_get elements/`echo $LINE | head -c-2` ;;
             *_) #Layout stuff.
                 handle_get elements/`echo $LINE | head -c-2` ;;

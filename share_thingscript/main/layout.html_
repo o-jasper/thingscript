@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-$thingiview_prep$
+<script src="../javascripts/import.js"></script>
+$cat src/thingiview_prep.html$
+<script src="../javascripts/gallery.js"></script>
 </head>
 <body>
 <table>

@@ -1,0 +1,2 @@
+#!/bin/bash
+thingscript cat_get elements/$2
