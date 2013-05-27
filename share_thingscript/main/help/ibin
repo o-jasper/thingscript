@@ -1,0 +1,6 @@
+# Command `ibin`
+Runs one of the 'internal programs', basically these are parts of thingscript
+of which it was decided they could be separate from the rest, like a program.
+
+If about one program, these possibly indicate features the programs they're
+about could use, or they make good examples.
