@@ -1,0 +1,3 @@
+#!/bin/bash
+
+thingscript handle_get releases

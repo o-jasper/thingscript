@@ -9,7 +9,17 @@ cd $1 #Need to be in the directory to be sure git will work.
 FILES=`git ls-files`
 cd - # go back
 
+NAME=`basename $1`
+if [ "$NAME" == "" ]; then
+    NAME=`basename "${1%?}"`
+fi
+
+TO_DIR=$2
+if [ "$2" == "" ]; then
+    TO_DIR="."
+fi
+
 for el in $FILES; do
-    mkdir -p $2/`dirname $el`
-    cp -u $1/$el $2/$el
+    mkdir -p $TO_DIR/$NAME/`dirname $el`
+    cp -u $1/$el $TO_DIR/$NAME/$el
 done

@@ -15,14 +15,17 @@ var designs =[]; //Dictionary of designs.
 function to_img(index)
 {   cur_gal_index = index;
     var file = imgs[index];
+    viewer=document.getElementById("viewer");
+    viewer.style="width:"+ floor(window.innerWidth*0.8) +"px;height:" + 
+                      floor(window.innerHeight*0.8) + "px";
     var ext  = file.substr(file.length-4);
     if( ext==".jpg" || ext==".png" || ext==".gif" ) //Put an image there.
-    {   document.getElementById("viewer").src = file;
+    {   viewer.src = file;
     }
     else if( ext==".stl" || ext==".obj" ) //Disable image, put design.
     {    js_import(file + ".js");
          thingiview.loadArray(designs[file]);
-         document.getElementById("viewer").src = null;
+         viewer.src = null;
     }
 }
 

@@ -61,7 +61,7 @@ echo '</script>'
 
 #Lays out the main image and...
 FIRST=`head -n 1 $1`
-echo '<img id="viewer" style="width:400px;height:400px">'
+echo '<img id="viewer", style="width:600px">'
 I=0
 echo '<table><tr>'
 for el in `grep -vxP '#.+' $1`; do
@@ -80,7 +80,7 @@ for el in `grep -vxP '#.+' $1`; do
         fi
         img=`to $el`.png #Linked image.
     fi
-    echo '<td><img onclick="to_img_re_url('$I')" src="'$img'"></td>'
+    echo '<td><img onclick="to_img_re_url('$I')" src="'$img'" style="width:100px"></td>'
     I=`expr $I + 1`
 done
 # ...I want the URL to be able to indicate an selection:

@@ -7,7 +7,7 @@ if [ "$2" == "" ]; then
         echo ', <span class="tag">'$TAG'</span>'
     done
 else
-    if [ "$2" != "plain" ]; then #TODO better
+    if [ "$2" != "plain" ]; then #TODO better(handle the same as gallery_list)
         echo E: What way do you want the tags? $2 > /dev/stderr
     fi
     head -n 1 $TAGSFILE

@@ -1,12 +1,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   
-<script src="../javascripts/thingiview/Three.js"></script>
-<script src="../javascripts/thingiview/plane.js"></script>
-<script src="../javascripts/thingiview/thingiview.js"></script>
+<script src=$rootdir javascripts/thingiview/Three.js$></script>
+<script src=$rootdir javascripts/thingiview/plane.js$></script>
+<script src=$rootdir javascripts/thingiview/thingiview.js$></script>
 
 <script>
     window.onload = function() {
-      thingiurlbase = "../javascripts";
+      thingiurlbase = $rootdir javascripts$;
       thingiview = new Thingiview("viewer");
       thingiview.setObjectColor('#C0D8F0');
       thingiview.initScene();

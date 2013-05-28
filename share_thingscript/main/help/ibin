@@ -4,3 +4,7 @@ of which it was decided they could be separate from the rest, like a program.
 
 If about one program, these possibly indicate features the programs they're
 about could use, or they make good examples.
+
+`thingscript ibin list` gets you a list of programs.
+
+TODO `thingscript ibin help ..`

@@ -4,9 +4,9 @@
 <title>$title$</title>
 <meta name=author   content="$author$">
 <meta name=keywords content="$tags plain$">
-<script src="../javascripts/import.js"></script>
-$cat src/thingiview_prep.html$
-<script src="../javascripts/gallery.js"></script>
+<script src=$rootdir javascripts/import.js$></script>
+$src/thingiview_prep.html_$
+<script src=$rootdir /javascripts/gallery.js$></script>
 </head>
 <body>
 <table>
@@ -18,15 +18,16 @@ $cat src/thingiview_prep.html$
     </td>
     <td>
       <table><tr><td>
-            $author_$
+            $src/author_$
         </td></tr>
         <tr><td>
-            $tags$
+            tags: $tags$
             <br>
             $license$
-      </td></tr></table>
+      </td></tr>
+      <tr><td>Can be found on:$releases$</td></tr>
+     </table>
 </td></tr></table>
-
 <span id="say"></span>
 </body>
 </html>

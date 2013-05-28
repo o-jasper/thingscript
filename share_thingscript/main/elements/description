@@ -1,0 +1,12 @@
+#!/bin/bash
+
+FILE=`thingscript get description`
+
+if [ "$FILE" != "" ]; then
+   cat $FILE
+else 
+   echo $FILE > /dev/stderr 
+   if [ -e $PROJECT_DIR/readme.md ]; then  #TODO more flexibility
+      markdown $PROJECT_DIR/readme.md
+   fi
+fi

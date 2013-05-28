@@ -6,9 +6,12 @@ if [ "$2" != "" ]; then
 fi
 
 GALLERY_LIST_FILE=`thingscript get gallery_list` #TODO stream it instead?
-if [ "$GALLERY_LIST_FILE" == "" ]; then #Doesnt exist yet.
+if [ "$GALLERY_LIST_FILE" == "" ]; then #Doesnt exist yet, generate it.
     ls $PROJECT_NAME/pics | grep -P '(png|gif|jpg|jpeg)'\
-       | while read line; do echo pics/$line; done > $PROJECT_DIR/page/gallery_list 
+       | while read line; do echo pics/$line; done > $PROJECT_DIR/thingscript/gallery_list 
+   ls $PROJECT_NAME/output/ | grep -P 'stl'\
+       | while read line; do echo output/$line; done >> $PROJECT_DIR/thingscript/gallery_list 
     GALLERY_LIST_FILE=$PROJECT_DIR/page/gallery_list
+    echo No list of gallery, generated one: $GALLERY_LIST_FILE > /dev/stderr
 fi
 `thingscript get scripts/gallery` $GALLERY_LIST_FILE

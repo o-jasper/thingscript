@@ -87,11 +87,9 @@ handle()
         VAL=`echo $1 | cut -f 2 -d'.'`
     fi
     case "$VAL" in
-        html)
-            cat $1;;
         md)
             markdown $1;;
-        html_)  #Recurse.
+        *_)  #Recurse.
             cat $1 | handle_whole;;
         md_)
             markdown $1 | handle_whole ;;
@@ -118,19 +116,20 @@ handle_whole()
             echo $LINE
             continue
         fi
+        case "$LINE" in
+            *'.cat')
+                cat_get elements/`echo $LINE` 
+                continue ;;
+            *_) #Layout stuff.
+                handle_get elements/`echo $LINE`
+                continue ;;
+        esac
         GOT=`get elements/$FIRST`
         if [ "$GOT" != "" ]; then  #Got something, yay.
             $GOT $LINE #Run it
             continue
-        fi
-        case "$LINE" in
-            *'.cat')
-                cat_get elements/`echo $LINE | head -c-2` ;;
-            *_) #Layout stuff.
-                handle_get elements/`echo $LINE | head -c-2` ;;
-            *) #Just a plain line to be outputted.
-                echo $LINE ;;
-        esac
+        fi        
+        echo $LINE  #Just a plain line to be outputted.
     done
 }
 

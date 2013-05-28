@@ -37,5 +37,4 @@ if [ "$MISSING" != "" ]; then
     exit
 fi
 #(Beyond the above things are optional, missing ignored)
-
-thingscript handle `thingscript get_page layout` > $PROJECT_DIR/page.html
+thingscript handle_get layout > $PROJECT_DIR/index.html
