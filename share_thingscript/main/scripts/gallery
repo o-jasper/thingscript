@@ -17,7 +17,8 @@
 # * Nicer if the preparing is distinct from the gallery itself.
 #   Also, what about multiple galleries, all URL-adressable?
 
-to() #Thingscript out file to keep things slightly more organized.
+#Files specifically generated for representation start with 'tso'.
+to()
 {   
     DIRNAME=tso
     if [ "$2" == "yes" ]; then
@@ -75,7 +76,7 @@ for el in `grep -vxP '#.+' $1`; do
             echo skipping: stl2pov $file\; already done > /dev/stderr
         else
             echo running: stl2pov $file > /dev/stderr
-            $ROOTLIKE/bin/stl2pov $file > $ofile.pov
+            $ROOTLIKE/bin/get_stl_info $file | $ROOTLIKE/bin/stl2pov $file > $ofile.pov
          #Actually run povray.(thumbnail arguments)
             povray $ofile.pov `thingscript cat_get etc/pov_thumbnail_args` \
               +O$ofile.png > /dev/null

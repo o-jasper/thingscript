@@ -8,9 +8,34 @@
 # (at your option) any later version.
 #
 
+#Stdin could contain values FX,TX, FY,TY, FZ,TZ, and then the value to
+# provide the size of the object.
+#
 #Uses stl2pov.py to generate a povray file.
 
 #TODO stl2pov should get --help, man page, stdout option.
+
+while read line; do #Figure out the sizes from stdin.
+    nick() #TODO no floats because expr sucks.
+    {   echo $line | cut -f2 -d' ' | cut -f1 -d. 
+    }
+    case "$line" in
+        FX*)
+            FX=`nick`;;
+        FY*) 
+            FY=`nick`;;
+        FZ*)
+            FZ=`nick`;;
+        TX*)
+            TX=`nick`;;
+        TY*)
+            TY=`nick`;;
+        TZ*)
+            TZ=`nick`;;
+    esac
+done
+
+echo $FX $FY $FZ, $TX $TY $TZ > /dev/stderr
 
 FILE=$1
 
@@ -27,24 +52,6 @@ rm $TMP_INC
 
 #Add the actual drawing of the thing #TODO could be better here.
 cat $STL2POV_DIR/template_pre.pov
-
-#Use admesh info.. Yeah program writes should provide better access to data.
-#TODO get stl info stores data more neatly.
-val() #Expr sucks. Well, bash sucks.
-{   cut -f1 -d.
-}
-gi()
-{   $ROOTLIKE/bin/get_stl_info $FILE | grep "Min $1" | cut -f$2 -d= | cut -f1 -d, | val
-}
-
-FX=`gi X 2`
-TX=`gi X 3`
-
-FY=`gi Y 2`
-TY=`gi Y 3`
-
-FZ=`gi Z 2`
-TZ=`gi Z 3`
 
 av()
 {   expr 1000 \* \( $1 + $2 \) / 2000 

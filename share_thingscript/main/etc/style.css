@@ -5,7 +5,7 @@ background:#dddddd;
 padding:0px 2px 2px 2px; 
 }
 .title{font-weight:bold;}
-h1.title{margin-bottom:0px;}
+h1.title{margin-bottom:0px;margin-top:0px;}
 .category{color:#555555;font-size:70%}
 .info_name{color:#555555;font-size:70%}
 
