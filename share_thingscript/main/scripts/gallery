@@ -77,7 +77,8 @@ for el in `grep -vxP '#.+' $1`; do
             echo running: stl2pov $file > /dev/stderr
             $ROOTLIKE/bin/stl2pov $file > $ofile.pov
          #Actually run povray.(thumbnail arguments)
-            povray $ofile.pov `thingscript cat_get etc/pov_thumb_args` +O$ofile.png > /dev/null
+            povray $ofile.pov `thingscript cat_get etc/pov_thumbnail_args` \
+              +O$ofile.png > /dev/null
         fi
         img=`to $el`.png #Linked image.
     fi

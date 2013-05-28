@@ -1,5 +1,5 @@
 
-.tag{
+span.tag{
 border-radius:5px;border:1px solid #a1a1a1;
 background:#dddddd;
 padding:0px 2px 2px 2px; 
@@ -11,7 +11,7 @@ h1.title{margin-bottom:0px;}
 
 .no_margin{margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;}
 
-td.author
+p.author
 {
 text-align:center;
 border-radius:5px;border:1px solid #a1a1a1;

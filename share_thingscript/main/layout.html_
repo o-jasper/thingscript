@@ -3,7 +3,7 @@
 <head>
 $style$
 <title>$title$</title>
-<meta name=author   content=$author_name$>
+<meta name=author content=$author_name$>
 $tags html_head$
 <script src=$rootdir javascripts/import.js$></script>
 $src/thingiview_prep.html_$
@@ -18,16 +18,12 @@ $src/thingiview_prep.html_$
       $description$
     </td>
     <td>
-      <table><tr><td class="author">
-            $author$
-        </td></tr>
-        <tr><td>
-            $tags html$
-            $license_$
-            $stats$
-      </td></tr>
-      <tr><td>$releases$</td></tr>
-     </table>
+      $author_$
+      $tags html$
+      $license_$
+      $files$
+      $releases$
+      $also_by_author$
 </td></tr></table>
 <span id="say"></span>
 </body>

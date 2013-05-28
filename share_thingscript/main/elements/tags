@@ -5,7 +5,7 @@ if [ "$TAGSFILE" != "" ]; then
     COMMA='';
     case "$2" in
         html)
-            echo '<span class="info_name"> Tags:</span>'
+            echo '<span class="info_name">tags:</span>'
             grep -vxP '#.+' $TAGSFILE | while read line; do
                 echo $COMMA '<span class="tag">'$line'</span>'
                 COMMA=',';
