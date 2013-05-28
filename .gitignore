@@ -4,7 +4,8 @@
 */*/.#*
 */*/*/.#*
 
-testpage/page.html
+etc/
+testpage/index.html
 testpage/output/*.stl.png
 testpage/output/*.stl.pov
 testpage/output/*.stl.js

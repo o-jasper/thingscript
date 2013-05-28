@@ -1,2 +1,2 @@
 #!/bin/bash
-thingscript cat_get link
+echo \"`thingscript cat_get link`\"

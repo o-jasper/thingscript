@@ -1,17 +1,24 @@
 #!/bin/bash
 
 TAGSFILE=`thingscript get tags`
-if [ "$2" == "" ]; then
-    echo '<span class="tag">'`head -n 1 $TAGSFILE`'</span> '
-    tail -n+2 $TAGSFILE | while read TAG; do
-        echo ', <span class="tag">'$TAG'</span>'
-    done
-else
-    if [ "$2" != "plain" ]; then #TODO better(handle the same as gallery_list)
-        echo E: What way do you want the tags? $2 > /dev/stderr
-    fi
-    head -n 1 $TAGSFILE
-    tail -n+2 $TAGSFILE | while read TAG; do
-        echo ,$TAG
-    done
+if [ "$TAGSFILE" != "" ]; then
+    COMMA='';
+    case "$2" in
+        html)
+            echo '<span class="info_name"> Tags:</span>'
+            grep -vxP '#.+' $TAGSFILE | while read line; do
+                echo $COMMA '<span class="tag">'$line'</span>'
+                COMMA=',';
+            done | tr -d '\n';;
+        plain)
+            grep -vxP '#.+' $TAGSFILE | while read line; do
+                echo $COMMA$line
+                COMMA=',';
+            done | tr -d '\n';;
+        html_head)
+            command=`thingscript get elements/tags`
+            echo '<meta name=keywords, content="'`$command dud plain`'">' |tr -d '\n';;
+        *)
+            echo E: What way do you want the tags? dont have \"$2\" > /dev/stderr;;
+    esac
 fi

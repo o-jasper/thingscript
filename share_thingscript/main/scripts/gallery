@@ -59,11 +59,12 @@ done
 #Some functions to switch to images. #TODO better in a separate js file i think.
 echo '</script>'
 
-#Lays out the main image and...
+#Lays out main image.
 FIRST=`head -n 1 $1`
-echo '<img id="viewer", style="width:600px">'
-I=0
-echo '<table><tr>'
+echo '<img class="viewer" id="viewer"><br>'
+
+I=0 #Gallery for selecting current image.
+echo '<p class="gal_bar">'
 for el in `grep -vxP '#.+' $1`; do
     file=$PROJECT_DIR$el
     img=$el
@@ -80,9 +81,10 @@ for el in `grep -vxP '#.+' $1`; do
         fi
         img=`to $el`.png #Linked image.
     fi
-    echo '<td><img onclick="to_img_re_url('$I')" src="'$img'" style="width:100px"></td>'
+#Not giving each a space makes it make many move into places without work from me.
+    echo '<img onclick="to_img_re_url('$I')" src="'$img'" class="gal">'
     I=`expr $I + 1`
-done
+done | tr -d '\n'
+echo '</p>'
 # ...I want the URL to be able to indicate an selection:
-echo '</tr></table>
-<script>by_url(location.href);</script>'
+echo '<script>by_url(location.href);</script>'

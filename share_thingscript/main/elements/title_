@@ -1,1 +1,1 @@
-<h1><span class="category">$category$:</span> $title$</h1>
+<h1 class="title"><span class="category">$category$:</span><span class="title">$title$</span></h1>

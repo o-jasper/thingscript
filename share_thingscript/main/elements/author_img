@@ -1,2 +1,5 @@
 #!/bin/bash
-thingscript get_image pics/author
+IMG_FILE=`thingscript get_image pics/author`
+if [ "$IMG_FILE" != "" ]; then
+    echo '<img src="'$IMG_FILE'">'
+fi

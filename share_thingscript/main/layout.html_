@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+$style$
 <title>$title$</title>
-<meta name=author   content="$author$">
-<meta name=keywords content="$tags plain$">
+<meta name=author   content=$author_name$>
+$tags html_head$
 <script src=$rootdir javascripts/import.js$></script>
 $src/thingiview_prep.html_$
 <script src=$rootdir /javascripts/gallery.js$></script>
 </head>
 <body>
 <table>
-  <tr><td>
+  <tr><td style="width:70%">
       $title_$
-      <p>$short_description$</p>
-      <p>$gallery$</p>
+      <p class="no_margin">$short_description$</p>
+      <p class="no_margin" style="text-align:center">$gallery$</p>
       $description$
     </td>
     <td>
-      <table><tr><td>
-            $src/author_$
+      <table><tr><td class="author">
+            $author$
         </td></tr>
         <tr><td>
-            tags: $tags$
-            <br>
-            $license$
+            $tags html$
+            $license_$
+            $stats$
       </td></tr>
-      <tr><td>Can be found on:$releases$</td></tr>
+      <tr><td>$releases$</td></tr>
      </table>
 </td></tr></table>
 <span id="say"></span>

@@ -1,0 +1,37 @@
+
+.tag{
+border-radius:5px;border:1px solid #a1a1a1;
+background:#dddddd;
+padding:0px 2px 2px 2px; 
+}
+.title{font-weight:bold;}
+h1.title{margin-bottom:0px;}
+.category{color:#555555;font-size:70%}
+.info_name{color:#555555;font-size:70%}
+
+.no_margin{margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;}
+
+td.author
+{
+text-align:center;
+border-radius:5px;border:1px solid #a1a1a1;
+background:#ccffcc;
+padding:0px 2px 2px 2px; 
+}
+
+img.viewer{margin 0px 0px 0px 0px;}
+img.gal{height:50px;margin 0px 0px 0px 0px;border:1px solid #666666;
+position:relative;
+bottom:0;
+transition: bottom 0.5s;
+vertical-align:middle;
+}
+p.gal_bar{text-align:left;
+margin 0px 0px 0px 0px}
+
+img.gal:hover{bottom:5px;}
+
+td.gal
+{word-spacing:0px;margin 0px 0px 0px 0px;border:0px;
+
+}

@@ -1,0 +1,2 @@
+#!/bin/bash
+echo \"`thingscript cat_get author`\"

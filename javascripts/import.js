@@ -9,5 +9,7 @@ function js_import(src)
         scriptElem.setAttribute('src',src);
         scriptElem.setAttribute('type','text/javascript');
         document.getElementsByTagName('head')[0].appendChild(scriptElem);
+        return false;
     }
+    return true;
 }

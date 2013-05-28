@@ -318,7 +318,6 @@ Thingiview = function(containerId) {
   		targetYRotation = targetYRotationOnMouseDown + (mouseY - mouseYOnMouseDown) * 0.05;
   	}
   }
-
   sceneLoop = function() {
     if (object) {
       // if (view == 'bottom') {

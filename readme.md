@@ -1,15 +1,22 @@
 
 # Script for making a website with physibles
 Thats were it started at least. Lets keep it at that for now. 
-Still changing quite a bit at the moment.
+In development, still changing quite a bit at the moment.
 
-It uses [povray](http://povray.org/), [stl2pov](http://rsmith.home.xs4all.nl/software/py-stl-stl2pov.html"),
-[admesh](http://www.varlog.com/admesh-htm) 
-and [thingiview.js](https://github.com/tbuser/thingiview.js)
+## Features
+* `.stl` and `.obj` viewing using
+[thingiview.js](https://github.com/tbuser/thingiview.js).(the precalculated approach)
 
-Documentation gets into the system itself, it is in `share_thingscript/help/`.
-`thingsscript help $some_command_or_thingscript_file` gets you help at it.
-(not sure at the moment how good that is)
+* `.stl` model preview using [povray](http://povray.org/), [stl2pov](http://rsmith.home.xs4all.nl/software/py-stl-stl2pov.html"), and [admesh](http://www.varlog.com/admesh-htm) 
+  a bit to figure out the location.
+
+* Sequence of overriding preferences. Configurable with good defaults.
+  (A sufficiently high power user is indistinguishable from a developper)
+
+* Documentation gets into the system itself, it is in `share_thingscript/help/`.
+  `thingsscript help $some_command_or_thingscript_file` gets you help at it.
+  Not sure at the moment how good the actual texts are, and conversion to html 
+  and man/info pages would be better.
 
 ### Install
 Get it with `git clone`.
@@ -18,7 +25,7 @@ Dependencies: thingiview.js is source included. If povray and admesh arent
 installed, it should just fail to do the things pertaining to it. Currently it 
 is basically linux (/unix-like?) only.
 
-I dont have a proper install script that actually puts stuff in
+I dont have a proper install methods that actually puts stuff in
 `/usr/share/thingscript/` and `/bin/thingscript/`, so you have to do:
 
     cd ~
