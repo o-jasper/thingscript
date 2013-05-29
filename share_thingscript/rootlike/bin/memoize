@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+#Give two file locations, source-file, result-file and a command, 
+#If the source-file is newer than the result-file, (or the latter doesnt exist)
+# run the command, replacing the result-file, and also output to stdout.
+#
+#Otherwise, just output the result file to stdout.
+#
+# $4 can disable stdout and $5 can make things more verbose.
+
+if [ "$IS_TEST" == "" -a $1 -nt $2 ]; then #The source is newer, run command.
+    if [ "$5" == "verbose" ]; then
+       echo running $1 '->' $2 > /dev/stderr
+    fi
+    case "$4" in
+        no_stdout)
+            $3 $1 > $2;;
+        *)
+            $3 $1 | tee $2;;
+    esac
+else
+    if [ "$5" == "verbose" ]; then
+       echo skipping $1 '->' $2 > /dev/stderr
+    fi
+    case "$4" in
+        no_stdout)
+            echo > /dev/null;;
+        *)
+            cat $2;;
+    esac
+fi

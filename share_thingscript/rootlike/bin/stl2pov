@@ -35,8 +35,6 @@ while read line; do #Figure out the sizes from stdin.
     esac
 done
 
-echo $FX $FY $FZ, $TX $TY $TZ > /dev/stderr
-
 FILE=$1
 
 STL2POV_DIR=$ROOTLIKE/share/stl2pov/
