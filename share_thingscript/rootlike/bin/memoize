@@ -8,6 +8,8 @@
 #
 # $4 can disable stdout and $5 can make things more verbose.
 
+#TODO use verbosity levels instead.
+
 if [ "$IS_TEST" == "" -a $1 -nt $2 ]; then #The source is newer, run command.
     if [ "$5" == "verbose" ]; then
        echo running $1 '->' $2 > /dev/stderr

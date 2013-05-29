@@ -3,12 +3,3 @@
 <script src=$rootdir javascripts/thingiview/Three.js$></script>
 <script src=$rootdir javascripts/thingiview/plane.js$></script>
 <script src=$rootdir javascripts/thingiview/thingiview.js$></script>
-
-<script>
-    window.onload = function() {
-      thingiurlbase = $rootdir javascripts$;
-      thingiview = new Thingiview("viewer");
-      thingiview.setObjectColor('#C0D8F0');
-      thingiview.initScene();
-    }
-</script>

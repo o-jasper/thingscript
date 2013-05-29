@@ -93,4 +93,4 @@ for el in `grep -vxP '#.+' $1`; do
 done | tr -d '\n'
 echo '</p>'
 # ...I want the URL to be able to indicate an selection:
-echo '<script>by_url(location.href);</script>'
+echo '<script>gallery_initial();</script>'

@@ -24,7 +24,7 @@ function to_img(index)
     var ext  = file.substr(file.length-4);
 
     viewer.style.height= want_h();
-
+    
     if( ext==".jpg" || ext==".png" || ext==".gif" ) //Put an image there.
     {   viewer.style.width = "";
         viewer.src=file;
@@ -42,22 +42,25 @@ function to_img(index)
 //Gets around thingiview resizing not all good.
 function viewer_prep()
 {   var viewer= document.getElementById("viewer");
+
     viewer.src=null;
     viewer.style.width = Math.floor(window.innerWidth*0.6) + "px";
     viewer.style.height= Math.floor(window.innerHeight*0.6) + "px";
     thingiview.loadArray([[]]);
+
 }
 
 function by_url(url) //Pick image based on url.
-{   viewer_prep();
-    
-    var any_p=0;
-    for (var i=0 ; i<imgs.length ; i++)
+{   for(var i=0 ; i<imgs.length ; i++)
     {   if( url.indexOf("#img_"+i)!= -1 )
         {   to_img(i);
             any_p=1;
-            break;
+            return;
         }
     }
-    if( any_p==0 ){ to_img(0); }
+    to_img(0);
 }
+function gallery_initial()
+{   viewer_prep(); }
+
+
