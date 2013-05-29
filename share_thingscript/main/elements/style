@@ -3,7 +3,7 @@
 #TODO this looks like something that should be the same everywhere too.
 #(name -> where with suggested website root dir)
 
-if [ -e $PROJECT_DIR/thingscript/etc/style.css ]; then
+if [ -e thingscript/etc/style.css ]; then
    STYLE_FILE=thingscript/etc/style.css
 else
    ROOTLIKE=`thingscript cat_get rootdir`;
@@ -23,8 +23,8 @@ else
            fi
        fi
    fi
-   mkdir -p `dirname $PROJECT_DIR$STYLE_FILE` > /dev/null
-   cp -uv $FROM $PROJECT_DIR$STYLE_FILE > /dev/stderr #Put into place.
+   mkdir -p `dirname STYLE_FILE` > /dev/null
+   cp -uv $FROM $STYLE_FILE > /dev/stderr #Put into place.
 fi
 
 echo '<link rel="stylesheet" type="text/css" href="'$STYLE_FILE'">'

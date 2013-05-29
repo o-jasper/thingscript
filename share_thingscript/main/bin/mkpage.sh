@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (C) 22-05-2013 Jasper den Ouden.
+#  Copyright (C) 30-05-2013 Jasper den Ouden.
 #
 #  This is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published
@@ -8,13 +8,11 @@
 # (at your option) any later version.
 #
 
-if [ "$1" == "" ]; then
-    echo First argument is project directory > /dev/stderr
-    exit
+if [ "$1" != "" ]; then
+    cd $1
+    export OPWD=$OPWD
+    export PWD=$PWD
 fi
-
-export PROJECT_DIR=$1
-export PROJECT_NAME=`basename $PROJECT_DIR`
 
 #See if we have the required stuff.
 MISSING=''
@@ -37,4 +35,4 @@ if [ "$MISSING" != "" ]; then
     exit
 fi
 #(Beyond the above things are optional, missing ignored)
-thingscript handle_get layout > $PROJECT_DIR/index.html
+thingscript handle_get layout > index.html

@@ -1,4 +1,6 @@
 #!/bin/bash
+
+#TODO directories from wrong root..
 IMG_FILE=`thingscript get_image pics/author`
 if [ "$IMG_FILE" != "" ]; then
     echo '<img src="'$IMG_FILE'">'

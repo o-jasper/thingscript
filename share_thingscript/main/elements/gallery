@@ -23,10 +23,10 @@ else
     GALLERY_LIST_FILE=`thingscript get gallery_list`
 fi
 if [ "$GALLERY_LIST_FILE" == "" ]; then
-    GALLERY_LIST_FILE=$PROJECT_DIR/thingscript/gallery_list
-    ls $PROJECT_NAME/pics | grep -P '(png|gif|jpg|jpeg)'\
+    GALLERY_LIST_FILE=thingscript/gallery_list
+    ls pics | grep -P '(png|gif|jpg|jpeg)'\
        | while read line; do echo pics/$line; done > $GALLERY_LIST_FILE
-    ls $PROJECT_NAME/output/ | grep -P 'stl'\
+    ls output/ | grep -P 'stl'\
        | while read line; do echo output/$line; done >> $GALLERY_LIST_FILE
     
     echo No list of gallery, generated one: $GALLERY_LIST_FILE > /dev/stderr
@@ -37,19 +37,21 @@ PATH=$PATH:$ROOTLIKE/bin/
 FIRST="true" 
 #Array of image file names so an index can identify them.
 for el in `grep -vxP "#.+" $GALLERY_LIST_FILE`; do
-    if [ $FIRST == "true" ]; then
-        echo '<script>
-var imgs = ["'`tso $el`\"
-        FIRST="false"
-    else
-        echo ',"'`tso $el`'"'
-    fi
+    img_name=$el
     case "$el" in
         *.stl)
-            file=$PROJECT_DIR$el
+            file=$el
             ofile=`tso $file yes`
-            memoize $file $ofile.js "`thingscript get scripts/stl2js` `tso $el` " no_stdout > /dev/stderr;;
+            img_name=`tso $el`
+            memoize $file $ofile.js "`thingscript get scripts/stl2js` $img_name" no_stdout > /dev/stderr;;
     esac
+    if [ $FIRST == "true" ]; then
+        echo '<script>
+var imgs = ["'$img_name'"'
+        FIRST="false"
+    else
+        echo ',"'$el'"'
+    fi
 done
 echo '];</script>'
 #Lays out main image.
@@ -58,26 +60,10 @@ echo '<img class="viewer" id="viewer"><br>'
 I=0 #Gallery for selecting current image.
 echo '<p class="gal_bar">'
 for el in `grep -vxP '#.+' $GALLERY_LIST_FILE`; do
-    file=$PROJECT_DIR$el
-    img=$el
-    echo $el | grep -xP '.+\.stl' > /dev/null
-    if [ "$?" == "0" ]; then #Make image for .stl
-        ofile=`tso $file yes`
-        #Stl info data stdout can go right into .pov generation.
-        memoize $file $ofile.data get_stl_info with_stdout |
-            memoize $file $ofile.pov stl2pov no_stdout > /dev/stderr
-        if_newer $ofile.pov $file.png "`thingscript get scripts/povray` $ofile.pov $ofile.png"
-        #TODO optionally figure out the cheapest option.(.png/.gif/.jpg)
-        img=`tso $el`.png
-    fi
-    if [ $I == "0" ]; then
-        THUMBNAIL_FILE=$PROJECT_DIR/thingscript/thumbnail 
-        if [ ! -e $THUMBNAIL_FILE ]; then #Not used here, but should indicate one.
-            echo $img >  $THUMBNAIL_FILE
-        fi
-    fi
-#Not giving each a space makes it make many move into the space without work from me.
-# (I might want to control things when getting excessive ammounts of images?)
+    img=`figure_image $el`
+#I make the browser figure out the positions.
+# (I might want to control things when getting excessive ammounts of images?
+#  Or for more control in general)
     echo '<img onclick="to_img_re_url('$I')" src="'$img'" class="gal">'
     I=`expr $I + 1`
 done | tr -d '\n'

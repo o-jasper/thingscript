@@ -1,22 +1,6 @@
 #!/bin/bash
-#
-#  Copyright (C) 30-05-2013 Jasper den Ouden.
-#
-#  This is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published
-# by the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
 
 # Puts the 'thing script objects' directory in the name.
+#(very thingscript specific thing to do)
 
-DIRNAME=tso
-if [ "$2" != "no" ]; then
-   mkdir -p `dirname $1`/$DIRNAME/
-fi
-echo $el | grep -xP '.+\.stl' > /dev/null
-if [ "$?" == "0" ]; then
-    echo `dirname $1`/$DIRNAME/`basename $1`
-else
-    echo $1
-fi
+echo `dirname $1`/tso/`basename $1`

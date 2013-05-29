@@ -10,8 +10,7 @@ cat_or_run() #List
     fi
 }
 
-RUN='ls $PROJECT_DIR/output/* $PROJECT_DIR/*.stl
- $PROJECT_DIR/*.obj $PROJECT_DIR/*.dxf $PROJECT_DIR/*.svg'
+RUN='ls output/* *.stl *.obj *.dxf *.svg'
 cat_or_run `get output_list` $RUN | while read line; do
-    echo '<a href="'$PROJECT_DIR/$line'">$line</a><br>'
+    echo '<a href="'$line'">$line</a><br>'
 done

@@ -8,7 +8,7 @@
 # (at your option) any later version.
 #
 
-#Currently a userspace install.(hrmm perhaps overkill)
+#Currently a userspace install.
 export ROOTLIKE=/home/$USER/.thingscript/rootlike/
 
 if [ "$WHICH_TYPE" == "" ]; then
@@ -19,7 +19,7 @@ fi
 get_locations()
 {
     for el in `echo $@`; do #First what the user tells you to do.
-        echo $PROJECT_DIR/thingscript/$el
+        echo thingscript/$el
     done
     for el in `echo $@`; do #Then what he prefers.
         echo ~/.thingscript/$WHICH_TYPE/$el
@@ -169,7 +169,7 @@ case "$1" in
         fi
         $PREFERRED $HTML_FILE;;
     
-    mkpage)
+    mkpage) #TODO idea: have a `mk` directory and make it `mk page`
         sh "`get bin/mkpage.sh`" $2;;
     
     version)

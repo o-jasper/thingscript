@@ -11,8 +11,7 @@ cat_or_run() #List
     fi
 }
 
-RUN='ls $PROJECT_DIR/src/* $PROJECT_DIR/*.blender
- $PROJECT_DIR/*.skp $PROJECT_DIR/*.scad $PROJECT_DIR/*.escad'
+RUN='ls src/* *.blender *.skp *.scad *.escad'
 cat_or_run `get output_list` $RUN | while read line; do
-    echo '<a href="'$PROJECT_DIR/$line'">$line</a><br>'
+    echo '<a href="'$line'">$line</a><br>'
 done ;;
