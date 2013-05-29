@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (C) 22-05-2013 Jasper den Ouden.
+#  Copyright (C) 30-05-2013 Jasper den Ouden.
 #
 #  This is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published
@@ -23,7 +23,7 @@ else
     GALLERY_LIST_FILE=`thingscript get gallery_list`
 fi
 if [ "$GALLERY_LIST_FILE" == "" ]; then
-    GALLERY_LIST_FILE=$PROJECT_DIR/page/gallery_list
+    GALLERY_LIST_FILE=$PROJECT_DIR/thingscript/gallery_list
     ls $PROJECT_NAME/pics | grep -P '(png|gif|jpg|jpeg)'\
        | while read line; do echo pics/$line; done > $GALLERY_LIST_FILE
     ls $PROJECT_NAME/output/ | grep -P 'stl'\
@@ -34,35 +34,21 @@ fi
 
 PATH=$PATH:$ROOTLIKE/bin/
 
-#Files specifically generated for representation start with 'tso'.
-to()
-{   
-    DIRNAME=tso
-    if [ "$2" == "yes" ]; then
-        mkdir -p `dirname $1`/$DIRNAME/
-    fi
-    echo $el | grep -xP '.+\.stl' > /dev/null
-    if [ "$?" == "0" ]; then
-        echo `dirname $1`/$DIRNAME/`basename $1`
-    else
-        echo $1
-    fi
-}
-
-FIRST="true" #Array of image file names so an index can identify them.
+FIRST="true" 
+#Array of image file names so an index can identify them.
 for el in `grep -vxP "#.+" $GALLERY_LIST_FILE`; do
     if [ $FIRST == "true" ]; then
         echo '<script>
-var imgs = ["'`to $el`\"
+var imgs = ["'`tso $el`\"
         FIRST="false"
     else
-        echo ',"'`to $el`'"'
+        echo ',"'`tso $el`'"'
     fi
     case "$el" in
         *.stl)
             file=$PROJECT_DIR$el
-            ofile=`to $file yes`
-            memoize $file $ofile.js "`thingscript get scripts/stl2js` `to $el` " no_stdout > /dev/stderr;;
+            ofile=`tso $file yes`
+            memoize $file $ofile.js "`thingscript get scripts/stl2js` `tso $el` " no_stdout > /dev/stderr;;
     esac
 done
 echo '];</script>'
@@ -76,13 +62,19 @@ for el in `grep -vxP '#.+' $GALLERY_LIST_FILE`; do
     img=$el
     echo $el | grep -xP '.+\.stl' > /dev/null
     if [ "$?" == "0" ]; then #Make image for .stl
-        ofile=`to $file yes`
+        ofile=`tso $file yes`
         #Stl info data stdout can go right into .pov generation.
         memoize $file $ofile.data get_stl_info with_stdout |
             memoize $file $ofile.pov stl2pov no_stdout > /dev/stderr
         if_newer $ofile.pov $file.png "`thingscript get scripts/povray` $ofile.pov $ofile.png"
         #TODO optionally figure out the cheapest option.(.png/.gif/.jpg)
-        img=`to $el`.png
+        img=`tso $el`.png
+    fi
+    if [ $I == "0" ]; then
+        THUMBNAIL_FILE=$PROJECT_DIR/thingscript/thumbnail 
+        if [ ! -e $THUMBNAIL_FILE ]; then #Not used here, but should indicate one.
+            echo $img >  $THUMBNAIL_FILE
+        fi
     fi
 #Not giving each a space makes it make many move into the space without work from me.
 # (I might want to control things when getting excessive ammounts of images?)
@@ -92,3 +84,4 @@ done | tr -d '\n'
 echo '</p>'
 # ...I want the URL to be able to indicate an selection:
 echo '<script>gallery_initial();</script>'
+
