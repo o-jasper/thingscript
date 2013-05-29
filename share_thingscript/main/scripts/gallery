@@ -50,14 +50,8 @@ for el in `grep -xP '.+\.(stl|obj)' $1 | grep -vxP '#.+'`; do
     #Exists and is up to date.
     file=$PROJECT_DIR$el
     ofile=`to $file yes`
-    if [ $file -nt $ofile.js ]; then
-        echo running $file '->' $ofile.js > /dev/stderr
-        echo 'designs["'`to $el`'"]=' > $ofile.js
-        stl2js $file >> $ofile.js
-        echo ';' >> $ofile.js
-    else
-        echo skipping $file '->' $ofile.js > /dev/stderr
-    fi
+    memoize $file $ofile.js "`thingscript get scripts/stl2js` `to $el` " no_stdout
+#    if_newer $file $ofile.js "`thingscript get scripts/stl2js` `to $el` $file > $ofile.js"
 done
 #Some functions to switch to images.
 echo '</script>'
@@ -75,19 +69,12 @@ for el in `grep -vxP '#.+' $1`; do
     if [ "$?" == "0" ]; then #Make image for .stl
         ofile=`to $file yes`
         #Stl info data stdout can go right into .pov generation.
-        memoize $file $ofile.data get_stl_info with_stdout verbose |
-            memoize $file $ofile.pov stl2pov no_stdout verbose > /dev/stderr
-        #NOTE: didnt quite fit the memoize mold.
-        if [ "$IS_TEST" == "" -a $ofile.png -nt $file.pov ]; then #Check if up to date.
-            echo skipping $ofile.pov '->' $ofile.png > /dev/stderr
-        else
-            echo running $ofile.pov '->' $ofile.png > /dev/stderr
-            povray $ofile.pov `thingscript cat_get etc/pov_thumbnail_args` \
-                +O$ofile.png > /dev/null
-        fi
-        img=`to $el`.png #Linked image.
+        memoize $file $ofile.data get_stl_info with_stdout |
+            memoize $file $ofile.pov stl2pov no_stdout > /dev/stderr
+        if_newer $ofile.pov $file.png "`thingscript get scripts/povray` $ofile.pov $ofile.png"
     fi
-#Not giving each a space makes it make many move into places without work from me.
+#Not giving each a space makes it make many move into the space without work from me.
+# (I might want to control things when getting excessive ammounts of images?)
     echo '<img onclick="to_img_re_url('$I')" src="'$img'" class="gal">'
     I=`expr $I + 1`
 done | tr -d '\n'

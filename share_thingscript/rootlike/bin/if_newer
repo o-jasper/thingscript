@@ -1,0 +1,11 @@
+#!/bin/bash
+#Run something if one file newer than the other.
+
+echo $3 > /dev/stderr
+
+if [ $1 -nt $2 ]; then
+    echo running $1 '->' $2 > /dev/stderr
+    $3
+else
+    echo skipping $1 '->' $2 > /dev/stderr
+fi

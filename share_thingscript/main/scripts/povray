@@ -1,0 +1,2 @@
+#!/bin/bash
+povray $1 `thingscript cat_get etc/pov_thumbnail_args` +O$2 > /dev/null
