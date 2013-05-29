@@ -1,17 +1,94 @@
 #!/bin/bash
+#
+#  Copyright (C) 22-05-2013 Jasper den Ouden.
+#
+#  This is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
 
-if [ "$2" != "" ]; then
-    echo gallery from arg $2 > /dev/stderr
-    `thingscript get scripts/gallery` $2
+#Lays out a list of the images in javascript.
+
+# TODO
+# * More choices with 3d files, at least
+#   + on gallery just picture/picture-3d-model clickthrough/right away 3d model.
+#   + Wider approach? Like taking into account other options than povray?
+# * Nicer if the preparing is distinct from the gallery itself.
+#   Also, what about multiple galleries, all URL-adressable?
+
+if [ "$2" != "" ]; then #Argument specifies a gallery
+    GALLERY_LIST_FILE=$2
+else
+    GALLERY_LIST_FILE=`thingscript get gallery_list`
 fi
-
-GALLERY_LIST_FILE=`thingscript get gallery_list` #TODO stream it instead?
-if [ "$GALLERY_LIST_FILE" == "" ]; then #Doesnt exist yet, generate it.
-    ls $PROJECT_NAME/pics | grep -P '(png|gif|jpg|jpeg)'\
-       | while read line; do echo pics/$line; done > $PROJECT_DIR/thingscript/gallery_list 
-   ls $PROJECT_NAME/output/ | grep -P 'stl'\
-       | while read line; do echo output/$line; done >> $PROJECT_DIR/thingscript/gallery_list 
+if [ "$GALLERY_LIST_FILE" == "" ]; then
     GALLERY_LIST_FILE=$PROJECT_DIR/page/gallery_list
+    ls $PROJECT_NAME/pics | grep -P '(png|gif|jpg|jpeg)'\
+       | while read line; do echo pics/$line; done > $GALLERY_LIST_FILE
+    ls $PROJECT_NAME/output/ | grep -P 'stl'\
+       | while read line; do echo output/$line; done >> $GALLERY_LIST_FILE
+    
     echo No list of gallery, generated one: $GALLERY_LIST_FILE > /dev/stderr
 fi
-`thingscript get scripts/gallery` $GALLERY_LIST_FILE
+
+PATH=$PATH:$ROOTLIKE/bin/
+
+#Files specifically generated for representation start with 'tso'.
+to()
+{   
+    DIRNAME=tso
+    if [ "$2" == "yes" ]; then
+        mkdir -p `dirname $1`/$DIRNAME/
+    fi
+    echo $el | grep -xP '.+\.stl' > /dev/null
+    if [ "$?" == "0" ]; then
+        echo `dirname $1`/$DIRNAME/`basename $1`
+    else
+        echo $1
+    fi
+}
+
+FIRST="true" #Array of image file names so an index can identify them.
+for el in `grep -vxP "#.+" $GALLERY_LIST_FILE`; do
+    if [ $FIRST == "true" ]; then
+        echo '<script>
+var imgs = ["'`to $el`\"
+        FIRST="false"
+    else
+        echo ',"'`to $el`'"'
+    fi
+    case "$el" in
+        *.stl)
+            file=$PROJECT_DIR$el
+            ofile=`to $file yes`
+            memoize $file $ofile.js "`thingscript get scripts/stl2js` `to $el` " no_stdout > /dev/stderr;;
+    esac
+done
+echo '];</script>'
+#Lays out main image.
+echo '<img class="viewer" id="viewer"><br>'
+
+I=0 #Gallery for selecting current image.
+echo '<p class="gal_bar">'
+for el in `grep -vxP '#.+' $GALLERY_LIST_FILE`; do
+    file=$PROJECT_DIR$el
+    img=$el
+    echo $el | grep -xP '.+\.stl' > /dev/null
+    if [ "$?" == "0" ]; then #Make image for .stl
+        ofile=`to $file yes`
+        #Stl info data stdout can go right into .pov generation.
+        memoize $file $ofile.data get_stl_info with_stdout |
+            memoize $file $ofile.pov stl2pov no_stdout > /dev/stderr
+        if_newer $ofile.pov $file.png "`thingscript get scripts/povray` $ofile.pov $ofile.png"
+        #TODO optionally figure out the cheapest option.(.png/.gif/.jpg)
+        img=`to $el`.png
+    fi
+#Not giving each a space makes it make many move into the space without work from me.
+# (I might want to control things when getting excessive ammounts of images?)
+    echo '<img onclick="to_img_re_url('$I')" src="'$img'" class="gal">'
+    I=`expr $I + 1`
+done | tr -d '\n'
+echo '</p>'
+# ...I want the URL to be able to indicate an selection:
+echo '<script>gallery_initial();</script>'
