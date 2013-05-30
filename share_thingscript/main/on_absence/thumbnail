@@ -1,9 +1,6 @@
 #!/bin/bash
-FILE=thingscript/thumbnail
-if [ -e $FILE ]; then
-    echo If \`thingscript/thumbnail_list\` doesnt exist, why am i in on_absent?  > /dev/stderr
-fi
-#Look up/create gallery list, and assume the first is the proper thumbnail.
-grep -vxP "#.+" `thingscript get gallery_list` | head -n 1 > thumbnail
 
-thumbnail
+#Look up/create gallery list, and assume the first is the proper thumbnail.
+grep -vxP "#.+" `thingscript get gallery_list` | head -n 1 > thingscript/thumbnail
+
+echo thingscript/thumbnail

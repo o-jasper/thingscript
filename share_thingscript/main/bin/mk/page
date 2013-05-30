@@ -14,7 +14,7 @@ if [ "$1" != "" ]; then
     export PWD=$PWD
 fi
 
-#See if we have the required stuff.
+#See if we have the required stuff. #TODO move somewhere else.
 MISSING=''
 for el in `echo author category title`; do
     if [ "`thingscript get $el`" == "" ]; then

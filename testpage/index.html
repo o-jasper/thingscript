@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="../etc/style.css">
+
+<title>
+Test page</title>
+<meta name=author content=
+"Dr. Tester McTest"
+>
+
+<meta name=keywords, content="test,quick">
+<script src=
+"../javascripts/import.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<script src=
+"../javascripts/thingiview/Three.js"
+></script>
+<script src=
+"../javascripts/thingiview/plane.js"
+></script>
+<script src=
+"../javascripts/thingiview/thingiview.js"
+></script>
+
+<script src=
+"../javascripts/gallery.js"
+></script>
+
+<script>gallery_initial();</script>
+
+<script>
+window.onload = function() {
+thingiurlbase =
+"../javascripts"
+;
+thingiview = new Thingiview("viewer");
+thingiview.setObjectColor('#C0D8F0');
+thingiview.initScene();
+
+by_url(location.href);
+}
+</script>
+</head>
+<body>
+<table>
+<tr><td style="width:70%">
+
+<h1 class="title"><span class="category">
+tests
+:</span><span class="title">
+Test page</span></h1>
+
+<p class="no_margin">
+Does this test work?</p>
+<p class="no_margin" style="text-align:center">
+<script>
+var imgs = ["output/tso/cube.stl"
+,"pics/1.png"
+,"pics/2.png"
+,"pics/3.png"
+,"pics/4.png"
+,"pics/5.png"
+,"pics/6.png"
+,"pics/7.png"
+,"pics/8.png"
+,"pics/9.png"
+,"pics/10.png"
+];</script>
+<img class="viewer" id="viewer"><br>
+<p class="gal_bar">
+<img onclick="to_img_re_url(0)" src="output/tso/cube.stl.png" class="gal"><img onclick="to_img_re_url(1)" src="pics/1.png" class="gal"><img onclick="to_img_re_url(2)" src="pics/2.png" class="gal"><img onclick="to_img_re_url(3)" src="pics/3.png" class="gal"><img onclick="to_img_re_url(4)" src="pics/4.png" class="gal"><img onclick="to_img_re_url(5)" src="pics/5.png" class="gal"><img onclick="to_img_re_url(6)" src="pics/6.png" class="gal"><img onclick="to_img_re_url(7)" src="pics/7.png" class="gal"><img onclick="to_img_re_url(8)" src="pics/8.png" class="gal"><img onclick="to_img_re_url(9)" src="pics/9.png" class="gal"><img onclick="to_img_re_url(10)" src="pics/10.png" class="gal"></p>
+<script>gallery_initial();</script>
+</p>
+
+
+</td>
+<td>
+
+<p class="author">
+Dr. Tester McTest
+</p>
+
+
+<span class="info_name">tags:</span>
+<span class="tag">test</span>, <span class="tag">quick</span>
+
+<p><span class="info_name">license:</span>
+Licenses pointless for a simple test
+
+
+
+
+
+
+</td></tr></table>
+<span id="say"></span>
+</body>
+</html>

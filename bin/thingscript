@@ -52,6 +52,9 @@ get()
         fi
     done
     if [ "$2" != "--dont-recurse" ]; then #See if there is a script to get it.
+        if [ -e $1 ]; then
+            echo 'BUG: how can the file $1 exist and yet the absense script be called?'
+        fi
         GET_SCRIPT=`get on_absence/$1 --dont-recurse`
         if [ "$GET_SCRIPT" !=  "" ]; then
             $GET_SCRIPT $@
@@ -175,8 +178,8 @@ case "$1" in
         fi
         $PREFERRED $HTML_FILE;;
     
-    mkpage) #TODO idea: have a `mk` directory and make it `mk page`
-        sh "`get bin/mkpage.sh`" $2;;
+    mk) #TODO idea: have a `mk` directory and make it `mk page`
+        sh "`get bin/mk/$2`" $3;;
     
     version)
         cat /usr/share/thingscript/version;;
