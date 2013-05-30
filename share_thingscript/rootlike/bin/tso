@@ -3,4 +3,5 @@
 # Puts the 'thing script objects' directory in the name.
 #(very thingscript specific thing to do)
 
+mkdir -p `dirname $1`/tso/
 echo `dirname $1`/tso/`basename $1`

@@ -51,6 +51,12 @@ get()
             return #Have one.
         fi
     done
+    if [ "$2" != "--dont-recurse" ]; then #See if there is a script to get it.
+        GET_SCRIPT=`get on_absence/$1 --dont-recurse`
+        if [ "$GET_SCRIPT" !=  "" ]; then
+            $GET_SCRIPT $@
+        fi
+    fi
 }
 
 export IS_TEST=`get is_test`

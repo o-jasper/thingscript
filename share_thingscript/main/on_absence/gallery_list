@@ -1,0 +1,12 @@
+#!/bin/bash
+FILE=thingscript/gallery_list
+if [ -e $FILE ]; then
+    echo If \`thingscript/gallery_list\` doesnt exist, why am i in on_absent?  > /dev/stderr
+fi
+
+ls pics | grep -P '(png|gif|jpg|jpeg)'\
+       | while read line; do echo pics/$line; done > $FILE
+ls output/ | grep -P 'stl'\
+       | while read line; do echo output/$line; done >> $FILE
+
+echo $FILE

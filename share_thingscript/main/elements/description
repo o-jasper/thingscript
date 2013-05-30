@@ -6,7 +6,7 @@ if [ "$FILE" != "" ]; then
    cat $FILE
 else 
    echo $FILE > /dev/stderr 
-   if [ -e readme.md ]; then  #TODO more flexibility
+   if [ -e readme.md ]; then
       markdown readme.md
    fi
 fi

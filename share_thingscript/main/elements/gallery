@@ -10,26 +10,10 @@
 
 #Lays out a list of the images in javascript.
 
-# TODO
-# * More choices with 3d files, at least
-#   + on gallery just picture/picture-3d-model clickthrough/right away 3d model.
-#   + Wider approach? Like taking into account other options than povray?
-# * Nicer if the preparing is distinct from the gallery itself.
-#   Also, what about multiple galleries, all URL-adressable?
-
 if [ "$2" != "" ]; then #Argument specifies a gallery
-    GALLERY_LIST_FILE=$2
+    GALLERY_LIST_FILE=$2 #TODO multiple galleries wont actually work.
 else
-    GALLERY_LIST_FILE=`thingscript get gallery_list`
-fi
-if [ "$GALLERY_LIST_FILE" == "" ]; then
-    GALLERY_LIST_FILE=thingscript/gallery_list
-    ls pics | grep -P '(png|gif|jpg|jpeg)'\
-       | while read line; do echo pics/$line; done > $GALLERY_LIST_FILE
-    ls output/ | grep -P 'stl'\
-       | while read line; do echo output/$line; done >> $GALLERY_LIST_FILE
-    
-    echo No list of gallery, generated one: $GALLERY_LIST_FILE > /dev/stderr
+    GALLERY_LIST_FILE=`thingscript get gallery_list` #(has on_absense script)
 fi
 
 PATH=$PATH:$ROOTLIKE/bin/
@@ -37,20 +21,20 @@ PATH=$PATH:$ROOTLIKE/bin/
 FIRST="true" 
 #Array of image file names so an index can identify them.
 for el in `grep -vxP "#.+" $GALLERY_LIST_FILE`; do
-    img_name=$el
+    link=$el
     case "$el" in
         *.stl)
             file=$el
             ofile=`tso $file yes`
-            img_name=`tso $el`
-            memoize $file $ofile.js "`thingscript get scripts/stl2js` $img_name" no_stdout > /dev/stderr;;
+            link=$ofile
+            memoize $file $ofile.js "`thingscript get scripts/stl2js` $link" no_stdout > /dev/stderr;;
     esac
     if [ $FIRST == "true" ]; then
         echo '<script>
-var imgs = ["'$img_name'"'
+var imgs = ["'$link'"'
         FIRST="false"
     else
-        echo ',"'$el'"'
+        echo ',"'$link'"'
     fi
 done
 echo '];</script>'
@@ -70,4 +54,3 @@ done | tr -d '\n'
 echo '</p>'
 # ...I want the URL to be able to indicate an selection:
 echo '<script>gallery_initial();</script>'
-
