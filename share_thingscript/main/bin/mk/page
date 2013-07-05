@@ -28,11 +28,23 @@ for el in `echo short_description license layout`; do
 done
 if [ "$MISSING" != "" ]; then
     echo > /dev/stderr
-    echo Error: For each line, _one_ of the files is required: > /dev/stderr
+    echo Error: For each line, in the directory $1/thingscript/
+    echo _one_ of the files is required: > /dev/stderr
     echo $MISSING | tr ' ' '\n'
     echo
     echo Use \`thingscript get help/\$FILE\` for information about the file.
+    echo These were the arguments used $@
     exit
 fi
-#(Beyond the above things are optional, missing ignored)
-thingscript handle_get layout > index.html
+#(Beyond the above files are optional, missing ignored)
+
+FROM=$2 #Default layout is 'layout' as `thingscript getpage` gets.
+if [ "$2" == "" ]; then
+    FROM=layout
+fi
+TO=$3
+if [ "$3" == "" ]; then
+    TO=index.html
+fi
+
+thingscript handle_get $FROM > $TO

@@ -1,43 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-$style$
-<title>$title$</title>
-<meta name=author content=$author_name$>
-$tags html_head$
-<script src=$rootdir javascripts/import.js$></script>
-$src/thingiview_prep.html_$
-<script src=$rootdir javascripts/gallery.js$></script>
-
-<script>gallery_initial();</script>
-
-<script>
-    window.onload = function() {
-      thingiurlbase = $rootdir javascripts$;
-      thingiview = new Thingiview("viewer");
-      thingiview.setObjectColor('#C0D8F0');
-      thingiview.initScene();
-
-      by_url(location.href);
-    }
-</script>
+$header_bit_$
 </head>
 <body>
-<table>
-  <tr><td style="width:70%">
-      $title_$
-      <p class="no_margin">$short_description$</p>
-      <p class="no_margin" style="text-align:center">$gallery$</p>
-      $description$
-    </td>
-    <td>
-      $author_$
-      $tags html$
-      $license_$
-      $files$
-      $releases$
-      $also_by_author$
-</td></tr></table>
-<span id="say"></span>
+$body_bit_$
 </body>
 </html>

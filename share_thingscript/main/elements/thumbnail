@@ -1,0 +1,5 @@
+#!/bin/bash
+
+thingscript get thumbnail > /dev/null
+
+echo '<img src="'`thingscript cat_get thumbnail`'">'

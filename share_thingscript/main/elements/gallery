@@ -44,7 +44,7 @@ echo '<img class="viewer" id="viewer"><br>'
 I=0 #Gallery for selecting current image.
 echo '<p class="gal_bar">'
 for el in `grep -vxP '#.+' $GALLERY_LIST_FILE`; do
-    img=`figure_image $el`
+    img=`figure_image $el` #Figures out an image for the element.
 #I make the browser figure out the positions.
 # (I might want to control things when getting excessive ammounts of images?
 #  Or for more control in general)

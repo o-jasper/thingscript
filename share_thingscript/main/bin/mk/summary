@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+#  Copyright (C) 30-05-2013 Jasper den Ouden.
+#
+#  This is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+
+TO=$2
+if [ "$2" == "" ]; then
+    TO=summary.html
+fi
+
+thingscript mk page $1 elements/summary_ $TO 

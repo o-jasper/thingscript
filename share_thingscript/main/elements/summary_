@@ -1,0 +1,4 @@
+
+<b class="author">$author$ : $title$</b> <br>
+<table><tr><td>$thumbnail$</td>
+        <td style="vertical-align:text-top">$short_description$</td></tr></table>

@@ -1,0 +1,62 @@
+#!/bin/bash
+#
+#  Copyright (C) 30-05-2013 Jasper den Ouden.
+#
+#  This is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published
+#  by the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+
+#Start of working with thingtracker.
+#TODO we MUST additionally enforce `self_link`(`URL`)
+
+if [ "$1" != "" ]; then
+    cd $1
+    export OPWD=$OPWD
+    export PWD=$PWD
+fi
+
+g()
+{   FILE=`thingscript get $1`
+    if [ "$FILE" != "" ]; then
+        cat $FILE
+    fi
+} 
+p()
+{   GOT=`g $1`
+    if [ "$GOT" != "" ]; then
+        NAME=$2
+        if [ "$NAME" == "" ]; then
+            NAME=$1
+        fi
+        echo \"$NAME\":\"$GOT\",
+    fi
+}
+
+run() #Just elements.
+{   echo '{'
+    p title
+    p self_link URL
+    p author
+    p license
+    p short_description description
+    p thumbnail thumbnailURL
+    TAGS=`thingscript get tags`
+    if [ "$TAGS" != "" ]; then
+        echo '"tags":['
+        FIRST="true"
+        grep -xvP '#.+' $TAGS | while read line; do
+            if [ "$FIRST" == "true" ]; then
+                FIRST="false"
+                echo \"$line\"
+            else
+                echo ,\"$line\"
+            fi 
+        done | tr -d '\n'
+        echo ']'
+    fi
+    echo '}'
+}
+
+run > thingscript/thing.tracker.json
