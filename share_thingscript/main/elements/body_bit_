@@ -1,0 +1,17 @@
+
+<table>
+  <tr><td style="width:70%">
+      $title_$
+      <p class="no_margin">$short_description$</p>
+      <p class="no_margin" style="text-align:center">$gallery$</p>
+      $description$
+    </td>
+    <td>
+      $author_$
+      $license_$
+      $tags html$
+      $files$
+      $releases$
+      $also_by_author$
+</td></tr></table>
+<span id="say"></span>

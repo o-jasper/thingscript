@@ -1,0 +1,4 @@
+#!/bin/bash
+thingscript mk tracker .
+
+echo thingscript/thing.tracker.json
