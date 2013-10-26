@@ -6,4 +6,6 @@ mkdir -p `dirname $1`/tso/
 #Make a js file and it enables immediately when shown.
 memoize $1 $ofile "`thingscript get scripts/stl2js` $1" no_stdout > /dev/stderr;
 
-echo '<img onclick="to_img_re_url('\'$ofile\'')" src="'`figure_image $1`'" class="gal">'
+pov=`thingscript exec scripts/stl2pov $1`
+
+echo '<img onclick="to_img_re_url('\'$ofile\'')" src="'`thingscript exec scripts/thumb_povray $pov`'" class="gal">'
