@@ -18,7 +18,7 @@ case $file in
     *.stl)
         memoize $file $ofile.data get_stl_info with_stdout | \
              memoize $file $ofile.pov stl2pov no_stdout > /dev/stderr
-        if_newer $ofile.pov $ofile.png "`thingscript get scripts/povray` $ofile.pov $ofile.png"
+        if_newer $ofile.pov $ofile.png "`thingscript get scripts/thumb_povray` $ofile.pov $ofile.png"
         figure_image $ofile.png;;
 #TODO optionally figure out the cheapest option.(.png/.gif/.jpg) (by generating them all)
 # and hammer down file sizes.

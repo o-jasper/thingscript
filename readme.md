@@ -1,14 +1,13 @@
 
 # Script for making a website with physibles
-Thats were it started at least. Lets keep it at that for now. 
-In development, still changing quite a bit at the moment.
+For linux(perhaps macosx/unix too) currently. 
 
 ## Features
 * `.stl` and `.obj` viewing using
 [thingiview.js](https://github.com/tbuser/thingiview.js).(the precalculated approach)
 
 * `.stl` model preview using [povray](http://povray.org/), [stl2pov](http://rsmith.home.xs4all.nl/software/py-stl-stl2pov.html"), and [admesh](http://www.varlog.com/admesh-htm) 
-  a bit to figure out the location.
+  a bit to figure out the location.(some of those may take long, it checks the timestamps)
 
 * Sequence of overriding preferences. Configurable with good defaults.
   (A sufficiently high power user is indistinguishable from a developper)
@@ -19,18 +18,18 @@ In development, still changing quite a bit at the moment.
   and man/info pages would be better.
 
 ### Install
-Get it with `git clone`.
+Get it with `git clone https://github.com/o-jasper/thingscript`.
 
 Dependencies: thingiview.js is source included. If povray and admesh arent
 installed, it should just fail to do the things pertaining to it. Currently it 
 is basically linux (/unix-like?) only.
 
 I dont have a proper install methods that actually puts stuff in
-`/usr/share/thingscript/` and `/bin/thingscript/`, so you have to do:
+`/usr/share/thingscript/` and `/bin/thingscript/`,(yet) so you have to do:
 
     cd ~
     ln -s $thingiview_dir/share_thingscript .thingscript
-    PATH=$PATH:$thingiview_dir/bin #Add this to ~/bashrc for permanence.
+    PATH=$PATH:$thingiview_dir/bin #Add this to ~/.bashrc for permanence.
 
 The latter i prefer to add `PATH=$PATH:~/.bin/` to `~/.bashrc` and symlink that
 to the 'binary' instead.

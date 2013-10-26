@@ -2,9 +2,6 @@
 Runs one of the 'internal programs', basically these are parts of thingscript
 of which it was decided they could be separate from the rest, like a program.
 
-If about one program, these possibly indicate features the programs they're
-about could use, or they make good examples.
+As such, it may form an example for the thing it does.(for instance using stl2pov)
 
-`thingscript ibin list` gets you a list of programs.
-
-TODO `thingscript ibin help ..`
+`thingscript ibin list` gets you a list of these programs.

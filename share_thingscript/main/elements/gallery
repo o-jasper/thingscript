@@ -23,7 +23,7 @@ FIRST="true"
 for el in `grep -vxP "#.+" $GALLERY_LIST_FILE`; do
     link=$el
     case "$el" in
-        *.stl' image first')
+        *.stl)
             ;;
         *.stl) #TODO
             file=$el
