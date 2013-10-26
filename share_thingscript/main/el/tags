@@ -16,7 +16,7 @@ if [ "$TAGSFILE" != "" ]; then
                 COMMA=',';
             done | tr -d '\n';;
         html_head)
-            command=`thingscript get elements/tags`
+            command=`thingscript get el/tags`
             echo '<meta name=keywords, content="'`$command dud plain`'">' |tr -d '\n';;
         *)
             echo E: What way do you want the tags? dont have \"$2\" > /dev/stderr;;

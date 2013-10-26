@@ -1,5 +1,9 @@
 #!/bin/bash
-#Make a js file and it enables immediately when shown.
-memoize $1 $1.js "`thingscript get scripts/stl2js` $link" no_stdout > /dev/stderr;
 
-echo '<img onclick="to_img_re_url('\'$1.js\'')" src="'`figure_image $1`'" class="gal">'
+ofile=`dirname $1`/tso/`basename $1`.js
+mkdir -p `dirname $1`/tso/
+
+#Make a js file and it enables immediately when shown.
+memoize $1 $ofile "`thingscript get scripts/stl2js` $1" no_stdout > /dev/stderr;
+
+echo '<img onclick="to_img_re_url('\'$ofile\'')" src="'`figure_image $1`'" class="gal">'

@@ -13,4 +13,4 @@ if [ "$2" == "" ]; then
     TO=summary.html
 fi
 
-thingscript mk page $1 elements/summary_ $TO 
+thingscript mk page $1 el/summary_ $TO 

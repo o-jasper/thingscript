@@ -128,13 +128,13 @@ handle_whole()
         fi
         case "$LINE" in
             *'.cat')
-                cat_get elements/`echo $LINE` 
+                cat_get el/`echo $LINE` 
                 continue ;;
             *_) #Layout stuff.
-                handle_get elements/`echo $LINE`
+                handle_get el/`echo $LINE`
                 continue ;;
         esac
-        GOT=`get elements/$FIRST`
+        GOT=`get el/$FIRST`
         if [ "$GOT" != "" ]; then  #Got something, yay.
             $GOT $LINE #Run it
             continue

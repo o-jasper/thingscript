@@ -3,4 +3,4 @@ but you have to end it in `_` for it to work)
 
 First file that is `handle`d, which is effectively a layout because `handle`
 looks for commands between `$` replacing using stdout of those commands.
-(Those commands are in `elements/`)
+(Those commands are in the elements directory; `el/`)

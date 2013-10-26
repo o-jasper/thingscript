@@ -14,7 +14,7 @@ if [ "$IS_TEST" == "" -a $1 -nt $2 ]; then #The source is newer, run command.
         $3 $1 | tee $2
     fi
 else
-    echo skipping $1 '->' $2 > /dev/stderr
+    echo already done $1 '->' $2 > /dev/stderr
     if [ "$4" != no_stdout ]; then
         cat $2
     fi

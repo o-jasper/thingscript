@@ -23,10 +23,7 @@ echo '<p class="gal_bar">'
 
 #Array of image file names so an index can identify them.
 grep -vxP "#.+" $GALLERY_LIST_FILE | while read el; do
-#    what=`echo $el | cut -f 1 -d' '`
-#    echo `thingscript get elements/sub_elements/gallery/$what` $el > /dev/stderr
-    echo $el > /dev/stderr
-    thingscript exec elements/sub_elements/gallery/$el
+    thingscript exec el/sel/gallery/$el
 done
 echo '</p>'
 
