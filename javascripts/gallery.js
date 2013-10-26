@@ -1,6 +1,6 @@
 // Copyright (C) 22-05-2013 Jasper den Ouden. GPLv3
 
-var cur_gal_index = 1;
+var cur_gal_file = 1;
 function to_img_re_url(index)
 {   var to_ind = location.href.indexOf("#");
     if( to_ind != -1 )
@@ -17,9 +17,20 @@ function want_w()
 function want_h()
 {   return Math.floor(window.innerHeight*0.6) + "px"; }
 
-function to_img(index)
-{   cur_gal_index = index;
-    var file = imgs[index];
+function js_img()
+{
+    viewer.style.width = want_w();
+    viewer.src=null;
+    if( js_import(file + ".js") )
+    {   thingiview.loadArray(designs[file]); }
+    else //Wait until it is loaded.(TODO better, can you wait for something to finish?)
+    {    setTimeout(function(){thingiview.loadArray(designs[file]);},250);
+    }
+}
+
+function to_img(file)
+{      
+    cur_gal_file = file;
     var viewer= document.getElementById("viewer");
     var ext  = file.substr(file.length-4);
 
@@ -28,6 +39,7 @@ function to_img(index)
     if( ext==".jpg" || ext==".png" || ext==".gif" ) //Put an image there.
     {   viewer.style.width = "";
         viewer.src=file;
+        
     }
     else if( ext==".stl" || ext==".obj" ) //Disable image, put design.
     {   viewer.style.width = want_w();
@@ -51,16 +63,9 @@ function viewer_prep()
 }
 
 function by_url(url) //Pick image based on url.
-{   for(var i=0 ; i<imgs.length ; i++)
-    {   if( url.indexOf("#img_"+i)!= -1 )
-        {   to_img(i);
-            any_p=1;
-            return;
-        }
-    }
-    to_img(0);
+{   var i = url.indexOf("#img_");
+    if( i != -1 )
+    {   to_img(url.substr(i)); }
 }
 function gallery_initial()
 {   viewer_prep(); }
-
-

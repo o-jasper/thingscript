@@ -18,42 +18,16 @@ fi
 
 PATH=$PATH:$ROOTLIKE/bin/
 
-FIRST="true" 
-#Array of image file names so an index can identify them.
-for el in `grep -vxP "#.+" $GALLERY_LIST_FILE`; do
-    link=$el
-    case "$el" in
-        *.stl)
-            ;;
-        *.stl) #TODO
-            file=$el
-            ofile=`tso $file yes`
-            link=$ofile
-            memoize $file $ofile.js "`thingscript get scripts/stl2js` $link" no_stdout > /dev/stderr;;
-    esac
-    if [ $FIRST == "true" ]; then
-        echo '<script>
-var imgs = ["'$link'"'
-        FIRST="false"
-    else
-        echo ',"'$link'"'
-    fi
-done
-echo '];</script>'
-#Lays out main image.
-echo '<img class="viewer" id="viewer"><br>'
-
-I=0 #Gallery for selecting current image.
+echo '<img class="viewer" id="viewer"><br>' #Lays out main image.
 echo '<p class="gal_bar">'
-for el in `grep -vxP '#.+' $GALLERY_LIST_FILE`; do
-    #Figures out an image for the element. #TODO instead, figure out a thumbnail.
-    img=`figure_image $el` 
-#I make the browser figure out the positions.
-# (I might want to control things when getting excessive ammounts of images?
-#  Or for more control in general)
-    echo '<img onclick="to_img_re_url('$I')" src="'$img'" class="gal">'
-    I=`expr $I + 1`
-done | tr -d '\n'
+
+#Array of image file names so an index can identify them.
+grep -vxP "#.+" $GALLERY_LIST_FILE | while read el; do
+#    what=`echo $el | cut -f 1 -d' '`
+#    echo `thingscript get elements/sub_elements/gallery/$what` $el > /dev/stderr
+    echo $el > /dev/stderr
+    thingscript exec elements/sub_elements/gallery/$el
+done
 echo '</p>'
-# ...I want the URL to be able to indicate an selection:
+
 echo '<script>gallery_initial();</script>'

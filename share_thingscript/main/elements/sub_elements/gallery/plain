@@ -1,0 +1,3 @@
+#!/bin/bash
+#Just plainly the the image
+echo '<img onclick="to_img_re_url('\'$1\'')" src="'$1'" class="gal">'

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#Just provide a bigger povray image.
+
+pov=`thingscript exec scripts/stl2pov $1`
+
+if_newer $pov main_$pov.png "`thingscript get scripts/main_povray` $pov main_$pov.png"
+if_newer $pov thumb_$pov.png "`thingscript get scripts/thumb_povray` $pov thumb_$pov.png"
+
+echo '<img onclick="to_img_re_url('\'main_$pov.png\'')" src="'\'thumb_$pov.png\''" class="gal">'
