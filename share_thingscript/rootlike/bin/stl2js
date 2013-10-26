@@ -1,8 +1,9 @@
 #!/bin/bash
 
 #Converts stl files to an javascript array that thingiview can use.
-
 FILE=$1
+
+echo Converting $FILE to a json file, this may take a while. > /dev/stderr
 
 STL2JS_DIR=$ROOTLIKE/share/stl2js/
 
@@ -21,6 +22,6 @@ include('\'$STL2JS_DIR/convert.php\'');
 $file = "'$FILE'";'>  $PHP_FILE
 cat $STL2JS_DIR/json_cli.php_  >> $PHP_FILE
 
-php -f $PHP_FILE -- 'file=$TO_FILE' #Use it.
+time php -f $PHP_FILE -- 'file=$TO_FILE' #Use it.
 
 rm $PHP_FILE > /dev/null #Delete temporary file.
