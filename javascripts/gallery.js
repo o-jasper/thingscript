@@ -1,14 +1,19 @@
 // Copyright (C) 22-05-2013 Jasper den Ouden. GPLv3
 
-var cur_gal_file = 1;
-function to_img_re_url(file)
+var cur_gal_file;
+var cur_gal_action_file;
+
+function to_img_re_url(file,action_file)
 {   var to_ind = location.href.indexOf("#img_");
     if( to_ind != -1 )
     {   location.href = location.href.substr(0,to_ind) + "#img_" + file; }
     else
     {   location.href = location.href + "#img_" + file; }
-    to_img(file)
+    to_img(file,action_file)
 }
+
+function use_action_file()
+{   to_img(cur_gal_action_file); }
 
 var designs =[]; //Dictionary of designs.
 
@@ -28,9 +33,10 @@ function js_img()
     }
 }
 
-function to_img(file)
+function to_img(file,action_file)
 {      
     cur_gal_file = file;
+    cur_gal_action_file = action_file;
     var viewer= document.getElementById("viewer");
     var ext  = file.substr(file.length-4);
 

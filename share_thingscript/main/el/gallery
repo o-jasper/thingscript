@@ -18,7 +18,7 @@ fi
 
 PATH=$PATH:$ROOTLIKE/bin/
 
-echo '<img class="viewer" id="viewer"><br>' #Lays out main image.
+echo '<img class="viewer" id="viewer" onclick="use_action_file()"><br>' #Lays out main image.
 echo '<p class="gal_bar">'
 
 #Array of image file names so an index can identify them.

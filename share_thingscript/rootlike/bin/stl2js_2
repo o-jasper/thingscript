@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo 'designs["'$1'"]=' a
+stl2js $2 #Refers to another script in share_thingscript/rootlike/bin/
+echo ';'

@@ -1,6 +1,4 @@
 
-* Get rid of the by-index stuff in javascript..
-
 * Put a lot of the data in files now in a json file and make a 
   html+javascript page that generates that json.
 
@@ -13,11 +11,12 @@
 
 * More/better .css for defaults.
 
-* Better/more consistent list parsing.
-
-* Make more things representable (see `have.md`)
+* Make more things representable (see `have.md`) and handle (lack)of dependencies.
 
 * Stl-javascript php is slow. (And it is php....) Make C version or something.
+
+* Some of the stuff in `thingscript_share/main/scripts/` could be better organized..
+  It is basically a kind of `on_absence`
 
 * Lay out principles better.
 
