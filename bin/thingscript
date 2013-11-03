@@ -15,20 +15,18 @@ if [ "$WHICH_TYPE" == "" ]; then
     WHICH_TYPE="main"
 fi
 
+if [ "$THINGSCRIPT_PATH" == "" ]; then
+    THINGSCRIPT_PATH="thingscript:$THINGSCRIPT_ADDITIONAL_PATH\
+/home/$USER/.thingscript/$WHICH_TYPE:/etc/thingscript:/usr/share/thingscript/$WHICH_TYPE"
+fi
+
 #Dont know why the double loop didnt work, bash sucks.
 get_locations()
 {
-    for el in `echo $@`; do #First what the user tells you to do.
-        echo thingscript/$el
-    done
-    for el in `echo $@`; do #Then what he prefers.
-        echo ~/.thingscript/$WHICH_TYPE/$el
-    done
-    for el in `echo $@`; do #Then what the admin suggests.
-        echo /etc/thingscript/$WHICH_TYPE/$el
-    done
-    for el in `echo $@`; do #Then what the dev suggests.
-        echo /usr/share/thingscript/$WHICH_TYPE/$el
+    for dir in `echo $THINGSCRIPT_PATH | tr : '\n'`; do
+        for el in `echo $@`; do #First what the user tells you to do.
+            echo $dir/$el
+        done
     done
     if [ "$WHICH_TYPE" != "main" ]; then #If you run out try main anyway.
         for el in `echo $@`; do 
@@ -51,16 +49,19 @@ get()
             return #Have one.
         fi
     done
-    if [ "$2" != "--dont-recurse" ]; then #See if there is a script to get it.
-        if [ -e $1 ]; then
-            echo 'BUG: how can the file '$1' exist and yet the absense script be called?' \
-                > /dev/stderr
-        fi
-        GET_SCRIPT=`get on_absence/$1 --dont-recurse`
-        if [ "$GET_SCRIPT" !=  "" ]; then
-            $GET_SCRIPT $@
-        fi
-    fi
+    case "$2" in
+        "--dont-recurse") #See if there is a script to get it.
+            if [ -e $1 ]; then
+                echo 'BUG: how can the file '$1' exist and yet the absense script be called?' \
+                    > /dev/stderr
+            fi
+            GET_SCRIPT=`get on_absence/$1 --dont-recurse`
+            if [ "$GET_SCRIPT" !=  "" ]; then
+                $GET_SCRIPT $@
+            fi;;
+        "--otherwise")
+            echo $3;;
+    esac
 }
 
 export IS_TEST=`get is_test`
