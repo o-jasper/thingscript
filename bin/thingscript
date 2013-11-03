@@ -23,7 +23,7 @@ fi
 #Dont know why the double loop didnt work, bash sucks.
 get_locations()
 {
-    for dir in `echo $THINGSCRIPT_PATH | tr : '\n'`; do
+    for dir in $(echo $THINGSCRIPT_PATH | tr : '\n'); do
         for el in `echo $@`; do #First what the user tells you to do.
             echo $dir/$el
         done
@@ -55,7 +55,7 @@ get()
                 echo 'BUG: how can the file '$1' exist and yet the absense script be called?' \
                     > /dev/stderr
             fi
-            GET_SCRIPT=`get on_absence/$1 --dont-recurse`
+            GET_SCRIPT=$(get on_absence/$1 --dont-recurse)
             if [ "$GET_SCRIPT" !=  "" ]; then
                 $GET_SCRIPT $@
             fi;;
@@ -83,6 +83,16 @@ handle_get()
 cat_get()
 {   cat "`get $@`"
 }
+url_get()
+{   VAL=$(cat_get $@)
+    case "$VAL" in
+        ./*)
+            echo $THINGSCRIPT_ROOT$VAL | head -c 2 ;;
+        *)
+            echo $VAL;;
+    esac
+}
+
 
 #Handles pages, doing scripts/substitutions within.
 handle()
@@ -193,8 +203,10 @@ case "$1" in
         handle $2;;
     handle_get)
         handle_get $2;;
-    cat_get)
+    cat_get) #Opens the file obtained with `get`
         cat_get $@;;
+    url_get)
+        url_get $@;;
     markdown_get)
         markdown "`get $@`";;
     
