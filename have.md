@@ -1,16 +1,23 @@
-There are lots of file types.. Some more are `.skp`, `.blend`, `.amf`, `.step`. 
-`.dxf`, `.pdf`, `.svg`, `.tx`, `ad_prt` (dont even know what some of those are)
-And circuit boards are physibles too! We wont be requiring all the dependencies,
-what you have should work and the rest fails gracefully?
+There are lots of file types.. `.stl`,`dxf` seems the most popular.
+
+Anything that isnt totally bland use of the tool mentioned is put in
+`share_thingscript/rootlike/`, `*/` refers to that. A lot of the scripts 
+are used for the gallery(`share_thingscript/main/el/gallery`)
+`share_thingscript/main/el/sel/gallery/`. (`el/` elements, `sel` sub-elements)
 
 <table>
 <tr><td><u>To image</u></td></tr>
 <tr>
 <td><code>.stl</code></td>
 <td>Using <a href="http://povray.org/">povray</a>,
-<a href="http://rsmith.home.xs4all.nl/software/py-stl-stl2pov.html">stl2pov</a></td></tr>
+<a href="http://rsmith.home.xs4all.nl/software/py-stl-stl2pov.html">stl2pov</a>(<code>*/bin/stl2pov</code>)</td></tr>
 <tr><td><code>.amf</code></td><td>None</td></tr>
 <tr><td><code>.blend</code></td><td>None</td></tr>
+<tr><td><code>.scad</code></td><td>None, <code>openscad in.scad -o out.png</code>
+would work, but doesnt always produce nice images. Go via <code>.stl</code>
+Note that possibly often these arent populated with anything pretty. 
+It could be suggested to use these to 'show off as assembled'.
+Maybe they can produce <code>.gifs</code>?</td></tr>
 
 <tr><td><code>.skp</code></td><td>None. I think it's proprietary.</td></tr>
 <tr><td><code>.step</code></td><td>None.</td></tr>
@@ -23,10 +30,10 @@ Maybe browsers may view it directly?</td></tr>
 <tr><td><code>.ad_prt</code></td><td>(dont even know what it is)</td></tr>
 
 <tr><td><u>To <code>.js</code></u></td></tr>
-<tr>
-<td><code>.stl</code>,<code>.obj</code></td>
+<tr><td><code>.stl</code>,<code>.obj</code></td>
 <td>Using <a href="https://github.com/tbuser/thingiview.js">thingiview.js</a> to basically
-  see exactly the model.</td></tr>
+  see exactly the model.(<code>*/bin/stl2js</code>)</td></tr>
+<tr><td><code>.scad</code></td><td>None, go via <code>.stl</code></td></tr>
 </table>
 
 Just a few however, lots of projects out there just have `.stl`, and 
