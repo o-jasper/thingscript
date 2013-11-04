@@ -20,6 +20,8 @@ if [ "$THINGSCRIPT_PATH" == "" ]; then
 /home/$USER/.thingscript/$WHICH_TYPE:/etc/thingscript:/usr/share/thingscript/$WHICH_TYPE"
 fi
 
+export PATH=/home/$USER/.thingscript/rootlike/bin:$PATH
+
 #Dont know why the double loop didnt work, bash sucks.
 get_locations()
 {
@@ -50,7 +52,11 @@ get()
         fi
     done
     case "$2" in
-        "--dont-recurse") #See if there is a script to get it.
+        "--dont-recurse")
+            ;;
+        "--otherwise")
+            echo $3;;
+        *) #See if there is a script to get it.
             if [ -e $1 ]; then
                 echo 'BUG: how can the file '$1' exist and yet the absense script be called?' \
                     > /dev/stderr
@@ -59,8 +65,7 @@ get()
             if [ "$GET_SCRIPT" !=  "" ]; then
                 $GET_SCRIPT $@
             fi;;
-        "--otherwise")
-            echo $3;;
+
     esac
 }
 
@@ -77,17 +82,17 @@ get_image()
 
 handle_get()
 {
-    handle "`get_page $@`"
+    handle "$(get_page $@)"
 }
 
 cat_get()
-{   cat "`get $@`"
+{   cat "$(get $2)"
 }
-url_get()
+url()
 {   VAL=$(cat_get $@)
     case "$VAL" in
         ./*)
-            echo $THINGSCRIPT_ROOT$VAL | head -c 2 ;;
+            echo $THINGSCRIPT_ROOT$(echo $VAL | tail -c +3) ;;
         *)
             echo $VAL;;
     esac
@@ -205,8 +210,8 @@ case "$1" in
         handle_get $2;;
     cat_get) #Opens the file obtained with `get`
         cat_get $@;;
-    url_get)
-        url_get $@;;
+    url)
+        url $@;;
     markdown_get)
         markdown "`get $@`";;
     

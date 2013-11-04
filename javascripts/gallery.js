@@ -50,9 +50,10 @@ function to_img(file,action_file)
     {   viewer.style.width = want_w();
         viewer.src=null;
         if( js_import(file) )
-        {   thingiview.loadArray(designs[file]); }
+        {   thingiview.loadArray(designs[file]); 
+        }
         else //Wait until it is loaded.(TODO better, can you wait for something to finish?)
-        {    setTimeout(function(){thingiview.loadArray(designs[file]);},250);
+        {   setTimeout(function(){thingiview.loadArray(designs[file]);},250);
         }
     }
 }

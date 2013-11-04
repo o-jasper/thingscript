@@ -14,5 +14,4 @@ share_thingscript/main/prefer/browser
 
 mess/
 
-have.html
-readme.html
+*.html
