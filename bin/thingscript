@@ -17,10 +17,10 @@ fi
 
 if [ "$THINGSCRIPT_PATH" == "" ]; then
     THINGSCRIPT_PATH="thingscript:$THINGSCRIPT_ADDITIONAL_PATH\
-/home/$USER/.thingscript/$WHICH_TYPE:/etc/thingscript:/usr/share/thingscript/$WHICH_TYPE"
+/home/$USER/.thingscript/$WHICH_TYPE:/home/$USER/.thingscript_share/$WHICH_TYPE:/etc/thingscript:/usr/share/thingscript/$WHICH_TYPE"
 fi
 
-export PATH=/home/$USER/.thingscript/rootlike/bin:$PATH
+export PATH=/home/$USER/.thingscript_share/rootlike/bin:$PATH
 
 #Dont know why the double loop didnt work, bash sucks.
 get_locations()

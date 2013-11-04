@@ -1,4 +1,5 @@
 
-<b class="author">$author$ : $title$</b> <br>
-<table><tr><td>$thumbnail$</td>
-        <td style="vertical-align:text-top">$short_description$</td></tr></table>
+<table><tr><td><a href="$summary_url$">$thumbnail$</a></td>
+        <td style="vertical-align:text-top"><a href="$summary_url$">
+        <b class="author">$title$</b></a> by <b>$author$</b> <br>
+$short_description$</td></tr></table>

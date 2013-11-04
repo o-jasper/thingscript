@@ -1,6 +1,10 @@
 #!/bin/bash
 
 #Look up/create gallery list, and assume the first is the proper thumbnail.
-grep -vxP "#.+" `thingscript get gallery_list` | grep -vP '.+\.stl' | head -n 1 > thingscript/thumbnail
+TN=$(grep -vxP "#.+" $(thingscript get gallery_list) | grep -vP '.+\.stl' \
+    | head -n 1 | cut -f 2- -d' ' | tail -c+3)
 
+THUMB=$(thingscript exec scripts/thumb $TN)
+
+echo ./$THUMB > thingscript/thumbnail
 echo thingscript/thumbnail

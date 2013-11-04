@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ofile=`dirname $1`/thumbnail/`basename $1`
+mkdir -p `dirname $1`/thumbnail/
+
+if_newer $1 $ofile "convert $1 -resize 100x100 $ofile" > /dev/null
+echo $ofile

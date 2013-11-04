@@ -1,8 +1,8 @@
 #!/bin/bash
 
-LINK=`thingscript get author_link`
+LINK=$(thingscript url author_link)
 if [ "$LINK" != "" ]; then
-    echo '<a href='`cat $LINK`'>'`thingscript cat_get author`'</a>'
+    echo '<a href='$LINK'>'$(thingscript cat_get author)'</a>'
 else
     thingscript cat_get author
 fi

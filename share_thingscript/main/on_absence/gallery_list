@@ -3,8 +3,8 @@ FILE=thingscript/gallery_list
 
 #Assumes gallery items in pics/ and models in output/
 ls pics | grep -P '(png|gif|jpg|jpeg)'\
-       | while read line; do echo plain pics/$line; done > $FILE
+       | while read line; do echo plain ./pics/$line; done > $FILE
 ls output/ | grep -P 'stl'\
-       | while read line; do echo stl2js output/$line; done >> $FILE
+       | while read line; do echo initially_povray ./output/$line; done >> $FILE
 
 echo $FILE
