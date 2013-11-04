@@ -40,7 +40,7 @@ fi
 
 FROM=$2 #Default layout is 'layout' as `thingscript getpage` gets.
 if [ "$2" == "" ]; then
-    FROM=layout
+    FROM=el/layout
 fi
 TO=$3
 if [ "$3" == "" ]; then
