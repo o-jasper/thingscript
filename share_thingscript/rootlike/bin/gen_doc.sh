@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#TODO
+# * Check if it is a command
+# * Detect `thingscript ` command use and use it as ques to link there?
+
 handle()
 {
     echo $2/$1
@@ -14,7 +18,7 @@ handle()
         if [ "$?" == "0" ]; then #If it is a file, link to it.
             echo '<a href="'$line/index.html'">'$line'</a>(subdir)<br>' >> $2/$1/index.html
             handle $1/$line $2 yes
-        else
+        else #TODO check if it is a command.
             echo '<a href="'$line.html'">'$line'</a><br>' >> $2/$1/index.html
             markdown $1/$line > $2/$1/$line.html
             echo '<br><hr><a href="index.html">Directory it is in</a>' >> $2/$1/$line.html

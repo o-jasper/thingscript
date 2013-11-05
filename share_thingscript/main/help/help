@@ -1,6 +1,6 @@
 # Command `help`
 Provides help about a command or file. Outputs it to stdout, in (human readable)
-markdown. To view the html of this directly, use `help_browser`.
+markdown. There are static html pages that might be more convenient to view.
 
 Roughly: `thingscript cat_get help/$ASKED_PAGE`
 

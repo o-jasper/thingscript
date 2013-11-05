@@ -12,6 +12,7 @@
   + Cross check with existance of files.
     (to help automatically notice some cases of out-of-date)
   + Links inbetween other than in-same-directory.
+  + `thingscript help_browser ..` opens those files.
 
 ### Other
 

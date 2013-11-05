@@ -1,6 +1,9 @@
 # Command `help_browser`
 Same as the command help, but uses markdown to generate a html file and opens it
-with the browser indicated in `thingscript cat_get prefer/browser`. 
+with the browser indicated in `thingscript cat_get prefer/browser`.
+
+**The html docs contain the same functionality statically and may be
+ more convenient!** It contains links between the different pages.
 
 If nothing is indicated, it uses `xdg-open`.(it does file type - application 
 association)
@@ -10,7 +13,7 @@ Roughly does:
     thingscript cat_get help/$INPUT > some.html
     `thingscript cat_get prefer/browser` some.html
 
-If in the future css will be added to make the pages nices, it will be in
+If in the future css will be added to make the pages nicer, it will be in
  `prefer/help_browser.css`.
 
 ## Notes
