@@ -4,8 +4,14 @@
 * Freaking thingiview wont work :/
 * Instructions on how to use.
 * Get ThingTracker output to be correct.(also instruct)
+  + thumbnail url needs complete adress
+  + check it..
 * Packages for managers. (ArchLinux, Debian)
 * Set of static html pages based on current documentation.
+  + Separate commands from files.
+  + Cross check with existance of files.
+    (to help automatically notice some cases of out-of-date)
+  + Links inbetween other than in-same-directory.
 
 ### Other
 
