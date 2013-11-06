@@ -8,11 +8,19 @@
   + check it..
 * Packages for managers. (ArchLinux, Debian)
 * Set of static html pages based on current documentation.
-  + Separate commands from files.
   + Cross check with existance of files.
     (to help automatically notice some cases of out-of-date)
-  + Links inbetween other than in-same-directory.
-  + `thingscript help_browser ..` opens those files.
+    give missing documentation html placeholders?
+  + `[...]` links to other pages? 
+  + One-liners documentation.
+  + Code segments `thingscript ....` generates mentions at the bottom.
+* Get the documentation upto date, some of the stuff in `el/` should be 
+  one layer below.
+
+# Done for first release
+* Static html generations
+  + `thingscript help_browser ..` opens them.
+  + `## Related` gets linked added to it.
 
 ### Other
 

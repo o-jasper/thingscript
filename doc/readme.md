@@ -3,4 +3,4 @@ documentation, in the `share_thingscript/help` directory accessible with
 `thingscript help`. 
 
 Html documentation appears after running `make` in
-[rootlike/share/doc/html/main/help/](../share_thingscript/rootlike/share/doc/html/index.html).
+[main/doc/html/](../share_thingscript/main/doc/html/index.html).

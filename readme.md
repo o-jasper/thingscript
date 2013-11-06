@@ -3,19 +3,22 @@
 For linux(perhaps macosx/unix too) currently. 
 
 ## Features
-* `.stl` and `.obj` viewing using
-[thingiview.js](https://github.com/tbuser/thingiview.js).(the precalculated approach)
-
-* `.stl` model preview using [povray](http://povray.org/), [stl2pov](http://rsmith.home.xs4all.nl/software/py-stl-stl2pov.html"), and [admesh](http://www.varlog.com/admesh-htm) 
+* Viewers can easily be added to the gallery.
+  `.stl` and `.obj` viewing using
+  [thingiview.js](https://github.com/tbuser/thingiview.js).(the precalculated approach)
+  `.stl` model preview using [povray](http://povray.org/), [stl2pov](http://rsmith.home.xs4all.nl/software/py-stl-stl2pov.html"), and [admesh](http://www.varlog.com/admesh-htm) 
   a bit to figure out the location.(some of those may take long, it checks the timestamps)
 
-* Sequence of overriding preferences. Configurable with good defaults.
-  (A sufficiently high power user is indistinguishable from a developper)
+* Configurable, but with good defaults. Sequence of overriding preferences means 
+  that you can change behavior, or provide behavior as defaults.
 
-* Documentation gets into the system itself, it is in `share_thingscript/help/`.
-  `thingsscript help $some_command_or_thingscript_file` gets you help at it.
-  Not sure at the moment how good the actual texts are, and conversion to html 
-  and man/info pages would be better.
+  A sufficiently high power user is indistinguishable from a developper, *no* 
+  language is special in extending this, everything is executed as if it is a
+  program.(other than it being an extra dependency of course)
+
+* Good documentation, build into the system itself but also in the form of static
+  html. (`thingscript help`,`thingscript help_browser`) Users can document their
+  own stuff too, just plunk the file in at the correct location.
 
 ### Install
 Get it with `git clone https://github.com/o-jasper/thingscript`.
