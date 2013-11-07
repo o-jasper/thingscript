@@ -24,11 +24,6 @@
 
 ### Other
 
-* Put a lot of the data in files now in a json file and make a 
-  html+javascript page that generates that json. Part of the issue is that
-  `thingscript get ..` gets a file location.(distinguish between items that do/dont
-      warrant a file?)
-
 * Relies on javascript.. I dont like javascripts in the webs myself! If possible
   get the javascript out of the gallery.(not sure if possible without significant 
   change to functionality) As good is to 
@@ -56,3 +51,10 @@
 * Additionally omething else than povray, luxrender? (povray isnt libre)
 
 * Defaults use whatever dependencies present. 'Upgrade to best'?
+
+* Put a lot of the data in files now in a json file and make a 
+  html+javascript page that generates that json. Part of the issue is that
+  `thingscript get ..` gets a file location.(distinguish between items that do/dont
+      warrant a file?) Not sure...
+
+* Apply thingscript to its help system.
