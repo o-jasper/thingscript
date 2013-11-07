@@ -63,14 +63,15 @@ hfile()
 #Input a directory
 all()
 {
-    echo $1
+    mkdir -p tso/html/$1
+    echo "$2$1"
     one $1
-    ls help/$1 | grep -v readme.md |grep -v index.html | while read line ; do
+    ls $1 |grep -v tso | while read line ; do
         test -d $1/$line
         if [ "$?" == "0" ]; then 
-            all $1/$line/
+            all $1/$line/ "$2 "
         else #TODO check if it is a command.
-            echo ..$line
+            echo "$2$line"
             one $1/$line
         fi 
     done
@@ -80,13 +81,13 @@ one()
 {   test -d help/$1
     if [ "$?" == "0" ]; then #Its a directory, use the readme there.
         md=help/$1/readme.md
-        mkdir -p doc/html/$1
-        hfile $md > doc/html/$1/index.html
+        mkdir -p tso/html/$1
+        hfile $md > tso/html/$1/index.html
         
     else
         md=help/$1
-        mkdir -p $(dirname doc/html/$1)
-        hfile help/$1 > doc/html/$1.html
+        mkdir -p $(dirname tso/html/$1)
+        hfile help/$1 > tso/html/$1.html
     fi
 }
 
