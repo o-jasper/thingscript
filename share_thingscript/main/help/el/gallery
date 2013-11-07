@@ -1,0 +1,2 @@
+uses the [gallery_list] thingscript file to generate a gallery.
+if that file does not exist, it uses [on_absence/gallery_list] to generate a default
