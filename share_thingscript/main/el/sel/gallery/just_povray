@@ -4,6 +4,5 @@
 
 pov=$(thingscript exec scripts/stl2pov $1)
 
-echo '<img onclick="to_img_re_url('\'$(thingscript exec scripts/main_povray $pov)\'')"\
- src="'$(thingscript exec scripts/thumb_povray $pov)'" class="gal">'
+echo '<img onclick="to_img_re_url('\'$(thingscript exec scripts/main_povray $pov)\'')" src="'$(thingscript exec scripts/thumb_povray $pov)'" class="gal">'
 

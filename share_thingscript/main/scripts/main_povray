@@ -1,4 +1,4 @@
 #!/bin/bash
-ofile=$(tso $1 main_)
+ofile=$(tso $1 main_).png
 memoize $1 $ofile "povray $1 `thingscript cat_get etc/main_povray_args` +O$ofile" > /dev/null
 echo $ofile
