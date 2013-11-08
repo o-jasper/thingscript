@@ -21,7 +21,7 @@ for el in `echo author category title`; do
         MISSING=$MISSING" $el"
     fi
 done
-for el in `echo short_description license layout`; do
+for el in `echo short_description license el/layout`; do
     if [ "`thingscript get_page $el`" == "" ]; then
         MISSING=$MISSING" $el"
     fi

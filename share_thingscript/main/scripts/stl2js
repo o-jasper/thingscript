@@ -1,7 +1,6 @@
 #!/bin/bash
 
-ofile=`dirname $1`/tso/`basename $1`.js
-mkdir -p `dirname $1`/tso/
+ofile=$(tso $1)
 
 memoize $1 $ofile "stl2js_2 $1" no_stdout > /dev/stderr;
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 file=$1
-ofile=`thingscript ibin tso $file yes`
+ofile=$(tso $file)
 
 memoize $file $ofile.data get_stl_info with_stdout | \
              memoize $file $ofile.pov stl2pov no_stdout > /dev/stderr

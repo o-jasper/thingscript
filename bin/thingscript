@@ -9,7 +9,7 @@
 #
 
 #Currently a userspace install.
-export ROOTLIKE=/home/$USER/.thingscript/rootlike/
+export ROOTLIKE=/home/$USER/.thingscript_share/rootlike/
 
 if [ "$WHICH_TYPE" == "" ]; then
     WHICH_TYPE="main"

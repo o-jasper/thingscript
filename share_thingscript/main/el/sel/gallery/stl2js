@@ -1,10 +1,10 @@
 #!/bin/bash
 
-ofile=`dirname $1`/tso/`basename $1`.js
-mkdir -p `dirname $1`/tso/
+ofile=$(dirname $1)/tso/$(basename $1).js
+mkdir -p $(dirname $1)/tso/
 
 #Make a js file and it enables immediately when shown.
-js_stl=`thingscript exec scripts/stl2js $1`
-pov=`thingscript exec scripts/stl2pov $1`
+js_stl=$(thingscript exec scripts/stl2js $1)
+pov=$(thingscript exec scripts/stl2pov $1)
 
-echo '<img onclick="to_img_re_url('\'$js_stl\'')" src="'`thingscript exec scripts/thumb_povray $pov`'" class="gal">'
+echo '<img onclick="to_img_re_url('\'$js_stl\'')" src="'$(thingscript exec scripts/thumb_povray $pov)'" class="gal">'
