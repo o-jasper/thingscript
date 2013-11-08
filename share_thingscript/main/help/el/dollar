@@ -1,0 +1,3 @@
+Just outputs a dollar sign ascii symbol. Workaround for the fact that in
+layouts $dollar$-surrounded items are commands, and escapes havent been 
+implemented.

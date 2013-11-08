@@ -1,6 +1,6 @@
 $style$
-<title>$title$</title>
-<meta name=author content=$author_name$>
+<title>$cat title$</title>
+<meta name=author content=$cat author_name$>
 $tags html_head$
 <script src=$rootdir javascripts/import.js$></script>
 $src/thingiview_prep.html_$

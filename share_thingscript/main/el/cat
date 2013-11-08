@@ -1,2 +1,2 @@
 #!/bin/bash
-thingscript cat_get el/$2
+thingscript cat_get $2

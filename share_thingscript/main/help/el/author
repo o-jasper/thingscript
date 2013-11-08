@@ -1,3 +1,2 @@
-Must contain the author of a thing.
-
-(no alternative files)
+Makes a html representation of the author using $a author$, and $a author_link$
+as available.

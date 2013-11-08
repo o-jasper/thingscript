@@ -1,0 +1,3 @@
+Writes down the url from `thingscript url ..` in the argument, at the spot. 
+
+$i url$

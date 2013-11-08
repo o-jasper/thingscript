@@ -1,0 +1,3 @@
+Uses `thingscript handle_get` to get another layout. If the file is in `el/`,
+an underscore at the end - <code>$dollar$something_$dollar$</code> - will work
+ too.

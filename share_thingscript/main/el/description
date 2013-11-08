@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE=`thingscript get description`
+FILE=$(thingscript get description)
 
 if [ "$FILE" != "" ]; then
    cat $FILE

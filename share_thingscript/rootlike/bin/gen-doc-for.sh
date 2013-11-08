@@ -65,7 +65,7 @@ all()
 {
     mkdir -p tso/html/$1
     echo "$2$1"
-    one $1
+    one $1 > /dev/null
     ls $1 |grep -v tso | while read line ; do
         test -d $1/$line
         if [ "$?" == "0" ]; then 
@@ -81,19 +81,27 @@ one()
 {   test -d help/$1
     if [ "$?" == "0" ]; then #Its a directory, use the readme there.
         md=help/$1/readme.md
+        out=tso/html/$1/index.html
         mkdir -p tso/html/$1
-        hfile $md > tso/html/$1/index.html
-        
+        echo "<h2>Directory: $1</h2>" > $out
+        hfile $md >> $out
     else
         md=help/$1
+        out=tso/html/$1.html
         mkdir -p $(dirname tso/html/$1)
-        hfile help/$1 > tso/html/$1.html
+        echo "<h2>File: $1</h2>" > $out
+        hfile help/$1 >> $out
     fi
 }
 
 if [ "$1" == "all" ]; then
     rm help/tso/missing
     all .
+    #All the commands.
+    for el in "get exec get_page get_image help help_browser
+ mk version handle handle_get cat_get url markdown_get ibin"; do
+        one $el
+    done
 else
     one $1
 fi

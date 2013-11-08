@@ -1,0 +1,2 @@
+From an `.stl`, uses povray for the thumbnail and initially the main image, but 
+if you click on the main image it puts the javascript thingiview there.

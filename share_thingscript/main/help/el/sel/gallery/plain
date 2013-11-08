@@ -1,0 +1,2 @@
+Uses [`convert`](http://imagemagick.org/) to thumbnail an image and uses an
+image directly.

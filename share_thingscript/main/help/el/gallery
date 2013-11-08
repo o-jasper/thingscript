@@ -1,2 +1,3 @@
-uses the [gallery_list] thingscript file to generate a gallery.
-if that file does not exist, it uses [on_absence/gallery_list] to generate a default
+Uses the $a gallery_list$ thingscript file to generate a gallery. If that file
+does not exist, it uses the $a on_absence/gallery_list$ program to generate
+a default.

@@ -1,0 +1,2 @@
+Layout for a summary page, no header or such. Uses $a el/thumbnail$, $a el/summary_url$,
+$a title$, $a author$ and $a short_description$.

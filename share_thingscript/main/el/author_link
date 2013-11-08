@@ -1,2 +1,0 @@
-#!/bin/bash
-echo \"$(thingscript url link)\"
