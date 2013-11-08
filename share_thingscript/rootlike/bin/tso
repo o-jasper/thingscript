@@ -1,10 +1,11 @@
 #!/bin/bash
 
-grep '/tso/' $1
+echo $1 | grep '/tso/' > /dev/null
 if [ "$?" == "0" ]; then
-    mkdir -p $(dirname $2$1)
-    echo $2$1
-    return
+    ret=$(dirname $1)/$2$(basename $1)
+    mkdir -p $(dirname $ret)
+    echo $ret
+    exit 0
 fi
 
 # Puts the 'thing script objects' directory in the name.

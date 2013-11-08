@@ -92,6 +92,7 @@ one()
 }
 
 if [ "$1" == "all" ]; then
+    rm help/tso/missing
     all .
 else
     one $1
