@@ -193,7 +193,18 @@ case "$1" in
         if [ "$PREFERRED" == "" ]; then
             PREFERRED="xdg-open"
         fi
-        $PREFERRED $(get doc/html/$2.html) ;;
+        at=tso/html/$2
+        pf=$(get $at.html)
+        if [ "$pf" == "" ]; then
+            pf=$(get $at/index.html)
+            if [ "$pf" == "" ]; then
+                echo Couldnt find this help item
+            else
+                $PREFERRED $(get $at/index.html);
+            fi
+        else
+            $PREFERRED $pf
+        fi ;;
     mk) #TODO idea: have a `mk` directory and make it `mk page`
         "`get bin/mk/$2`" $3 $4 $5 $6 $7 $8 $9;;
     version)
