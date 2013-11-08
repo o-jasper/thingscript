@@ -47,7 +47,7 @@ get_locations()
 get()
 {   for el in `get_locations $@`; do #Go through all the files.
         if [ -e $el ]; then  #See if the file exists.
-            echo $el
+            echo -n $el
             return #Have one.
         fi
     done

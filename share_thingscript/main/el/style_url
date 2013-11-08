@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -e thingscript/etc/style.css ]; then
+    echo -n thingscript/etc/style.css
+    exit 0
+fi 
+
+url=$(thingscript url style_url)
+if [ "$url" == "" ]; then
+   mkdir -p thingscript/etc/tso/
+   cp `thingscript get etc/style.css` thingscript/etc/tso/style.css
+   echo -n thingscript/etc/tso/style.css
+else
+   echo -n $url
+fi
