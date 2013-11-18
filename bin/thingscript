@@ -139,7 +139,7 @@ handle_whole()
     tr '$' '\n' | while read LINE; do
         FIRST=`echo "$LINE" | cut -f 1 -d ' '`
         if [ "$FIRST" == "" ]; then
-            echo $LINE
+            echo -n $LINE
             continue
         fi
         case "$LINE" in
@@ -155,7 +155,7 @@ handle_whole()
             $GOT $LINE #Run it
             continue
         fi        
-        echo $LINE  #Just a plain line to be outputted.
+        echo -n $LINE  #Just a plain line to be outputted.
     done
 }
 

@@ -98,8 +98,8 @@ if [ "$1" == "all" ]; then
     rm help/tso/missing
     all .
     #All the commands.
-    for el in "get exec get_page get_image help help_browser
- mk version handle handle_get cat_get url markdown_get ibin"; do
+    for el in $(echo "get exec get_page get_image help help_browser
+ mk version handle handle_get cat_get url markdown_get ibin" |tr ' ' '\n'); do
         one $el
     done
 else
