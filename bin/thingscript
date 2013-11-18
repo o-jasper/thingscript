@@ -108,18 +108,14 @@ handle()
     if [ ! -e $1 ]; then #File doesnt exist.
         exit #TODO do something?
     fi
-    VAL=$(echo $1 | cut -f 3 -d'.')
-    if [ "$VAL" = "" ]; then
-        VAL=$(echo $1 | cut -f 2 -d'.')
-    fi
-    case "$VAL" in
-        md)
+    case "$1" in
+        *.md)
             markdown $1;;
         *_)  #Recurse.
             cat $1 | handle_whole;;
-        md_)
+        *.md_)
             markdown $1 | handle_whole ;;
-        *) 
+        *)
             cat $1 ;;
     esac
 }
@@ -138,24 +134,28 @@ handle_whole()
 {
     tr '$' '\n' | while read LINE; do
         FIRST=$(echo "$LINE" | cut -f 1 -d ' ')
-        if [ "$FIRST" == "" ]; then
-            echo -n $LINE
-            continue
-        fi
         case "$LINE" in
+            *' '*)
+                GOT=$(get el/$FIRST)
+                if [ "$GOT" != "" ]; then  #Got something, yay.
+                    $GOT $LINE #Run it
+                else
+                    echo $LINE #Plain line
+                fi ;;
             *'.cat')
-                cat_get el/$(echo $LINE) 
-                continue ;;
+                cat_get el/$(echo $LINE) ;;
             *_) #Layout stuff.
-                handle_get el/$(echo $LINE)
-                continue ;;
+                handle_get el/$(echo $LINE) ;;
+            '')
+                echo ;;
+            *)
+                GOT=$(get el/$LINE)
+                if [ "$GOT" != "" ]; then  #Got something, yay.
+                    $GOT $LINE #Run it
+                else
+                    echo $LINE #Plain line
+                fi ;;
         esac
-        GOT=$(get el/$FIRST)
-        if [ "$GOT" != "" ]; then  #Got something, yay.
-            $GOT $LINE #Run it
-            continue
-        fi        
-        echo -n $LINE  #Just a plain line to be outputted.
     done
 }
 
@@ -214,12 +214,15 @@ case "$1" in
         handle $2;;
     handle_get)
         handle_get $2;;
+    
+ #Forces markdown and handle_whole to be used regardless of extension.
+    markdown_handle)
+        markdown $2 | handle_whole ;;
+    
     cat_get) #Opens the file obtained with `get`
         cat_get $@;;
     url)
         url $@;;
-    markdown_get)
-        markdown "$(get $@)";;
     
     ibin) #Runs an internal bin file intended to be basically a separate entity.
         $ROOTLIKE/bin/$(echo $@ | cut -f2- -d' ');;

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Places a link to the mentioned article.
+
+WORDS=$3
+if [ "$WORDS" == "" ]; then
+   WORDS=$2
+fi
+
+test -d $2
+if [ "$?" == "0" ]; then #If it is a file, link to it.
+    echo '<a href="'$BACKDIR$2/index.html'">'$WORDS'</a>' 
+else #TODO check if it is a command.
+    echo '<a href="'$BACKDIR$2.html'">'$WORDS'</a>' 
+fi 

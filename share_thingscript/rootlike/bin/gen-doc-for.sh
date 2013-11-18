@@ -22,7 +22,11 @@ list_local_files()
 
 hfile()
 {   
-    md=$1
+    md=$1 
+    #Messy...
+    export BACKDIR=$(echo $md | tr '/' '\n' | while read line; do
+            echo -n ../
+            done)
     
     if [ ! -e $md ]; then
         echo $1 'does not have documentation (yet?)'
@@ -31,25 +35,8 @@ hfile()
         return
     fi
 
-    S=$(grep -n -F '## Related' $md |cut -f 1 -d:)
-    if [ "$S" == "" ]; then
-        markdown $md
-    else
-        head -n $(expr $S - 1) $md | markdown
-        echo '<h2>Related</h2>'
-        for line in $(tail -n +$(expr $S + 1) $md); do
-            FIRST=''
-            for el in $(echo $line | tr , '\n'); do
-                if [ "$FIRST" == "" ]; then
-                    FIRST=NO
-                else
-                    echo ,
-                fi
-                echo '<a href="'$line'.html">'$el'</a>'
-            done
-            echo '<br>'
-        done
-    fi
+    export THINGSCRIPT_ADDITIONAL_PATH="/home/$USER/.thingscript_share/helpmaker:"
+    thingscript markdown_handle $md
     
     if [ "$(basename $md)" == "readme.md" ]; then  #If a directory, list other files there,
         echo '<h4>Directory contains:</h4>'
@@ -90,7 +77,7 @@ one()
         out=tso/html/$1.html
         mkdir -p $(dirname tso/html/$1)
         echo "<h2>File: $1</h2>" > $out
-        hfile help/$1 >> $out
+        hfile $md >> $out
     fi
 }
 
@@ -99,7 +86,7 @@ if [ "$1" == "all" ]; then
     all .
     #All the commands.
     for el in $(echo "get exec get_page get_image help help_browser
- mk version handle handle_get cat_get url markdown_get ibin" |tr ' ' '\n'); do
+ mk version handle handle_get markdown_handle cat_get url ibin" |tr ' ' '\n'); do
         one $el
     done
 else
