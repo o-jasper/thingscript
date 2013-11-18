@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TAGSFILE=`thingscript get tags`
+TAGSFILE=$(thingscript get tags)
 if [ "$TAGSFILE" != "" ]; then
     COMMA='';
     case "$2" in
@@ -16,8 +16,8 @@ if [ "$TAGSFILE" != "" ]; then
                 COMMA=',';
             done | tr -d '\n';;
         html_head)
-            command=`thingscript get el/tags`
-            echo '<meta name=keywords, content="'`$command dud plain`'">' |tr -d '\n';;
+            command=$(thingscript get el/tags)
+            echo '<meta name=keywords, content="'$($command dud plain)'">' |tr -d '\n';;
         *)
             echo E: What way do you want the tags? dont have \"$2\" > /dev/stderr;;
     esac

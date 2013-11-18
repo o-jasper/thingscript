@@ -13,7 +13,7 @@
 if [ "$2" != "" ]; then #Argument specifies a gallery
     GALLERY_LIST_FILE=$2 #TODO multiple galleries wont actually work.
 else
-    GALLERY_LIST_FILE=`thingscript get gallery_list` #(has on_absense script)
+    GALLERY_LIST_FILE=$(thingscript get gallery_list) #(has on_absense script)
 fi
 
 PATH=$PATH:$ROOTLIKE/bin/

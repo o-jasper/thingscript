@@ -12,6 +12,6 @@ cat_or_run() #List
 }
 
 RUN='ls src/* *.blender *.skp *.scad *.escad'
-cat_or_run `get output_list` $RUN | while read line; do
+cat_or_run $(get output_list) $RUN | while read line; do
     echo '<a href="'$line'">$line</a><br>'
 done ;;

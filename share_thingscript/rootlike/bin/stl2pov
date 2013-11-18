@@ -21,17 +21,17 @@ while read line; do #Figure out the sizes from stdin.
     }
     case "$line" in
         FX*)
-            FX=`nick`;;
+            FX=$(nick);;
         FY*) 
-            FY=`nick`;;
+            FY=$(nick);;
         FZ*)
-            FZ=`nick`;;
+            FZ=$(nick);;
         TX*)
-            TX=`nick`;;
+            TX=$(nick);;
         TY*)
-            TY=`nick`;;
+            TY=$(nick);;
         TZ*)
-            TZ=`nick`;;
+            TZ=$(nick);;
     esac
 done
 
@@ -42,8 +42,8 @@ STL2POV_DIR=$ROOTLIKE/share/stl2pov/
 echo '# declare draw_model = mesh {'
 
 mkdir -p /tmp/thingscript/
-TMP_INC=/tmp/thingscript/`date +%s`$RANDOM$RANDOM.inc
-# Produces crud infront, with unusable variable name, `tail` cuts that off.
+TMP_INC=/tmp/thingscript/$(date +%s)$RANDOM$RANDOM.inc
+# Produces crud infront, with unusable variable name, $(tail) cuts that off.
 stl2pov.py $FILE $TMP_INC > /dev/null
 tail -n+14 $TMP_INC
 rm $TMP_INC
@@ -55,8 +55,8 @@ av()
 {   expr 1000 \* \( $1 + $2 \) / 2000 
 }
 #Look at center.
-echo look_at \<`av $FX $TX`, `av $FY $TY`, `av $FZ $TZ`\>
+echo look_at \<$(av $FX $TX), $(av $FY $TY), $(av $FZ $TZ)\>
 #Look from slight distance.
-echo location \<`expr 2 \* $TX - $FX`, `expr 2 \* $TY - $FY`, `expr 2 \* $FZ - $TZ`\>
+echo location \<$(expr 2 \* $TX - $FX), $(expr 2 \* $TY - $FY), $(expr 2 \* $FZ - $TZ)\>
 
 cat $STL2POV_DIR/template_post.pov

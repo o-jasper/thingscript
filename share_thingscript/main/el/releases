@@ -5,7 +5,7 @@ handle_release()
     echo '['$1']('$2')'
 }
 
-RELEASES_FILE=`thingscript get releases`
+RELEASES_FILE=$(thingscript get releases)
 if [ "$RELEASES_FILE" != "" ]; then
     echo Can be found on:
     cat $RELEASES_FILE | while line=read; do handle_release $line; done

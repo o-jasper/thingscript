@@ -6,12 +6,12 @@
 # you care to divulge.
 
 cd $1 #Need to be in the directory to be sure git will work.
-FILES=`git ls-files`
+FILES=$(git ls-files)
 cd - # go back
 
-NAME=`basename $1`
+NAME=$(basename $1)
 if [ "$NAME" == "" ]; then
-    NAME=`basename "${1%?}"`
+    NAME=$(basename "${1%?}")
 fi
 
 TO_DIR=$2
@@ -20,6 +20,6 @@ if [ "$2" == "" ]; then
 fi
 
 for el in $FILES; do
-    mkdir -p $TO_DIR/$NAME/`dirname $el`
+    mkdir -p $TO_DIR/$NAME/$(dirname $el)
     cp -u $1/$el $TO_DIR/$NAME/$el
 done

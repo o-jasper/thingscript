@@ -16,13 +16,13 @@ fi
 
 #See if we have the required stuff. #TODO move somewhere else.
 MISSING=''
-for el in `echo author category title`; do
-    if [ "`thingscript get $el`" == "" ]; then
+for el in $(echo author category title); do
+    if [ "$(thingscript get $el)" == "" ]; then
         MISSING=$MISSING" $el"
     fi
 done
-for el in `echo short_description license el/layout`; do
-    if [ "`thingscript get_page $el`" == "" ]; then
+for el in $(echo short_description license el/layout); do
+    if [ "$(thingscript get_page $el)" == "" ]; then
         MISSING=$MISSING" $el"
     fi
 done
@@ -32,7 +32,7 @@ Error: For each line, in the directory '$1/thingscript/'
 _one_ of the files is required:' > /dev/stderr
     echo $MISSING | tr ' ' '\n' > /dev/stderr
     echo '
-Use \`thingscript get help/\$FILE\` for information about the file.
+Use \$(thingscript get help/\$FILE\) for information about the file.
  These were the arguments used '$@ > /dev/stderr
     exit
 fi

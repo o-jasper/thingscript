@@ -18,13 +18,13 @@ if [ "$1" != "" ]; then
 fi
 
 g()
-{   FILE=`thingscript get $1`
+{   FILE=$(thingscript get $1)
     if [ "$FILE" != "" ]; then
         cat $FILE
     fi
 } 
 p()
-{   GOT=`g $1`
+{   GOT=$(g $1)
     if [ "$GOT" != "" ]; then
         NAME=$2
         if [ "$NAME" == "" ]; then
@@ -42,7 +42,7 @@ run() #Just elements.
     p license
     p short_description description
     p thumbnail thumbnailURL
-    TAGS=`thingscript get tags`
+    TAGS=$(thingscript get tags)
     if [ "$TAGS" != "" ]; then
         echo '"tags":['
         FIRST="true"

@@ -12,17 +12,17 @@ extremity()
 admesh $@ | while read line; do
     case "$line" in
         'Min X'*)
-            echo FX `echo $line | extremity 1`
-            echo TX `echo $line | extremity 2`;;
+            echo FX $(echo $line | extremity 1)
+            echo TX $(echo $line | extremity 2);;
         'Min Y'*)
-            echo FY `echo $line | extremity 1`
-            echo TY `echo $line | extremity 2`;;
+            echo FY $(echo $line | extremity 1)
+            echo TY $(echo $line | extremity 2);;
         'Min Z'*)
-            echo FZ `echo $line | extremity 1`
-            echo TZ `echo $line | extremity 2`;;
+            echo FZ $(echo $line | extremity 1)
+            echo TZ $(echo $line | extremity 2);;
 #        'Number of facets') #TODO figure out
         *Volume*)
-            echo Volume `echo $line | cut -f3 -d:`;;
+            echo Volume $(echo $line | cut -f3 -d:);;
     esac
 done
 

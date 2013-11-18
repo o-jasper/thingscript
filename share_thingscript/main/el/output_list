@@ -11,6 +11,6 @@ cat_or_run() #List
 }
 
 RUN='ls output/* *.stl *.obj *.dxf *.svg'
-cat_or_run `get output_list` $RUN | while read line; do
+cat_or_run $(get output_list) $RUN | while read line; do
     echo '<a href="'$line'">$line</a><br>'
 done

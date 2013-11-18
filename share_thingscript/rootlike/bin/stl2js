@@ -15,7 +15,7 @@ fi
 
 #TODO use php more directly or convert the source code to something.
 
-PHP_FILE=/tmp/`date +%s`$RANDOM.php #Make .php file with file in question.
+PHP_FILE=/tmp/$(date +%s)$RANDOM.php #Make .php file with file in question.
 echo '<?php
 include('\'$STL2JS_DIR/convert.php\'');
 

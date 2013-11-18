@@ -7,7 +7,7 @@ else
     thingscript cat_get author
 fi
 #Run the script to output the image drawing html.
-AUTHOR_IMG_SCRIPT=`thingscript get el/author_img` 
+AUTHOR_IMG_SCRIPT=$(thingscript get el/author_img) 
 if [ "$AUTHOR_IMG_SCRIPT" != "" ]; then
     $AUTHOR_IMG_SCRIPT
 fi

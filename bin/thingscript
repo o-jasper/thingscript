@@ -26,18 +26,18 @@ export PATH=/home/$USER/.thingscript_share/rootlike/bin:$PATH
 get_locations()
 {
     for dir in $(echo $THINGSCRIPT_PATH | tr : '\n'); do
-        for el in `echo $@`; do #First what the user tells you to do.
+        for el in $(echo $@); do #First what the user tells you to do.
             echo $dir/$el
         done
     done
     if [ "$WHICH_TYPE" != "main" ]; then #If you run out try main anyway.
-        for el in `echo $@`; do 
+        for el in $(echo $@); do 
             echo ~/.thingscript/main/$el
         done
-        for el in `echo $@`; do
+        for el in $(echo $@); do
             echo /etc/thingscript/main/$el
         done
-        for el in `echo $@`; do
+        for el in $(echo $@); do
             echo /usr/share/thingscript/main/$el
         done
     fi
@@ -45,7 +45,7 @@ get_locations()
 
 #Gets layout information.
 get()
-{   for el in `get_locations $@`; do #Go through all the files.
+{   for el in $(get_locations $@); do #Go through all the files.
         if [ -e $el ]; then  #See if the file exists.
             echo -n $el
             return #Have one.
@@ -69,7 +69,7 @@ get()
     esac
 }
 
-export IS_TEST=`get is_test`
+export IS_TEST=$(get is_test)
 
 get_page()
 {   get $1.html $1.md $1.html_ $1.md_ $1
@@ -108,9 +108,9 @@ handle()
     if [ ! -e $1 ]; then #File doesnt exist.
         exit #TODO do something?
     fi
-    VAL=`echo $1 | cut -f 3 -d'.'`
+    VAL=$(echo $1 | cut -f 3 -d'.')
     if [ "$VAL" = "" ]; then
-        VAL=`echo $1 | cut -f 2 -d'.'`
+        VAL=$(echo $1 | cut -f 2 -d'.')
     fi
     case "$VAL" in
         md)
@@ -137,20 +137,20 @@ cat_or_run() #List
 handle_whole()
 {
     tr '$' '\n' | while read LINE; do
-        FIRST=`echo "$LINE" | cut -f 1 -d ' '`
+        FIRST=$(echo "$LINE" | cut -f 1 -d ' ')
         if [ "$FIRST" == "" ]; then
             echo -n $LINE
             continue
         fi
         case "$LINE" in
             *'.cat')
-                cat_get el/`echo $LINE` 
+                cat_get el/$(echo $LINE) 
                 continue ;;
             *_) #Layout stuff.
-                handle_get el/`echo $LINE`
+                handle_get el/$(echo $LINE)
                 continue ;;
         esac
-        GOT=`get el/$FIRST`
+        GOT=$(get el/$FIRST)
         if [ "$GOT" != "" ]; then  #Got something, yay.
             $GOT $LINE #Run it
             continue
@@ -160,7 +160,7 @@ handle_whole()
 }
 
 get_help()
-{   FILE=`get help/$1`
+{   FILE=$(get help/$1)
     test -d $FILE
     if [ "$?" == "0" ]; then
         echo $FILE/readme.md
@@ -173,23 +173,23 @@ case "$1" in
     get)
         get $2;;
     exec)
-        `get $2` $3 $4 $5 $6 $7 $8 $9;;
+        $(get $2) $3 $4 $5 $6 $7 $8 $9;;
     get_page)
         get_page $2;;
     get_image)
         get_image $2;;
     
     '--help')
-        cat "`get_help`";;
+        cat "$(get_help)";;
     help) #Help stdout.
-        cat "`get_help $2`"
+        cat "$(get_help $2)"
         if [ "$?" != "0" ]; then
          #TODO try figure out if it pertains to a file we know? 
          # (if in thingscript/ directory or under one in the list)
             echo Turns out no help page for $2 exists.
         fi;;
     help_browser) #Help into browser. TODO probably want CSS.
-        PREFERRED=`get prefer/browser`
+        PREFERRED=$(get prefer/browser)
         if [ "$PREFERRED" == "" ]; then
             PREFERRED="xdg-open"
         fi
@@ -206,7 +206,7 @@ case "$1" in
             $PREFERRED $pf
         fi ;;
     mk) #TODO idea: have a `mk` directory and make it `mk page`
-        "`get bin/mk/$2`" $3 $4 $5 $6 $7 $8 $9;;
+        "$(get bin/mk/$2)" $3 $4 $5 $6 $7 $8 $9;;
     version)
         cat /usr/share/thingscript/version;;
 
@@ -219,10 +219,10 @@ case "$1" in
     url)
         url $@;;
     markdown_get)
-        markdown "`get $@`";;
+        markdown "$(get $@)";;
     
     ibin) #Runs an internal bin file intended to be basically a separate entity.
-        $ROOTLIKE/bin/`echo $@ | cut -f2- -d' '`;;
+        $ROOTLIKE/bin/$(echo $@ | cut -f2- -d' ');;
     
     *) #TODO more info, `help`
         echo Did not recognize thingscript command $1 > /dev/stderr
