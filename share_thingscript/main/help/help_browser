@@ -1,5 +1,5 @@
 # Command `help_browser`
-Same as the command help, but uses a the browser in [prefer/browser].
+Same as the command help, but uses a the browser in $a prefer/browser$.
 
 **The html docs contain the same functionality statically and may be
  more convenient!** It contains links between the different pages.

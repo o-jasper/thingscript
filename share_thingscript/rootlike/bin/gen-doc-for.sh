@@ -24,9 +24,9 @@ hfile()
 {   
     md=$1 
     #Messy...
-    export BACKDIR=$(echo $md | tr '/' '\n' | while read line; do
+    export BACKDIR=$(echo $md | tr '/' '\n' | tail -c+8 | while read line; do
             echo -n ../
-            done)
+            done | tail -c+4)
     
     if [ ! -e $md ]; then
         echo $1 'does not have documentation (yet?)'
@@ -39,11 +39,12 @@ hfile()
     thingscript markdown_handle $md
     
     if [ "$(basename $md)" == "readme.md" ]; then  #If a directory, list other files there,
-        echo '<h4>Directory contains:</h4>'
-        echo '<a href="../index.html">..</a> (parent directory)<br>'
+        echo -n '<h4>Directory contains:</h4>'
+        echo -n '<a href="../index.html">..</a> (parent directory)<br>'
         list_local_files $(dirname $1)
     else #If it is a file, link to the directory.
-        echo '<br><a href="index.html">'other things in directory $(dirname $md)'</a><br>'
+        echo '<br><a href="index.html">'other things in directory
+        echo -n $(dirname $md | tail -c+6)'</a><br>'
     fi
 }
 
@@ -55,8 +56,8 @@ all()
     one $1 > /dev/null
     ls $1 |grep -v tso | while read line ; do
         test -d $1/$line
-        if [ "$?" == "0" ]; then 
-            all $1/$line/ "$2 "
+        if [ "$?" == "0" ]; then
+            all $1/$line "$2 "
         else #TODO check if it is a command.
             echo "$2$line"
             one $1/$line
