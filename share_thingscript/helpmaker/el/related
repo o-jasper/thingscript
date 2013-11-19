@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo '<h2>Related</h2>'
+echo "$@" | tr ' ' '\n' | tr '\t' '\n' | tail -n+2 | while read line; do
+     if [ "$line" != "" ]; then
+          $(thingscript get el/a) '' $line
+          echo '<br>'
+     fi
+done
