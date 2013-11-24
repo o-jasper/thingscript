@@ -1,14 +1,16 @@
 
 ## Needed for first release
 
-* Freaking thingiview wont work :/
+* Thingiview and gallery items should display correctly quickly.
 * Instructions on how to use.
 * Get ThingTracker output to be correct.(also instruct)
   + thumbnail url needs complete adress
   + check it..
 * Packages for managers. (ArchLinux, Debian)
+* It isnt clear what clicking on the main image does.
+  (depending on configuration that is what triggers thingiview)
 
-### Done for first release
+#### done 
 * Static html generations
   + `thingscript help_browser ..` opens them.
   + `## Related` gets linked added to it.
@@ -25,6 +27,8 @@
   convince browser developpers to affect the standards as to add a 'JS library'
   system in order to give users more control. Or maybe 
   [noscript surrogates](http://hackademix.net/2011/09/29/script-surrogates-quick-reference/).
+
+* thingiview javascript data in json files.
 
 * More/better .css for defaults.(maybe more than one theme)
 

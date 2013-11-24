@@ -29,9 +29,12 @@ function js_img()
     if( js_import(file + ".js") )
     {   thingiview.loadArray(designs[file]); }
     else //Wait until it is loaded.(TODO better, can you wait for something to finish?)
-    {    setTimeout(function(){thingiview.loadArray(designs[file]);},250);
+    {    setTimeout(function(){thingiview.loadArray(designs[file]);},500);
     }
 }
+
+function load_img(file)
+{   thingiview.loadArray(designs[file]); }
 
 function to_img(file,action_file)
 {      
@@ -49,11 +52,10 @@ function to_img(file,action_file)
     else if( ext.substr(1)==".js" ) //Disable image, put design.
     {   viewer.style.width = want_w();
         viewer.src=null;
-        if( js_import(file) )
-        {   thingiview.loadArray(designs[file]); 
-        }
+        if( js_import(file) ) //Import file(returns true if we should already have it.)
+        {   load_img(file); }
         else //Wait until it is loaded.(TODO better, can you wait for something to finish?)
-        {   setTimeout(function(){thingiview.loadArray(designs[file]);},250);
+        {   setTimeout(function(){ load_img(file); },250);
         }
     }
 }

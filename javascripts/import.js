@@ -1,7 +1,8 @@
-was_imported=[]; //List of what is already imported.
+var was_imported=[]; //List of what is already imported.
 
 function js_import(src)
 {
+//TODO hmm doesnt seem to import proper...
 //    document.getElementById("say").innerHTML = src + " " + was_imported[src];
     if( was_imported[src] == undefined )
     {   was_imported[src] = true;

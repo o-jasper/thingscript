@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../import.js"></script>
+    <script>
+      var designs=[];
+      var thing;
+      function set_els()
+      {   document.getElementById("place").innerHTML = designs["element"];
+          document.getElementById("thing").innerHTML = thing;
+      }
+      function fetch()
+      {   js_import("item_to_import.js");
+          setTimeout(function(){set_els();},250);
+      }
+    </script>
+  </head>
+<body>
+
+<h1>Test import.js</h1>
+<button onclick="fetch();">Fetch</button><br>
+<code id="place"></code>
+<br><hr></br>
+<code id="thing"></code>
+</body>
+</html>

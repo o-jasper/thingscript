@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo 'designs["'$1'"]='
+echo 'designs["'$(tso $1).js'"]='
 stl2js $2 #Refers to another script in share_thingscript/rootlike/bin/
 echo ';'
