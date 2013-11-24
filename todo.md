@@ -1,7 +1,5 @@
 
 ## Needed for first release
-
-* Thingiview and gallery items should display correctly quickly.
 * Instructions on how to use.
 * Get ThingTracker output to be correct.(also instruct)
   + thumbnail url needs complete adress
@@ -16,6 +14,7 @@
   + `## Related` gets linked added to it.
     (NOTE obsoleted when thingscript does thingscript)
 * Set of static html pages based on current documentation using thingscript itself.
+* Thingiview should work again and immediately shows.
 
 ## Other
 

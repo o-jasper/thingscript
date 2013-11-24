@@ -26,5 +26,5 @@ grep -vxP "#.+" $GALLERY_LIST_FILE | while read el; do
     thingscript exec el/sel/gallery/$el
 done
 echo '</p>'
-
-echo '<script>gallery_initial();</script>'
+#Initialize and go to the right thing.
+echo '<script>gallery_initial();by_url(location.href);</script>'

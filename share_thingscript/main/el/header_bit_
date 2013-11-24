@@ -6,8 +6,6 @@ $tags html_head$
 $src/thingiview_prep.html_$
 <script src=$rootdir javascripts/gallery.js$></script>
 
-<script>gallery_initial();</script>
-
 <script>
     window.onload = function() {
       thingiurlbase = $rootdir javascripts$;

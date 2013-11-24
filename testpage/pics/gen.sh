@@ -5,5 +5,5 @@ for i in {1..10}; do
     convert -background lightblue -fill blue \
         -pointsize 72 label:$i \
         $i.png
-    echo $i.png >> ../page/gallery_list
+    echo $i.png >> ../thingscript/gallery_list
 done

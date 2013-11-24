@@ -1,9 +1,8 @@
-
 <table>
   <tr><td style="width:70%">
       $title_$
       <p class="no_margin">$handle short_description$</p>
-      <p class="no_margin" style="text-align:center">$gallery$</p>
+      <div class="no_margin" style="text-align:center">$gallery$</div>
       $description$
     </td>
     <td>

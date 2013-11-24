@@ -29,7 +29,7 @@ Maybe browsers may view it directly?</td></tr>
 <tr><td><code>.tx</code></td><td>(dont even know what it is)</td></tr>
 <tr><td><code>.ad_prt</code></td><td>(dont even know what it is)</td></tr>
 
-<tr><td><u>To <code>.js</code></u> that then does something to show it</td></tr>
+<tr><td colspan="2"><u>To 3d model display</u></td></tr>
 <tr><td><code>.stl</code>,<code>.obj</code></td>
 <td>Using <a href="https://github.com/tbuser/thingiview.js">thingiview.js</a> to basically
   see exactly the model.(<code>*/bin/stl2js</code>)</td></tr>

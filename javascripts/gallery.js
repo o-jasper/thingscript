@@ -72,7 +72,7 @@ function viewer_prep()
 function by_url(url) //Pick image based on url.
 {   var i = url.indexOf("#img_");
     if( i != -1 )
-    {   to_img(url.substr(i)); }
+    {   to_img(url.substr(i+5)); }
 }
 function gallery_initial()
 {   viewer_prep(); }
