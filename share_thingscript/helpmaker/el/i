@@ -1,0 +1,4 @@
+#!/bin/bash
+
+$(thingscript get el/a) '' $2
+#TODO inline placement of the other documentation page.

@@ -5,14 +5,12 @@
   + thumbnail url needs complete adress
   + check it..
 * Packages for managers. (ArchLinux, Debian)
-* It isnt clear what clicking on the main image does.
-  (depending on configuration that is what triggers thingiview)
+* It isnt clear what clicking on the main image does. What it does depends on
+  `share_thingscript/main/el/sel/gallery/initially_povray/` needs a symbol to 
+   indicate.
 
 #### done 
-* Static html generations
-  + `thingscript help_browser ..` opens them.
-  + `## Related` gets linked added to it.
-    (NOTE obsoleted when thingscript does thingscript)
+* Static html generations, `thingscript help_browser ..` opens them.
 * Set of static html pages based on current documentation using thingscript itself.
 * Thingiview should work again and immediately shows.
 
@@ -56,3 +54,5 @@
 
 * `| while read line; do ...` doesnt do anything with the last line. 
   (TODO this refers to the last line when `thingscript handle ..`?)
+
+* Inline other-help-page showing (`share_thingscript/helpmaker/el/i`)
