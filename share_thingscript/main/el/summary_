@@ -1,5 +1,5 @@
 
 <table><tr><td><a href="$summary_url$">$thumbnail_$</a></td>
         <td style="vertical-align:text-top"><a href="$summary_url$">
-        <b class="author">cat $title$</b></a> by <b>$cat author$</b> <br>
-$short_description$</td></tr></table>
+        <b class="author">$cat title$</b></a> by <b>$cat author$</b> <br>
+$cat short_description$</td></tr></table>

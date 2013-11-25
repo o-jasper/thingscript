@@ -41,22 +41,25 @@ run() #Just elements.
     p author
     p license
     p short_description description
-    p thumbnail thumbnailURL
+    URL=$(thingscript url thumbnail)
+    if [ "$URL" != "" ]; then
+        echo '"thumbnailURL":"'$URL\",
+    fi
     TAGS=$(thingscript get tags)
     if [ "$TAGS" != "" ]; then
-        echo '"tags":['
+        echo -n '"tags":['
         FIRST="true"
         grep -xvP '#.+' $TAGS | while read line; do
             if [ "$FIRST" == "true" ]; then
                 FIRST="false"
-                echo \"$line\"
+                echo -n \"$line\"
             else
-                echo ,\"$line\"
+                echo -n ,\"$line\"
             fi 
-        done | tr -d '\n'
+        done
         echo ']'
     fi
     echo '}'
 }
 
-run > thingscript/thing.tracker.json
+run > thing.tracker.json

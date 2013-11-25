@@ -17,7 +17,8 @@ For linux(perhaps macosx/unix too) currently.
   program.(other than it being an extra dependency of course)
 
 * Good documentation, build into the system itself but also in the form of static
-  html. (`thingscript help`,`thingscript help_browser`) Users can document their
+  html, which can be generate using the thingscript itself. 
+  (`thingscript help`,`thingscript help_browser`) Users can document their
   own stuff too, just plunk the file in at the correct location.
 
 ### Install

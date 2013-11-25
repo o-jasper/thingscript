@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  Copyright (C) 25-05-2013 Jasper den Ouden.
+#  Copyright (C) 25-11-2013 Jasper den Ouden.
 #
 #  This is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published
@@ -55,10 +55,10 @@ get()
         "--dont-recurse")
             ;;
         "--otherwise")
-            echo $3;;
+            echo -n $3;;
         *) #See if there is a script to get it.
             if [ -e $1 ]; then
-                echo 'BUG: how can the file '$1' exist and yet the absense script be called?' \
+                echo 'BUG: how can the file \"'$1'\" exist and yet the absense script be called?' \
                     > /dev/stderr
             fi
             GET_SCRIPT=$(get on_absence/$1 --dont-recurse)
@@ -88,13 +88,18 @@ handle_get()
 cat_get()
 {   cat "$(get $2)"
 }
+if [ "$GOT_THINGSCRIPT_ROOT" == "" ]; then
+    export GOT_THINGSCRIPT_ROOT=yes
+    export THINGSCRIPT_ROOT=$(cat_get ignored root)
+fi
+
 url()
 {   VAL=$(cat_get $@)
     case "$VAL" in
         ./*)
-            echo $THINGSCRIPT_ROOT$(echo $VAL | tail -c +3) ;;
+            echo -n $THINGSCRIPT_ROOT$(echo $VAL | tail -c +3) ;;
         *)
-            echo $VAL;;
+            echo -n $VAL;;
     esac
 }
 
@@ -147,7 +152,7 @@ handle_whole()
             *_) #Layout stuff.
                 handle_get el/$(echo $LINE) ;;
             '')
-                echo ;;
+                echo -n;;
             *)
                 GOT=$(get el/$LINE)
                 if [ "$GOT" != "" ]; then  #Got something, yay.

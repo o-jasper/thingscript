@@ -2,7 +2,7 @@
 ## Needed for first release
 * Instructions on how to use.
 * Get ThingTracker output to be correct.(also instruct)
-  + thumbnail url needs complete adress
+  + thumbnail url needs complete adress(including domain)
   + check it..
 * Packages for managers. (ArchLinux, Debian)
 * It isnt clear what clicking on the main image does. What it does depends on
@@ -32,12 +32,12 @@
 * Make more kinds of files representable (see `have.md`) and handle
   (lack)of dependencies.
 
-* Stl-javascript php is slow. (And it is php....) Make C version or something.
+* Stl-to-javascript php is slow. (And it is php....) Make C version or something.
 
 * Some of the stuff in `thingscript_share/main/scripts/` could be better organized..
   It is basically a kind of `on_absence` for files inhabiting the project?
 
-* Try lay out principles better.
+* Try lay out principles better.(probably work into help pages)
 
 * A few 'floors' in povray(of course in such a way that anyone can add)
   + 1cm grid with 'vague reflection' (best default)
@@ -56,3 +56,5 @@
   (TODO this refers to the last line when `thingscript handle ..`?)
 
 * Inline other-help-page showing (`share_thingscript/helpmaker/el/i`)
+
+* `cat: : No such file or directory` appears

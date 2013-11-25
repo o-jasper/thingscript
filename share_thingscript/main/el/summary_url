@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $(echo $THINGSCRIPT_ROOT)index.html
+echo -n $(echo $THINGSCRIPT_ROOT)index.html
