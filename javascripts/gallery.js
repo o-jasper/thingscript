@@ -1,4 +1,4 @@
-// Copyright (C) 22-05-2013 Jasper den Ouden. GPLv3
+// Copyright (C) 25-11-2013 Jasper den Ouden. GPLv3
 
 var cur_gal_file;
 var cur_gal_action_file;

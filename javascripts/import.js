@@ -1,3 +1,5 @@
+// Copyright (C) 25-11-2013 Jasper den Ouden. GPLv3
+
 var was_imported=[]; //List of what is already imported.
 
 function js_import(src)

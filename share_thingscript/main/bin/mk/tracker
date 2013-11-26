@@ -35,15 +35,21 @@ p()
 }
 
 run() #Just elements.
-{   echo '{'
+{   echo '{"things":
+{{'
     p title
-    p self_link URL
+    URL=$(thingscript url self_link)
+    if [ "$URL" != "" ]; then
+        echo '"URL":"'$URL\",
+    else
+        echo 'An url is required! Need file thingscript/self_url' > /dev/stderr
+    fi
     p author
     p license
     p short_description description
-    URL=$(thingscript url thumbnail)
-    if [ "$URL" != "" ]; then
-        echo '"thumbnailURL":"'$URL\",
+    THUMB_URL=$(thingscript url thumbnail)
+    if [ "$THUMB_URL" != "" ]; then
+        echo '"thumbnailURL":"'$THUMB_URL\",
     fi
     TAGS=$(thingscript get tags)
     if [ "$TAGS" != "" ]; then
@@ -59,7 +65,17 @@ run() #Just elements.
         done
         echo ']'
     fi
+    echo '}},'
+    echo -n '"trackers:{'
+    if [ "$URL" != "" ]; then
+        echo -n '"URL":"'$URL/thing.tracker.json\"
+    fi
     echo '}'
+    echo }
 }
 
-run > thing.tracker.json
+if [ "$2" == stdout ]; then
+    run
+else
+    run > one_thing.tracker.json
+fi

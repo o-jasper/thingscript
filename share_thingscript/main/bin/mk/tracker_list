@@ -1,0 +1,21 @@
+#!/bin/bash
+
+TRACKER=$(echo $@ | cut -f 1 -d:)
+
+run()
+{
+    echo '{"things":{'
+    for el in $(echo "$@" | cut -f 2- -d:); do
+        file="$el/one_thing.tracker.json"
+        if [ -e $file ]; then
+            tail -n+2 $file | head -n-3
+            echo '},'
+        else
+            echo "$el doesnt have a thingscript-created tracker; 
+$file doesnt exist" > /dev/stderr
+        fi
+    done
+    echo '},"trackers":{"URL":"'$TRACKER'"}}'
+}
+
+run $@ > $(basename $TRACKER)

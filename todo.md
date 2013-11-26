@@ -2,11 +2,10 @@
 ## Needed for first release
 * Instructions on how to use.
 * Get ThingTracker output to be correct.(also instruct)
-  + thumbnail url needs complete adress(including domain)
   + check it..
 * Packages for managers. (ArchLinux, Debian)
 * It isnt clear what clicking on the main image does. What it does depends on
-  `share_thingscript/main/el/sel/gallery/initially_povray/` needs a symbol to 
+  `share_thingscript/main/el/sel/gallery/initially_povray` needs a symbol to 
    indicate.
 
 #### done 
