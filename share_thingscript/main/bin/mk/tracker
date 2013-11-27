@@ -35,8 +35,7 @@ p()
 }
 
 run() #Just elements.
-{   echo '{"things":
-{{'
+{   echo '{"things":[{'
     p title
     URL=$(thingscript url self_link)
     if [ "$URL" != "" ]; then
@@ -47,7 +46,7 @@ run() #Just elements.
     p author
     p license
     p short_description description
-    THUMB_URL=$(thingscript url thumbnail)
+    THUMB_URL=$URL$(thingscript url thumbnail)
     if [ "$THUMB_URL" != "" ]; then
         echo '"thumbnailURL":"'$THUMB_URL\",
     fi
@@ -65,17 +64,21 @@ run() #Just elements.
         done
         echo ']'
     fi
-    echo '}},'
-    echo -n '"trackers:{'
+    echo  '}],'
+    echo -n '"trackers":[{'
     if [ "$URL" != "" ]; then
-        echo -n '"URL":"'$URL/thing.tracker.json\"
+        echo -n '"URL":"'$(echo $URL)thing.tracker.json\"
     fi
-    echo '}'
-    echo }
+    echo '}]
+}'
 }
 
 if [ "$2" == stdout ]; then
     run
 else
-    run > one_thing.tracker.json
+    if [ "$THINGSCRIPT_TESTY" != "" ]; then #Verifying with yajl http://lloyd.github.com/yajl/
+        run | tee one_thing.tracker.json | json_verify
+    else
+        run > one_thing.tracker.json
+    fi
 fi

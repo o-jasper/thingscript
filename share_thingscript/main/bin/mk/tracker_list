@@ -4,18 +4,28 @@ TRACKER=$(echo $@ | cut -f 1 -d:)
 
 run()
 {
-    echo '{"things":{'
+    FIRST="yes"
+    echo '{"things":['
     for el in $(echo "$@" | cut -f 2- -d:); do
         file="$el/one_thing.tracker.json"
         if [ -e $file ]; then
+            if [ "$FIRST" == "yes" ]; then
+                echo -n {
+            else
+                echo -n ,{
+            fi
             tail -n+2 $file | head -n-3
-            echo '},'
+            echo '}'
         else
             echo "$el doesnt have a thingscript-created tracker; 
 $file doesnt exist" > /dev/stderr
         fi
     done
-    echo '},"trackers":{"URL":"'$TRACKER'"}}'
+    echo '],"trackers":[{"URL":"'$TRACKER'"}]}'
 }
 
-run $@ > $(basename $TRACKER)
+if [ "$THINGSCRIPT_TESTY" != "" ]; then #Verifying with yajl http://lloyd.github.com/yajl/
+    run $@ | tee $(basename $TRACKER) | json_verify
+else
+    run $@ > $(basename $TRACKER)
+fi
