@@ -2,6 +2,7 @@
 
 var cur_gal_file;
 var cur_gal_action_file;
+var main_image;
 
 function to_img_re_url(file,action_file)
 {   var to_ind = location.href.indexOf("#img_");
@@ -73,6 +74,8 @@ function by_url(url) //Pick image based on url.
 {   var i = url.indexOf("#img_");
     if( i != -1 )
     {   to_img(url.substr(i+5)); }
+    else
+    {   to_img(main_image); }
 }
 function gallery_initial()
 {   viewer_prep(); }

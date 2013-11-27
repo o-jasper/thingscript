@@ -35,9 +35,18 @@ while read line; do #Figure out the sizes from stdin.
     esac
 done
 
-FILE=$1
+FILE=$(echo $@ | tr ' ' '\n' | tail -n 1)
 
 STL2POV_DIR=$ROOTLIKE/share/stl2pov/
+
+PRE=$STL2POV_DIR/template_pre.pov
+POST=$STL2POV_DIR/template_post.pov
+if [ "$2" != "" ]; then
+    PRE=$1
+fi
+if [ "$3" != "" ]; then
+    POST=$2
+fi
 
 echo '# declare draw_model = mesh {'
 
@@ -49,7 +58,7 @@ tail -n+14 $TMP_INC
 rm $TMP_INC
 
 #Add the actual drawing of the thing #TODO could be better here.
-cat $STL2POV_DIR/template_pre.pov
+cat $PRE
 
 av()
 {   expr 1000 \* \( $1 + $2 \) / 2000 
@@ -59,4 +68,4 @@ echo look_at \<$(av $FX $TX), $(av $FY $TY), $(av $FZ $TZ)\>
 #Look from slight distance.
 echo location \<$(expr 2 \* $TX - $FX), $(expr 2 \* $TY - $FY), $(expr 2 \* $FZ - $TZ)\>
 
-cat $STL2POV_DIR/template_post.pov
+cat $POST

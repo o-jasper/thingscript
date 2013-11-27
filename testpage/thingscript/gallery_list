@@ -1,12 +1,12 @@
-output/cube.stl
-pics/1.png
-pics/2.png
-pics/3.png
-pics/4.png
-pics/5.png
-pics/6.png
-pics/7.png
-pics/8.png
-pics/9.png
-pics/10.png
-#output/shell.stl
+plain ./pics/10.png
+plain ./pics/1.png
+plain ./pics/2.png
+plain ./pics/3.png
+plain ./pics/4.png
+plain ./pics/5.png
+plain ./pics/6.png
+plain ./pics/7.png
+plain ./pics/8.png
+plain ./pics/9.png
+initially_povray ./output/cube.stl
+just_povray ./output/shell.stl

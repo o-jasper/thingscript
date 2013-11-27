@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#Look up/create gallery list, the first is the main image
+grep -vxP "#.+" $(thingscript get gallery_list) | grep -vP '.+\.stl' \
+    | head -n 1 | cut -f 2- -d' ' | tail -c+3 > thingscript/main_image
+
+echo thingscript/main_image

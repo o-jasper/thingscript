@@ -5,5 +5,6 @@
 pov=$(thingscript exec scripts/stl2pov $1)
 js_stl=$(thingscript exec scripts/stl2js $1)
 
-echo '<img onclick="to_img_re_url('\'$(thingscript exec scripts/main_povray $pov)\',\'$js_stl\'')" src="'$(thingscript exec scripts/thumb_povray $pov)'" class="gal">'
+BIG_PIC=$(thingscript exec scripts/main_povray $pov)
 
+echo '<img onclick="to_img_re_url('\'$BIG_PIC\',\'$js_stl\'')" src="'$(thingscript exec scripts/thumb_povray $pov)'" class="gal">'
