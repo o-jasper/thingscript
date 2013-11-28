@@ -1,3 +1,5 @@
+NOTE: i'll mark the ones which have an issue, see the latest development commit,
+of course, currently still developping on branch master.
 
 ## Needed for first release
 * Instructions on how to use.
@@ -6,13 +8,14 @@
 * Packages for managers. (ArchLinux, Debian)
 * It isnt clear what clicking on the main image does. What it does depends on
   `share_thingscript/main/el/sel/gallery/initially_povray` needs a symbol to 
-   indicate.
-* Generate (downloadable)release.
+   indicate.(Probably best to add that in javascript)
 
-#### done 
+#### done for first release
 * Static html generations, `thingscript help_browser ..` opens them.
 * Set of static html pages based on current documentation using thingscript itself.
 * Thingiview should work again and immediately shows.
+* Generate (downloadable)release.
+  + Note: just based on globbed patterns,(superset of plain list) not very handy, that. 
 
 ## Other, sorted by type a bit
 
@@ -38,7 +41,8 @@
 * Test/deal with browser-sizes.(mobile)
 
 * Set the files using a simple gui? 
-  (maybe `zenity`, sequentially or going back/forth to list)
+  Maybe `zenity`, sequentially or going back/forth to list of things to potentially set,
+  not perfect, but simple..
 
 ### Organization, docs, arts
 * Some of the stuff in `thingscript_share/main/scripts/` could be better organized..
@@ -73,6 +77,3 @@
 * thingiview javascript data in json files.
 
 * Stl-to-javascript php is slow. (And it is php....) Make C version or something.
-
-* `share_thingscript/main/el/sel/gallery/initially_povray` needs to indicate that
-  if you click on the image, the 3d model appears.

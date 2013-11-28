@@ -1,0 +1,10 @@
+{"things":[
+{"title":"Test page",
+"URL":"https://github.com/o-jasper/thingscript/tree/master/testpage/",
+"author":"Dr. Tester McTest",
+"license":"Licenses pointless for a simple test, thingscript is currently GPLv2",
+"description":"Does this test work?",
+"thumbnailURL":"https://github.com/o-jasper/thingscript/tree/master/testpage/thingscript/tso/thumb/main_image.png",
+"tags":["test","quick"]
+}
+],"trackers":[{"URL":"list.json"}]}

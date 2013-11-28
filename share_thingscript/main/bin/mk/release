@@ -1,0 +1,61 @@
+#!/bin/bash
+
+if [ "$1" != "" ]; then
+    cd $1
+    export OPWD=$OPWD
+    export PWD=$PWD
+fi
+
+#Increment version.(only used if name not given)
+VERSION=$(thingscript cat_get version)
+if [ "$VERSION" == "" ]; then
+    VERSION=0
+else
+    VERSION=$(expr $VERSION + 1)
+fi
+echo $VERSION > thingscript/version
+
+NAME=$2 #Figure out name.
+if [ "$NAME" == "" ]; then
+    NAME=$(basename $PWD)-$VERSION
+fi
+
+figure_files_part()
+{
+    while read line; do
+        ls -d $line | while read el; do  echo $NAME/$el; done
+    done
+}
+
+#Figure out files. (globbed entries)
+FILES=$(cat thingscript/release_files | figure_files_part | sort | uniq -u)
+
+mkdir -p releases/
+
+AT_DIR=$PWD #Make a temporary thing so it isnt a tarbomb.
+mkdir /tmp/thingscript_release_maker_$NAME
+cd /tmp/thingscript_release_maker_$NAME
+ln -s $AT_DIR $NAME
+
+#Figure which form is preferred.
+PREF=$(thingscript cat_get prefer/release_compress)
+if [ "$PREF" == "" ]; then
+    PREF=".zip"
+fi
+TO=$NAME$PREF
+case "$PREF" in
+    .zip) 
+        zip $TO $FILES;;
+    .tar.gz)
+        tar -cf --bzip2 $TO $FILES;;
+    .tar.xz)
+        tar -cf --xz $TO $FILES;;
+    .tar.bz2)
+        tar -cf --gzip $TO $FILES;;
+esac
+
+rm $NAME #Remove the temporary  stuff.
+mv $TO $AT_DIR/releases/
+rmdir /tmp/thingscript_release_maker_$NAME
+#Go back.
+cd $AT_DIR
