@@ -2,7 +2,7 @@
 
 handle_release()
 {
-    echo '['$1']('$2')'
+    echo '<a href="'$2'">'$1'</a>'
 }
 
 RELEASES_FILE=$(thingscript get releases)

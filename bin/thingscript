@@ -1,3 +1,4 @@
+
 #!/bin/bash
 #
 #  Copyright (C) 25-11-2013 Jasper den Ouden.
@@ -137,7 +138,8 @@ cat_or_run() #List
 #TODO how it works and the lack of escaping is less-than optimal.
 handle_whole()
 {
-    tr '$' '\n' | while read LINE; do
+    #NOTE it appends a line at end  because `while` ignores the last bit...
+    sed '$a\$$' | while read -d '$' LINE; do
         FIRST=$(echo "$LINE" | cut -f 1 -d ' ')
         case "$LINE" in
             *' '*)

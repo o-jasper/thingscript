@@ -1,0 +1,6 @@
+#!/bin/bash
+
+DEV_LINK=$(thingscript cat_get dev_link)
+if [ "$DEV_LINK" != "" ]; then
+    thingscript handle_get el/dev_link_
+fi
