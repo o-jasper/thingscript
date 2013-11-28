@@ -7,13 +7,13 @@ if [ "$1" != "" ]; then
 fi
 
 #Increment version.(only used if name not given)
-VERSION=$(thingscript cat_get version)
+VERSION=$(thingscript cat_get version_n)
 if [ "$VERSION" == "" ]; then
     VERSION=0
 else
     VERSION=$(expr $VERSION + 1)
 fi
-echo $VERSION > thingscript/version
+echo $VERSION > thingscript/version_n
 
 NAME=$2 #Figure out name.
 if [ "$NAME" == "" ]; then
@@ -52,6 +52,8 @@ case "$PREF" in
         tar -cf --xz $TO $FILES;;
     .tar.bz2)
         tar -cf --gzip $TO $FILES;;
+    *)
+        echo Unknown compression type: $PREF ;;
 esac
 
 rm $NAME #Remove the temporary  stuff.

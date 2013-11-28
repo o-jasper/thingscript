@@ -1,0 +1,10 @@
+Makes a release by using the list `thingscript/release_files`, which contains
+regular expressions.(as globs)
+
+Usage: `thingscript mk release thing_dir/ [release_name]`
+
+The compression used for the release is in
+ `thingscript/prefer/release_compress`, the value `.zip` is used by default.
+
+If `release_name` is not provided it uses an incrementing value in `version_n`
+combined with the `thing_dir` directory name.

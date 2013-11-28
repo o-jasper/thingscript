@@ -1,0 +1,5 @@
+Combines multiple trackers into one.
+
+Usage: `thingscript tracker_list tracker_name.tracker.json : thing_dir_1/ thing_dir_2/ ....`
+
+It is suggested you end the file in `.tracker.json` for identifiablity.

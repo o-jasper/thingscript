@@ -1,0 +1,7 @@
+Makes a html summary, for instance for as an entry of multiple of these
+appended.
+
+Usage: `thingscript mk summary thing_dir/`
+
+Note that the thingtracker items might also be used to make such a list.
+(TODO examples)

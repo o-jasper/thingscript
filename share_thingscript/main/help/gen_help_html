@@ -1,0 +1,8 @@
+# Command gen_help_html
+
+Generates the static html documentation of on of the 
+$a concept/thingscript_dir "thingscript directories"$.
+
+Usage `thingscript gen_help_html thingscript_dir/`
+
+The thingscript directory `helpmaker/` contains the elements and such used.

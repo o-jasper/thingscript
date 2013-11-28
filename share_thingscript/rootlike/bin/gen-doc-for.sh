@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# TODO apply thingscript to its own help output.
-# (change THINGSCRIPT_PATH for the different output.
-
 #Generate docs using a thingscript file and the respective help file
 # Place an indicator if the help file doesnt exist.
 

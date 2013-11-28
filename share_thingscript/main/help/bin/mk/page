@@ -1,0 +1,14 @@
+This program makes the representation file.
+
+Usage: `thingscript mk page thing_dir/`
+
+It will demand that some files to exist, the intention of those is that they go in 
+`thingscript/`. Some things are really data of a particular thing, and perhaps in
+ the future having them elsewhere will trigger an error.
+
+As usual information on the demanded files can be found with
+`thingscript help $the_file` or `thingscript help_browser $dollar$the_file`, hopefully 
+eventually all of them.
+
+I suggest you try it on `testpage/` with `thingscript mk page testfile/`.
+ You can also look at it as an example.

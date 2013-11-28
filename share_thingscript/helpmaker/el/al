@@ -1,0 +1,8 @@
+#!/bin/bash
+
+test -d $2
+if [ "$?" == "0" ]; then #If it is a file, link to it.
+    echo -n $BACKDIR$2/index.html
+else #TODO check if it is a command.
+    echo -n $BACKDIR$2.html
+fi 

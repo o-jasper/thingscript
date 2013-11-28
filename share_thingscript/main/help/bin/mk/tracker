@@ -1,0 +1,6 @@
+Makes a tracker for a single object 
+
+Usage: `thingscript mk tracker thingdir/`
+
+$a bin/mk/tracker_list "<code>thingscript tracker_list thing_dir/</code>"$
+combines multiple single-element trackers into one bigger tracker.
