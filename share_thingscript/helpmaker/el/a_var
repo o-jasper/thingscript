@@ -1,0 +1,3 @@
+#!/bin/bash
+#Prepends the dollar and avoids the `vars/`
+$(thingscript get el/a) ignored "vars/$2" "\$$2"

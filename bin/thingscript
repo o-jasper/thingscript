@@ -175,6 +175,28 @@ get_help()
     fi
 }
 
+help_browser()
+{
+    PREFERRED=$(get prefer/browser)
+    if [ "$PREFERRED" == "" ]; then
+      #This application is intended to determine for default applications.
+        PREFERRED="xdg-open" 
+    fi
+    at=tso/html/$2
+    pf=$(get $at.html)         #Look plainly
+    if [ "$pf" == "" ]; then
+        pf=$(get commands/$at) #Look for command.
+    fi
+    if [ "$pf" == "" ]; then   #Look if directory.
+        pf=$(get $at/index.html)
+    fi
+    if [ "$pf" == "" ]; then
+        echo Couldnt find this help item
+    else
+        $PREFERRED $pf
+    fi
+}
+
 case "$1" in
     get)
         get $2;;
@@ -187,30 +209,23 @@ case "$1" in
     
     '--help')
         cat "$(get_help)";;
-    help) #Help stdout.
-        cat "$(get_help $2)"
-        if [ "$?" != "0" ]; then
-         #TODO try figure out if it pertains to a file we know? 
-         # (if in thingscript/ directory or under one in the list)
-            echo Turns out no help page for $2 exists.
-        fi;;
+    help) 
+        case "$(cat_get prefer/help_default)" in
+            cli) #Help stdout.
+                cat "$(get_help $2)"
+                if [ "$?" != "0" ]; then
+                    cat "$(get_help commands/$2)"
+                    #TODO try figure out if it pertains to a file we know? 
+                    # (if in thingscript/ directory or under one in the list)
+                    if [ "$?" != "0" ]; then
+                        echo Turns out no help page for $2 exists, nor is it a command.
+                    fi
+                fi;;
+            browser) #Uses browser.
+                help_browser $@;;
+        esac;;
     help_browser) #Help into browser. TODO probably want CSS.
-        PREFERRED=$(get prefer/browser)
-        if [ "$PREFERRED" == "" ]; then
-            PREFERRED="xdg-open"
-        fi
-        at=tso/html/$2
-        pf=$(get $at.html)
-        if [ "$pf" == "" ]; then
-            pf=$(get $at/index.html)
-            if [ "$pf" == "" ]; then
-                echo Couldnt find this help item
-            else
-                $PREFERRED $(get $at/index.html);
-            fi
-        else
-            $PREFERRED $pf
-        fi ;;
+        help_browser $@;;
     gen_help_html) #Generate the static html help for a directory of thingscript.
         gen-doc-for.sh all $2;;
     mk) #TODO idea: have a `mk` directory and make it `mk page`

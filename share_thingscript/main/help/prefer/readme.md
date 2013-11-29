@@ -1,1 +1,2 @@
-`prefer/` contains user preferences wrt interacting with thingscript.
+`prefer/` contains user preferences relating to *interacting with* thingscript,
+specifically *not* the output of thingscript.

@@ -1,0 +1,3 @@
+# Concept `tso/` directories
+These are just the directories used to keep stuff thingscript generates separate
+from, this does not include files in a $a_concept thingscript_directory$.

@@ -32,7 +32,7 @@ hfile()
         return
     fi
 
-    export THINGSCRIPT_ADDITIONAL_PATH="/home/$USER/.thingscript_share/helpmaker:"
+    export THINGSCRIPT_PATH="/home/$USER/.thingscript_share/helpmaker:/home/$USER/.thingscript_share/main"
     thingscript markdown_handle $md
     
     if [ "$(basename $md)" == "readme.md" ]; then  #If a directory, list other files there,
@@ -45,7 +45,7 @@ hfile()
     fi
 }
 
-#Input a directory
+#Input a directory. (TODO really should also look in help directory?)
 all()
 {
     mkdir -p tso/html/$1
@@ -54,16 +54,19 @@ all()
     ls $1 |grep -v tso | while read line ; do
         test -d $1/$line
         if [ "$?" == "0" ]; then
-            all $1/$line "$2 "
+            if [ "$1" != "."  -o "$line" != "help" ]; then
+                all $1/$line "$2 "
+            fi
         else #TODO check if it is a command.
-            echo "$2$line"
+            echo -n "$2$line: "
             one $1/$line
         fi 
     done
 }
 
 one()
-{   test -d help/$1
+{   echo help/$1
+    test -d help/$1
     if [ "$?" == "0" ]; then #Its a directory, use the readme there.
         md=help/$1/readme.md
         out=tso/html/$1/index.html
@@ -81,12 +84,14 @@ one()
 
 if [ "$1" == "all" ]; then
     rm help/tso/missing
-    all .
+    all . ""
     #All the commands.
-    for el in $(echo "get exec get_page get_image help help_browser
- mk version handle handle_get markdown_handle cat_get url ibin" |tr ' ' '\n'); do
-        one $el
+    for el in $(ls help/commands/* help/concepts/* help/vars/* | grep -v readme.md); do
+        one $(echo $el | tail -c+6)
     done
+    hfile help/commands/readme.md > tso/html/commands/index.html
+    hfile help/concepts/readme.md > tso/html/concepts/index.html
+    hfile help/vars/readme.md > tso/html/vars/index.html
 else
     one $1
 fi

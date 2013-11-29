@@ -6,3 +6,6 @@ Roughly: `thingscript cat_get help/$ASKED_PAGE`
 
 More specifically, it uses `test -d $cat_get_result` to see if it is a directory
 and if it is, opens the `readme.md` there.
+
+Change $a thingscript/prefer/help_default$ to `browser` to make `thingscript help ...`
+defaultly use the browser.

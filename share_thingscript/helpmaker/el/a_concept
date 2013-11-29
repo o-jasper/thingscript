@@ -1,0 +1,3 @@
+#!/bin/bash
+#Mention something as a concept.
+$(thingscript get el/a) ignored concepts/$2 "$(echo -n $2 | tr _ ' ')"

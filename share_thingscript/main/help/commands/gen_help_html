@@ -1,7 +1,7 @@
 # Command gen_help_html
 
-Generates the static html documentation of on of the 
-$a concept/thingscript_dir "thingscript directories"$.
+Generates the static html documentation of on of a 
+$a_concept thingscript_directory".
 
 Usage `thingscript gen_help_html thingscript_dir/`
 

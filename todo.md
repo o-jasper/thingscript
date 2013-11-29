@@ -48,11 +48,12 @@ of course, currently still developping on branch master.
 * Some of the stuff in `thingscript_share/main/scripts/` could be better organized..
   It is basically a kind of `on_absence` for files inhabiting the project?
 
-* Try lay out principles better.(probably work into help pages)
+* Help pages dont cross different thingscript directories at all.
+  (dont know what to do about it)
+
+* Add CSS to help pages, and give stuff some class.
 
 * Inline help pages `share_thingscript/helpmaker/el/i`
-
-* Use issues instead of this file?
 
 * Picture of Tester McTest? Download/release symbol, development link symbol.
 

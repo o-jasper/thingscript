@@ -1,0 +1,5 @@
+# Variable: WHICH_TYPE
+
+Current type of thing represented, used to make a default for $a_var THINGSCRIPT_PATH$.
+(Better to follow $a_concept thingscript_directory$)
+Probably will be removed.

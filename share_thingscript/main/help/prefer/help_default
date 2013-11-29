@@ -1,0 +1,8 @@
+Specify default thing to do when using 
+<a href="$al commands/help$"><code>thingscript help ...</code></a> Options are:
+
+<table>
+<tr><td><code>cli</code></td><td>Use standard output</td></tr>
+<tr><td><code>browser</code></td><td>Use generated static html using the browser in
+$a prefer/browser$</td></tr>
+</table>

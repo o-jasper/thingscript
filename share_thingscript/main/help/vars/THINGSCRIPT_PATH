@@ -1,0 +1,4 @@
+# Variable: `THINGSCRIPT_PATH`
+
+Sequence of paths to use as thingscript directories, see the concept
+ $a_concept thingscript_directory$.
