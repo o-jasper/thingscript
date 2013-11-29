@@ -5,17 +5,18 @@ of course, currently still developping on branch master.
 * Instructions on how to use.
 * Get ThingTracker output to be correct.(also instruct)
   + check it..
-* Packages for managers. (ArchLinux, Debian) (tests)
-* It isnt clear what clicking on the main image does. What it does depends on
+* Packages for managers. (ArchLinux, Debian) tests-as-if-new-install
+* It isnt clear what clicking on the main image does. What it does depends on what is used/
   `share_thingscript/main/el/sel/gallery/initially_povray` needs a symbol to 
    indicate.(Probably best to add that in javascript)
-
+   
 #### done for first release
 * Static html generations, `thingscript help_browser ..` opens them.
 * Set of static html pages based on current documentation using thingscript itself.
 * Thingiview should work again and immediately shows.
 * Generate (downloadable)release.
   + Note: just based on globbed patterns,(superset of plain list) not very handy, that. 
+* Lists of 'packages' that can be loaded in some order, instead of types.
 
 ## Other, sorted by type a bit
 

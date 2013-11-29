@@ -11,14 +11,31 @@
 #Currently a userspace install.
 export ROOTLIKE=/home/$USER/.thingscript_share/rootlike/
 
-if [ "$WHICH_TYPE" == "" ]; then
-    WHICH_TYPE="main"
-fi
+over_dirs()
+{
+    echo $1: | while read -d ':' el; do echo -n /home/$USER/.thingscript/$el: ; done
+    echo $1: | while read -d ':' el; do echo -n /etc/thingscript/$el: ; done
+    echo $1: | while read -d ':' el; do echo -n /home/$USER/.thingscript_share/$el: ; done
+    echo $1: | while read -d ':' el; do echo -n /usr/share/thingscript/$el: ; done
+}
 
 if [ "$THINGSCRIPT_PATH" == "" ]; then
-    THINGSCRIPT_PATH="thingscript:$THINGSCRIPT_ADDITIONAL_PATH\
-/home/$USER/.thingscript/$WHICH_TYPE:/home/$USER/.thingscript_share/$WHICH_TYPE:/etc/thingscript:/usr/share/thingscript/$WHICH_TYPE"
+    if [ "$THINGSCRIPT_TYPE" == "" ]; then
+        for location in $(echo thingscript/set /home/$USER/.thingscript_share/set /usr/share/thingscript/set); do
+            if [ -e $location ]; then
+                THINGSCRIPT_TYPE=$(cat $location)
+                break                
+            fi
+        done
+    fi
+    THINGSCRIPT_PATH=$(cat /home/$USER/.thingscript_share/sets/$THINGSCRIPT_TYPE)
+    if [ "$?" != "0" ]; then #Then here..
+        THINGSCRIPT_PATH=$(cat /usr/share/thingscript/sets/$THINGSCRIPT_TYPE)
+    fi
+    THINGSCRIPT_PATH=thingscript:$(over_dirs $THINGSCRIPT_PATH):$THINGSSCRIPT_ADDITIONAL_PATH
 fi
+#echo == $THINGSCRIPT_PATH
+#echo ===$@
 
 export PATH=/home/$USER/.thingscript_share/rootlike/bin:$PATH
 
@@ -30,17 +47,6 @@ get_locations()
             echo $dir/$el
         done
     done
-    if [ "$WHICH_TYPE" != "main" ]; then #If you run out try main anyway.
-        for el in $(echo $@); do 
-            echo ~/.thingscript/main/$el
-        done
-        for el in $(echo $@); do
-            echo /etc/thingscript/main/$el
-        done
-        for el in $(echo $@); do
-            echo /usr/share/thingscript/main/$el
-        done
-    fi
 }
 
 #Gets layout information.
@@ -68,8 +74,9 @@ get()
 
     esac
 }
-
-export IS_TEST=$(get is_test)
+if [ "$IS_TEST" == "" ]; then
+    export IS_TEST=$(get is_test)
+fi
 
 get_page()
 {   get $1.html $1.md $1.html_ $1.md_ $1
@@ -86,12 +93,17 @@ handle_get()
 }
 
 cat_get()
-{   cat "$(get $2)"
+{   FILE="$(get $@)"
+    if [ -e "$FILE" -a "$FILE" != "" ]; then
+        cat "$FILE"
+    else
+        return 0
+    fi
 }
-if [ "$GOT_THINGSCRIPT_ROOT" == "" ]; then
-    export GOT_THINGSCRIPT_ROOT=yes
-    export THINGSCRIPT_ROOT=$(cat_get ignored root)
-fi
+#if [ "$GOT_THINGSCRIPT_ROOT" == "" ]; then
+#    export GOT_THINGSCRIPT_ROOT=yes
+#    export THINGSCRIPT_ROOT=$(cat_get ignored root)
+#fi
 
 url()
 {   VAL=$(cat_get $@)
@@ -229,7 +241,7 @@ case "$1" in
     gen_help_html) #Generate the static html help for a directory of thingscript.
         gen-doc-for.sh all $2;;
     mk) #TODO idea: have a `mk` directory and make it `mk page`
-        "$(get bin/mk/$2)" $3 $4 $5 $6 $7 $8 $9;;
+        "$(get bin/mk/$2)" $3 $4 $5 $6 $7 $8 $9 ;;
     version)
         cat /usr/share/thingscript/version;;
 
@@ -246,7 +258,7 @@ case "$1" in
         cat_get $@;;
     url)
         url $@;;
-    
+   
     ibin) #Runs an internal bin file intended to be basically a separate entity.
         $ROOTLIKE/bin/$(echo $@ | cut -f2- -d' ');;
     
