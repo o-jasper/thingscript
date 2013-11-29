@@ -22,6 +22,8 @@ For linux(perhaps macosx/unix too) currently.
   (`thingscript help`,`thingscript help_browser`) Users can document their
   own stuff too, just plunk the file in at the correct location.
 
+* If you expose the input of the program to the internet, its incredibly insecure.
+
 ### Install
 Get it with `git clone https://github.com/o-jasper/thingscript`.
 
