@@ -20,20 +20,16 @@ of course, currently still developping on branch master.
 
 ## Other, sorted by type a bit
 
-* Make more kinds of files representable (see `have.md`) and handle
-  (lack)of dependencies.
+* Make more kinds of files representable 
+  (see [`have.md`](https://github.com/o-jasper/thingscript/blob/master/have.md)) 
+  and handle (lack)of dependencies. (default figures the best it can)
 
-* More/better .css for defaults.(maybe more than one theme)
-
-* Defaults use whatever dependencies present.(currently assume stuff exists)
+* More/better .css for defaults.(maybe more than one theme, javascript-selectable themes?)
 
 * Put a lot of the data in files now in a json file and make a 
   html+javascript page that generates that json. Part of the issue is that
   `thingscript get ..` gets a file location.(distinguish between items that do/dont
       warrant a file?) Not sure...
-
-* `cat: : No such file or directory` appears, NOTE: hmm this in part how it works..
-  Just need to suppress the error, or test for the file instead of what is done now.
 
 * (maybe)Sometimes you want something, ..but only if.. currently that requires an
   element to be a script. This could be no problem, but some of the elements do need
@@ -63,7 +59,7 @@ of course, currently still developping on branch master.
   + 1cm grid with 'vague reflection' (best default)
   + Water (silly but pretty?)
 
-* Additionally omething else than povray, luxrender? (povray isnt libre)
+* Additionally something else than povray, luxrender? (povray isnt libre)
 
 ### Javascript
 
@@ -76,6 +72,6 @@ of course, currently still developping on branch master.
   system in order to give users more control. Or maybe 
   [noscript surrogates](http://hackademix.net/2011/09/29/script-surrogates-quick-reference/).
 
-* thingiview javascript data in json files.
+* thingiview javascript data in `.json` files.
 
 * Stl-to-javascript php is slow. (And it is php....) Make C version or something.

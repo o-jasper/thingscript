@@ -4,7 +4,7 @@ For linux(perhaps macosx/unix too) currently.
 
 ## Features
 * Really very general. Much more general than just this case.
-* Creates files to be used by [thingtracker](http://thingtracker.net/).(not well tested)
+* Creates files to be used by [thingtracker](http://thingtracker.net/).(not well tested yet)
 * `.stl` and `.obj` viewing using
   [thingiview.js](https://github.com/tbuser/thingiview.js).(the precalculated approach)
   `.stl` model preview using [povray](http://povray.org/), [stl2pov](http://rsmith.home.xs4all.nl/software/py-stl-stl2pov.html"), and [admesh](http://www.varlog.com/admesh-htm) 
@@ -65,8 +65,8 @@ Conversely, bits of commandline pertaining to 3dp files can be useful for this
 project.
 
 ### Todo list
-There is a todo list in `todo.md`, feel free to create issues if you have
-something to say on them.
+There is a todo list in
+[`todo.md`](https://github.com/o-jasper/thingscript/blob/master/todo.md), feel free to create issues if you have something to say on them.
 
 ## Author, license
 Jasper den Ouden, under the GPLv3 currently
