@@ -94,15 +94,16 @@ for what there is and isnt. (Short list of what already is)
 [stl2pov](http://rsmith.home.xs4all.nl/software/py-stl-stl2pov.html") converts `.stl` so
 [povray](http://povray.org/) can raytrace images from them.
 
-[openscad](http://www.openscad.org/) for converting `.scad` to `.stl`.
-(and subsequently thingiview etc.)
+[openscad](http://www.openscad.org/),
+[ImplicitCAD](http://implicitcad.org) for converting `.escad`, `.scad` to `.stl`.
+(and subsequently thingiview etc. openscad can also go straight to images.)
 
 [admesh](http://www.varlog.com/admesh-htm) for getting data out of `.stl` files.
 
+Optionally validates the schema with 
 <code>npm install <a href="https://github.com/akidee/schema.js">schema</a> 
-<a href="https://github.com/Nijikokun/Validator.git">schema-validator</a></code>
-
-Also validate the json with [yajl](http://lloyd.github.com/yajl/).
+<a href="https://github.com/Nijikokun/Validator.git">schema-validator</a></code>, and
+as plain json with [yajl](http://lloyd.github.com/yajl/).
 
 [imagemagick](http://imagemagick.org/) converts image sizes, types.
 

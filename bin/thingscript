@@ -215,7 +215,11 @@ case "$1" in
     get)
         get $2;;
     exec)
-        $(get $2) $3 $4 $5 $6 $7 $8 $9;;
+        GOT=$(get $2)
+        if [ "$GOT" == "" ]; then
+            echo Failed to get: $2 > /dev/stderr
+        fi
+        $GOT $3 $4 $5 $6 $7 $8 $9;;
     get_page)
         get_page $2;;
     get_image)

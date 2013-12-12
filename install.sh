@@ -24,7 +24,7 @@ run()
             testpage_clean) #Scrubs the test page clean
                 cd testpage
                 rm index.html one_thing.tracker.json summary.html pics/*.png
-                rm -r releases/ output/tso/ pics/tso/ thingscript/etc/tso/
+                rm -r tso/ releases/ output/tso/ pics/tso/ thingscript/etc/tso/
                 cd thingscript/ #Thingscript files defaulted.
                 rm main_image release_files thumbnail version uuid;;
             clean_test) #Test after cleaning.

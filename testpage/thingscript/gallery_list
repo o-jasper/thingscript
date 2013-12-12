@@ -1,12 +1,14 @@
-plain ./pics/10.png
-plain ./pics/1.png
-plain ./pics/2.png
-plain ./pics/3.png
-plain ./pics/4.png
-plain ./pics/5.png
-plain ./pics/6.png
-plain ./pics/7.png
-plain ./pics/8.png
-plain ./pics/9.png
-initially_povray ./output/cube.stl
-just_povray ./output/shell.stl
+plain pics/10.png
+plain pics/1.png
+plain pics/2.png
+plain pics/3.png
+plain pics/4.png
+plain pics/5.png
+plain pics/6.png
+plain pics/7.png
+plain pics/8.png
+plain pics/9.png
+initially_povray output/cube.stl
+initially_povray output/shell.stl
+via_openscad 2cube.scad initially_povray
+via_png 2cube.scad

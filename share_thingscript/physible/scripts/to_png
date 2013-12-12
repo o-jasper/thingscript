@@ -1,5 +1,11 @@
 #!/bin/bash
 
 ofile=$(tso $1).png
-if_newer $1 $ofile "convert $1 $ofile"
+case $1 in
+    *.scad | *.escad)
+        thingscript exec scripts/openscad $1 png ;;
+    *)
+        if_newer $1 $ofile "convert $1 $ofile" ;;
+esac
+        
 echo $ofile

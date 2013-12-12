@@ -1,9 +1,10 @@
 #!/bin/bash
 
 ofile=$(thingscript exec scripts/to_png $1)
-
+        
 after="$2"
 if [ "$after" == "" ]; then
     after=plain
 fi
+echo $ofile > /dev/stderr
 thingscript exec el/sel/gallery/$after $ofile

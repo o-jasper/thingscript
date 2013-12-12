@@ -16,13 +16,18 @@ are used for the gallery(`share_thingscript/main/el/gallery`)
 <tr><td><code>.blend</code></td>
        <td>Todo, <code>blender -b thing.blend -f 0 -o //thing.png</code>, 
            get black-and white in <code>/tmp/</code></td></tr>
-<tr><td><code>.scad</code></td><td>Todo, <code>openscad in.scad -o out.png</code>
-would work, but doesnt always produce nice images.</td><tr>
-<tr><td><code>.scad</code> via <code>.stl</code></td><td><b>have</b> via
+<tr><td><code>.scad</code></td>
+<td><b>have</b> generates images directly with openscad,
+it is the same draawing method as during development; 
+doesnt always produce nice images.</td><tr>
+<tr><td><code>.scad</code>, <code>.escad</code> via <code>.stl</code></td><td><b>have</b>
 Note that possibly often these arent populated with anything pretty. 
-It could be suggested to use these to 'show off as assembled'.<br><br></td></tr>
+It could be suggested to use these to 'show off as assembled'.
+(<code>.escad</code> automatically uses <code>extopenscad</code> from
+<a href="http://implicitcad.org/">ImplicitCAD</a>.</td></tr>
+
 <tr><td><code>.escad</code></td><td>Todo, is an
-    <a href="http://implicitcad.org/">ImplicitCAD</a> file
+    
     <code>extopenscad in.scad -o out.png</code> works? Otherwise go via .stl</td></tr>
 
 <tr><td><code>.skp</code></td><td>None. I think it's proprietary.</td></tr>
@@ -34,7 +39,12 @@ It could be suggested to use these to 'show off as assembled'.<br><br></td></tr>
 <tr><td><code>.svg</code></td><td>Maybe browsers may view it directly?</td></tr>
 <tr><td><code>.tx</code></td><td>(dont even know what it is)</td></tr>
 <tr><td><code>.ad_prt</code></td><td>(dont even know what it is)</td></tr>
-<tr><td><code>.gcode</code></td><td>Todo, gcode</td></tr>
+<tr><td><code>.gcode</code></td><td>Todo</td></tr>
+<tr><td><code>.jscad</code> of <a href="http://openjscad.org/">openjscad</a>(<a href="https://github.com/joostn/OpenJsCad">gh</a>)</td>
+<td>Todo no reason not to eventually support it</td></tr>
+<tr><td><a href="https://github.com/kaosat-dev/CoffeeSCad">CoffeeScad</a></td>
+<td>I suppose javascript has its disadvantage, still, seems like overproliferation,
+unless its one-on-one with openjscad.</td></tr>
 </table>
 
 ### To 'live' model display
@@ -42,7 +52,10 @@ It could be suggested to use these to 'show off as assembled'.<br><br></td></tr>
 <tr><td><code>.stl</code>,<code>.obj</code></td>
 <td><b>have</b>; Using <a href="https://github.com/tbuser/thingiview.js">thingiview.js</a> to basically
   see exactly the model.(<code>*/bin/stl2js</code>)</td></tr>
-<tr><td><code>.scad,.escad</code></td><td>Todo, could be done via <code>.stl</code>,
+<tr><td><code>.scad,.escad</code></td><td><b>have</b>, using 
+<code>via_openscad</code>(via <code>.stl</code>)</td></tr>
+
+<tr><td><code>.escad</code></td><td>
 there is also an <a href="http://www.implicitcad.org/editor">online editor</a></td></tr>
 <tr><td><code>.gcode</code></td><td>Todo, javascript gcode viewers exist</td></tr>
 <tr><td><code>.dxf</code></td><td>No, possibly useful to be able to zoom in 
@@ -51,7 +64,7 @@ there is also an <a href="http://www.implicitcad.org/editor">online editor</a></
 
 ### To animation(gif)
 <table>
-<tr><td><code>.scad, .escad</code></td><td>No,Should be possible.</td></tr>
+<tr><td><code>.scad, .escad</code></td><td>No, should be possible.</td></tr>
 <tr><td><code>.blend</code></td><td>No</td></tr>
 </table>
 
@@ -65,7 +78,8 @@ Maybe instructions picture sequence with text.(not sure how)
 * [povray](http://povray.org/)
 * [thingiview](https://github.com/tbuser/thingiview.js)
 * [imagemagick](http://imagemagick.org/) converts image sizes, types.
-* [openscad](http://www.openscad.org/) for converting `.scad` to `.stl`.
+* [openscad](http://www.openscad.org/), 
+  [ImplicitCAD](http://implicitcad.org) for converting `.escad`, `.scad` to `.stl`.
 
 ## Potential additional
 * [**View3dscene**](http://castle-engine.sourceforge.net/view3dscene.php) can load,
