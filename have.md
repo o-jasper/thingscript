@@ -26,25 +26,23 @@ It could be suggested to use these to 'show off as assembled'.
 (<code>.escad</code> automatically uses <code>extopenscad</code> from
 <a href="http://implicitcad.org/">ImplicitCAD</a>.</td></tr>
 
-<tr><td><code>.escad</code></td><td>Todo, is an
-    
-    <code>extopenscad in.scad -o out.png</code> works? Otherwise go via .stl</td></tr>
-
-<tr><td><code>.skp</code></td><td>None. I think it's proprietary.</td></tr>
-<tr><td><code>.step</code></td><td>None.</td></tr>
+<tr><td><code>.escad</code></td><td>Todo, is an   
+  <code>extopenscad in.scad -o out.png</code> works? Otherwise go via .stl</td></tr>
 
 <tr><td><code>.dxf</code></td><td>None, imagemagick asks for <a href="http://sk1project.org/">UniConverter</a></td></tr>
 <tr><td><code>.pdf,.svg</code> via <code>convert</code> to <code>.png</code></td>
     <td><b>have</b>, using imageMagick, untested.</td></tr>
 <tr><td><code>.svg</code></td><td>Maybe browsers may view it directly?</td></tr>
-<tr><td><code>.tx</code></td><td>(dont even know what it is)</td></tr>
-<tr><td><code>.ad_prt</code></td><td>(dont even know what it is)</td></tr>
 <tr><td><code>.gcode</code></td><td>Todo</td></tr>
 <tr><td><code>.jscad</code> of <a href="http://openjscad.org/">openjscad</a>(<a href="https://github.com/joostn/OpenJsCad">gh</a>)</td>
 <td>Todo no reason not to eventually support it</td></tr>
 <tr><td><a href="https://github.com/kaosat-dev/CoffeeSCad">CoffeeScad</a></td>
-<td>I suppose javascript has its disadvantage, still, seems like overproliferation,
+<td>I suppose javascript has its disadvantages, still, seems like overproliferation,
 unless its one-on-one with openjscad.</td></tr>
+<tr><td><code>.skp</code></td><td>None. I think it's proprietary.</td></tr>
+<tr><td><code>.step</code></td><td>None.</td></tr>
+<tr><td><code>.tx</code></td><td>(dont even know what it is)</td></tr>
+<tr><td><code>.ad_prt</code></td><td>(dont even know what it is)</td></tr>
 </table>
 
 ### To 'live' model display
@@ -57,6 +55,8 @@ unless its one-on-one with openjscad.</td></tr>
 
 <tr><td><code>.escad</code></td><td>
 there is also an <a href="http://www.implicitcad.org/editor">online editor</a></td></tr>
+<tr><td><code>.jscad</code></td><td></td></tr>
+
 <tr><td><code>.gcode</code></td><td>Todo, javascript gcode viewers exist</td></tr>
 <tr><td><code>.dxf</code></td><td>No, possibly useful to be able to zoom in 
     or something</td></tr>
@@ -88,3 +88,4 @@ Maybe instructions picture sequence with text.(not sure how)
   and then use blender to export to `.stl`)
 * Other raytracers, [luxrender](http://www.luxrender.net/en_GB/index)?
 * `.stl` rendering via blender.
+* others mentioned above.

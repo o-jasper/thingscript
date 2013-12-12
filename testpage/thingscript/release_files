@@ -1,0 +1,13 @@
+thingscript/*
+thingscript/*/*
+thingscript/*/*/*
+tso/*.png
+tso/*.js
+tso/thumb/*.png
+pics/*.png
+pics/tso/thumb/*.png
+output/*.stl
+output/tso/*.png
+output/tso/*.js
+*.scad
+index.html

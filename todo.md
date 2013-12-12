@@ -2,7 +2,6 @@ NOTE: i'll mark the ones which have an issue, see the latest development commit,
 of course, currently still developping on branch master.
 
 ## Needed for first release
-* Instructions on how to use.
 * Get ThingTracker output to be correct.(also instruct)
   + Appears that just the date is incorrect.
 * It isnt clear what clicking on the main image does. What it does depends on what is used/

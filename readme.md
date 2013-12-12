@@ -35,7 +35,7 @@ The following should produce a user level install:
     PATH=$PATH:~/.bin/ #Add that to bashrc if you havent already.
 
 ### Usage examples
-Use `thingscript help_browser` or start from `share_thingscript/main/tso/html/index.html`
+Use `thingscript help_browser` or start from `share/main/tso/html/index.html`
 and browse directly.
 
 #### Make representation page

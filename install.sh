@@ -26,7 +26,7 @@ run()
                 rm index.html one_thing.tracker.json summary.html pics/*.png
                 rm -r tso/ releases/ output/tso/ pics/tso/ thingscript/etc/tso/
                 cd thingscript/ #Thingscript files defaulted.
-                rm main_image release_files thumbnail version uuid;;
+                rm main_image thumbnail version uuid;;
             clean_test) #Test after cleaning.
                 run clean_testpage test_prep test ;;
             gen_test_pics) #Generates the images of the test.
@@ -43,12 +43,12 @@ run()
             figure_version)
                 git show |head -n 1 | cut -f 2 -d' ' > ~/.thingscript_share/main/thingscript_version;;
             gen-docs) #Generates the documentation.
-                share_thingscript/rootlike/bin/gen-doc-for.sh all share_thingscript/physible/ ;;
+                share/rootlike/bin/gen-doc-for.sh all share/physible/ ;;
             
             userlevel_install) #Places symlinks to install it at userlevel.
                 cd ~/
                 mkdir -p .bin .thingscript/main/
-                ln -s $INIT_PWD/share_thingscript/ ~/.thingscript_share
+                ln -s $INIT_PWD/share/ ~/.thingscript_share
                 mkdir -p ~/.bin/
                 ln -s $INIT_PWD/bin/thingscript .bin/thingscript
               #Only works if `source install.sh userlevel_install` is used.
@@ -59,6 +59,9 @@ run()
                 echo Recommend adding user author name > ~/.thingscript/main/author
                 echo 'Recommend adding user author name in ~/.thingscript/main/author,'
                 echo 'though it can be done on a per-thing basis.' ;;
+            
+            *)
+                echo Couldnt find such installer/runner;;
         esac
     done
 }
