@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ofile=$(tso $1).png
+if_newer $1 $ofile "convert $1 $ofile"
+echo $ofile

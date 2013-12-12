@@ -29,9 +29,9 @@ It could be suggested to use these to 'show off as assembled'.<br><br></td></tr>
 <tr><td><code>.step</code></td><td>None.</td></tr>
 
 <tr><td><code>.dxf</code></td><td>None, imagemagick asks for <a href="http://sk1project.org/">UniConverter</a></td></tr>
-<tr><td><code>.pdf</code></td><td>None, use ImageMagick?(seems to work okey)</td></tr>
-<tr><td><code>.svg</code></td><td>None, use ImageMagick? 
-Maybe browsers may view it directly?</td></tr>
+<tr><td><code>.pdf,.svg</code> via <code>convert</code> to <code>.png</code></td>
+    <td><b>have</b>, using imageMagick, untested.</td></tr>
+<tr><td><code>.svg</code></td><td>Maybe browsers may view it directly?</td></tr>
 <tr><td><code>.tx</code></td><td>(dont even know what it is)</td></tr>
 <tr><td><code>.ad_prt</code></td><td>(dont even know what it is)</td></tr>
 <tr><td><code>.gcode</code></td><td>Todo, gcode</td></tr>
@@ -64,6 +64,8 @@ Maybe instructions picture sequence with text.(not sure how)
 * [stl2pov](http://rsmith.home.xs4all.nl/software/py-stl-stl2pov.html%22)
 * [povray](http://povray.org/)
 * [thingiview](https://github.com/tbuser/thingiview.js)
+* [imagemagick](http://imagemagick.org/) converts image sizes, types.
+* [openscad](http://www.openscad.org/) for converting `.scad` to `.stl`.
 
 ## Potential additional
 * [**View3dscene**](http://castle-engine.sourceforge.net/view3dscene.php) can load,
