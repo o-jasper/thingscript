@@ -26,7 +26,7 @@ For linux(perhaps macosx/unix too) currently.
 ### Install
 Get it with `git clone https://github.com/o-jasper/thingscript`.
 
-Dependencies, basically, bash and `markdown`. With lack of other dependencies,
+Dependencies, basically, bash and markdown. With lack of other dependencies,
 like `povray` or `admesh`, it will just fail at those tasks.
 
 The following should produce a user level install:
@@ -101,7 +101,7 @@ for what there is and isnt. (Short list of what already is)
 
 Also validate the json with [yajl](http://lloyd.github.com/yajl/).
 
-[Markdown](http://daringfireball.net/projects/markdown/)(its what reddit comments do)
+[Markdown](http://daringfireball.net/projects/markdown/)(its what reddit uses)
 Multiple implementations exist, i use
 [discount](http://www.pell.portland.or.us/~orc/Code/discount/).
 

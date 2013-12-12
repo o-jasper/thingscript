@@ -2,7 +2,7 @@
 
 rm ../page/gallery_list
 for i in {1..10}; do
-    if [ -ne $i.png ]; then
+    if [ ! -e $i.png ]; then
         convert -background lightblue -fill blue \
             -pointsize 72 label:$i \
             $i.png

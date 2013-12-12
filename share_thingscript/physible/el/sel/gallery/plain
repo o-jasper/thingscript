@@ -3,5 +3,4 @@
 
 THUMB=$(thingscript exec scripts/thumb $1)
 
-echo $1 |tail -c+3 > /dev/stderr
-echo '<img onclick="to_img_re_url('\'$(echo $1 |tail -c+3)\'')" src="'$THUMB'" class="gal">'
+echo '<img onclick="to_img_re_url('\'$1\'')" src="'$THUMB'" class="gal">'

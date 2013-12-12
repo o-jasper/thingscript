@@ -17,7 +17,8 @@ are used for the gallery(`share_thingscript/main/el/gallery`)
        <td>Todo, <code>blender -b thing.blend -f 0 -o //thing.png</code>, 
            get black-and white in <code>/tmp/</code></td></tr>
 <tr><td><code>.scad</code></td><td>Todo, <code>openscad in.scad -o out.png</code>
-would work, but doesnt always produce nice images. Go via <code>.stl</code>
+would work, but doesnt always produce nice images.</td><tr>
+<tr><td><code>.scad</code> via <code>.stl</code></td><td><b>have</b> via
 Note that possibly often these arent populated with anything pretty. 
 It could be suggested to use these to 'show off as assembled'.<br><br></td></tr>
 <tr><td><code>.escad</code></td><td>Todo, is an
