@@ -23,7 +23,14 @@ echo '<p class="gal_bar">'
 
 #Array of image file names so an index can identify them.
 grep -vxP "#.+" $GALLERY_LIST_FILE | while read el; do
-    thingscript exec el/sel/gallery/$el
+    name=$(echo $el | cut -f1 -d' ')
+    #Basically thingscript exec but checks if it exists so it can say it is a gallery subel.
+    GOT=$(thingscript get el/sel/gallery/$name)
+    if [ "$GOT" == "" ]; then
+        echo Couldnt find el/sel/gallery/$name, the subelement of gallery named
+        echo $name might not exist.
+    fi
+    $GOT $(echo $el | cut -f2- -d' ')
 done
 echo '</p>'
 #Initialize and go to the right thing.
