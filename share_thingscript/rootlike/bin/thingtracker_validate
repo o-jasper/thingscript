@@ -1,0 +1,6 @@
+#!/bin/bash
+# Just enter the thingtracker schema.
+#NOTE: look at thingtracker https://github.com/garyhodgson/thing-tracker-network
+# if you're looking for the standard.(this is just what this uses)e
+echo $@
+json_schema_validate $ROOTLIKE/share/thingtracker/schema.json $1

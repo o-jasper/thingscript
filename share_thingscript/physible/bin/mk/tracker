@@ -77,7 +77,10 @@ if [ "$2" == stdout ]; then
     run
 else
     if [ "$THINGSCRIPT_TESTY" != "" ]; then #Verifying with yajl http://lloyd.github.com/yajl/
+        echo 'Validating as json'
         run | tee one_thing.tracker.json | json_verify
+        echo 'Validating as tracker(schema)'
+        thingtracker_validate one_thing.tracker.json
     else
         run > one_thing.tracker.json
     fi

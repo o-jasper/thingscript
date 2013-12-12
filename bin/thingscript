@@ -10,6 +10,7 @@
 
 #Currently a userspace install.
 export ROOTLIKE=/home/$USER/.thingscript_share/rootlike/
+export NODE_PATH=$ROOTLIKE/share/node_modules
 
 over_dirs()
 {

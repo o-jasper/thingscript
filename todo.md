@@ -21,7 +21,7 @@ of course, currently still developping on branch master.
 ## Other, sorted by type a bit
 
 * Make more kinds of files representable 
-  (see [`have.md`](https://github.com/o-jasper/thingscript/blob/master/have.md)) 
+  (see [`have.md`](have.md)) 
   and handle (lack)of dependencies. (default figures the best it can)
 
 * More/better .css for defaults.(maybe more than one theme, javascript-selectable themes?)
