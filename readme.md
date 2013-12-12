@@ -84,7 +84,8 @@ Help is appreciated, probably the easiest way
 additional scripts(like in `share_thingscript/main/scripts/bin/`) that can
 be supplied a file and output somewhere.(usually: preferably stdout)
 
-See `have.md` for what there is and isnt. (Short list of what already is)
+See [`have.md`](https://github.com/o-jasper/thingscript/blob/master/have.md)
+for what there is and isnt. (Short list of what already is)
 
 ### Credits
 [thingiview.js](https://github.com/tbuser/thingiview.js)(source included) draws `.stl` files.
