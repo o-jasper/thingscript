@@ -1,0 +1,16 @@
+
+# List of terms
+
+<b>thingscript</b> file, file as found by `thingscript get ...`, found in a 
+$a_concept thingscript_directory$.
+
+**$a_concept thingscript_directory$** directory where is searched with 
+`thingscript get`
+
+**thing** file, file in the thing/project directory.
+
+<b>$a_concept project_directory$</b> the directory of a thing/project, where the files of 
+that project reside. Only one is relevant at any time.
+
+**$a_concept tso_directory$** directories made to put output of thingscript, 
+in `thingscript/`, it may put them without `tso/`.

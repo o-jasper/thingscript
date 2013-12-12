@@ -1,4 +1,4 @@
 # Variable: THINGSCRIPT_ADDITIONAL_PATH
 
-Convenience to help inserting more $a_concept thingscript_directory$s into the
-current default. Likely to be removed.
+Convenience to help inserting more $a_concept thingscript_directory$s onto the
+ones determined from $ac_var THINGSCRIPT_TYPE$

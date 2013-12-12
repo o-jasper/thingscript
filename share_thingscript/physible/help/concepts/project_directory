@@ -1,4 +1,4 @@
-# Concept: Thing directory
+# Concept: Project directory
 The directory of a 'thing' or project. As such it contains the files of a 
 project. Directions on how to use those files, and information about the thing
 are kept in a local `thingscript/` directory.

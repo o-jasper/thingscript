@@ -1,29 +1,27 @@
-# Concept: Thing*script* directories
+# Concept: Thingscript directories
 Thing*script* directories are directories where 
 <a href="$al get$"><code>thingscript get ...</code></a> searches,
 
 It searches in sequence the `:`-separated entries of $ac_var THINGSCRIPT_PATH$ 
-until it finds a matching file.
+until it finds a matching file. 
 
-### The default
-The default has `thingscript/` as first entry, it is relative to the 
-$a_concept thing_directory$, it is particular to
-the thing in question.
+*However*, a better way to change this path is 
+through $ac_var THINGSCRIPT_TYPE$, which is a set of 'kinds' of things, it 
+generates a `THINGSCRIPT_PATH` that iterates `~/.thingscript/`, 
+`/etc/thingscript/`, `/etc/thingscript_share/`, `/usr/share/thingscript/`,
+it always looks at 'plain' `thingscript/` in the local directory.
 
 The $ac_var THINGSCRIPT_ADDITIONAL_PATH$ to allow easier interaction with the default,
-and then <code>/home/$a_var USER$/.thingscript/$a_var WHICH_TYPE$</code> and
- <code>/home/$a_var USER$/.thingscript_share/$a_var WHICH_TYPE$</code> for user 
- modifications and local installs respectively, and then `/etc/thingscript` and
-`/usr/share/thingscript/$WHICH_TYPE`, resp. global settings and installed settings.
 
 ### Uses
-Basically it is a hierarchical sequence of values. The top ones are 
+Basically it is a hierarchical sequence of values, and which 'kinds of stuff' are 
+included is controlled by `THINGSCRIPT_TYPE` . The top ones are 
 modifications/information on the local case, then come some sort of preferences,
 then stuff based on what is installed. In the future a layer of 'libraries of stuff'
 may also follow.
 
-### Example of another THINGSCRIPT_PATH sequence
+### Example of another `THINGSCRIPT_PATH` sequence
 Currently there is one other example, the help system itself has static html
 output based on it, to generate this help an alternative 
-<code>$a_var THINGSCRIPT_PATH$=helpmaker</code>. 
+`THINGSCRIPT_PATH=helpmaker`
 (though if more of the thingscript directory `main` is used, it may be appended again)

@@ -1,0 +1,10 @@
+# Variable: `THINGSCRIPT_TYPE`
+Type of thing currently being handled, a bunch of 'topics' are are obtained from the
+file `share_thingscript/sets/$THINGSCRIPT_TYPE`, and then the sequence of 
+<a href="$al concepts/thingscript_directory$">thingscript directories</a> 
+creating a $ac_var THINGSCRIPT_PATH$ that searches:
+
+In the local `thingscript/` then under the topics in `~/.thingscript/`, `/etc/thingscript/`,
+`~/.thingscript_share/`,`/usr/share/thingscript/`.
+
+$related concepts/thingscript_directory THINGSCRIPT_PATH$
