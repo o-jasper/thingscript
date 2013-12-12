@@ -20,23 +20,24 @@ over_dirs()
     echo $1: | while read -d ':' el; do echo -n /usr/share/thingscript/$el: ; done
 }
 
+#If no path, it tries to look at the type for a path.
 if [ "$THINGSCRIPT_PATH" == "" ]; then
+    #If no type, first in the local directory, then going up.
     if [ "$THINGSCRIPT_TYPE" == "" ]; then
-        for location in $(echo thingscript/set /home/$USER/.thingscript_share/set /usr/share/thingscript/set); do
+        for location in thingscript/set /home/$USER/.thingscript_share/set /usr/share/thingscript/set; do
             if [ -e $location ]; then
                 THINGSCRIPT_TYPE=$(cat $location)
                 break                
             fi
         done
     fi
+    #Get Path from the type.
     THINGSCRIPT_PATH=$(cat /home/$USER/.thingscript_share/sets/$THINGSCRIPT_TYPE)
     if [ "$?" != "0" ]; then #Then here..
         THINGSCRIPT_PATH=$(cat /usr/share/thingscript/sets/$THINGSCRIPT_TYPE)
     fi
     THINGSCRIPT_PATH=thingscript:$(over_dirs $THINGSCRIPT_PATH):$THINGSSCRIPT_ADDITIONAL_PATH
 fi
-#echo == $THINGSCRIPT_PATH
-#echo ===$@
 
 export PATH=/home/$USER/.thingscript_share/rootlike/bin:$PATH
 
