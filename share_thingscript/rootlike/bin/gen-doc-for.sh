@@ -26,10 +26,16 @@ hfile()
             done | tail -c+4)
     
     if [ ! -e $md ]; then
-        echo $1 'does not have documentation (yet?)'
-        mkdir -p help/tso/
-        echo $1 >> help/tso/missing
-        return
+        echo $md 'does not have documentation (yet?) '
+        if [ "$2" != "" ]; then
+            echo 'here is the top of that file:<br><br><code>'
+            head $2 | strings | sed '$a\\n' | while read line; do echo "$line"'<br>'; done
+            echo '</code>'
+            #TODO 'missing files' page?
+            mkdir -p help/tso/
+            echo $1 >> help/tso/missing
+            return
+        fi
     fi
 
     export THINGSCRIPT_PATH="/home/$USER/.thingscript_share/helpmaker:/home/$USER/.thingscript_share/main"
@@ -78,16 +84,20 @@ one()
         out=tso/html/$1.html
         mkdir -p $(dirname tso/html/$1)
         echo "<h2>File: $1</h2>" > $out
-        hfile $md >> $out
+        hfile $md $1 >> $out
     fi
 }
 
 if [ "$1" == "all" ]; then
     rm help/tso/missing
+    rm -r tso/html/
     all . ""
     #All the commands.
-    for el in $(ls help/commands/* help/concepts/* help/vars/* | grep -v readme.md); do
-        one $(echo $el | tail -c+6)
+    for el in $(ls help/*/* help/*/*/* help/*/*/*/* -d | grep -v readme.md); do
+        would_refer=$(echo $el | tail -c+6)
+        if [ ! -e $would_refer ]; then
+            one $would_refer
+        fi
     done
     hfile help/commands/readme.md > tso/html/commands/index.html
     hfile help/concepts/readme.md > tso/html/concepts/index.html

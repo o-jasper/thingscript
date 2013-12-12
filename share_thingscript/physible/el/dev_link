@@ -1,4 +1,5 @@
 #!/bin/bash
+#Links to development area.
 
 DEV_LINK=$(thingscript cat_get dev_link)
 if [ "$DEV_LINK" != "" ]; then

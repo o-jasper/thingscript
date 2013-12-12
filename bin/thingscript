@@ -45,7 +45,7 @@ export PATH=/home/$USER/.thingscript_share/rootlike/bin:$PATH
 get_locations()
 {
     for dir in $(echo $THINGSCRIPT_PATH | tr : '\n'); do
-        for el in $(echo $@); do #First what the user tells you to do.
+        for el in $@; do #First what the user tells you to do.
             echo $dir/$el
         done
     done
@@ -254,7 +254,7 @@ case "$1" in
     
  #Forces markdown and handle_whole to be used regardless of extension.
     markdown_handle)
-        markdown $2 | handle_whole ;;
+        markdown $2 | handle_whole;;
     
     cat_get) #Opens the file obtained with `get`
         cat_get $@;;

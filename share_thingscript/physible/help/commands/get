@@ -4,12 +4,12 @@ Gets data about the page and settings/preferences. The arguments are a list of
 files (that may have directories, but none absolute) of which one must match.
 
 It searches relative to some directory, first looking higher up: 
-* Thing directory; `$THING_DIRECTORY/thingscript/`
-* User level preferences; `~/.thingscript/$WHICH_TYPE/`
-* System level preferences `/etc/thingsscript/$WHICH_TYPE/`
-* Defaults build in: `/usr/share/thingscript/$WHICH_TYPE/`
+* Thing directory; `$dollar$THING_DIRECTORY/thingscript/`
+* User level preferences; `~/.thingscript/$dollar$WHICH_TYPE/`
+* System level preferences `/etc/thingsscript/$dollar$WHICH_TYPE/`
+* Defaults build in: `/usr/share/thingscript/$dollar$WHICH_TYPE/`
 
-Here, `$WHICH_TYPE` is defaultly `main`, this is for possible future totally
+Here, `$dollar$WHICH_TYPE` is defaultly `main`, this is for possible future totally
 different kinds of things. The reason the thing directory doesnt have it, is 
 that it has some kind already.
 

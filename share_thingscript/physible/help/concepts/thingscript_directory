@@ -11,7 +11,7 @@ generates a `THINGSCRIPT_PATH` that iterates `~/.thingscript/`,
 `/etc/thingscript/`, `/etc/thingscript_share/`, `/usr/share/thingscript/`,
 it always looks at 'plain' `thingscript/` in the local directory.
 
-The $ac_var THINGSCRIPT_ADDITIONAL_PATH$ to allow easier interaction with the default,
+The $ac_var THINGSCRIPT_ADDITIONAL_PATH$ exists to allow easier interaction with the default,
 
 ### Uses
 Basically it is a hierarchical sequence of values, and which 'kinds of stuff' are 
