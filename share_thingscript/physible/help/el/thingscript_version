@@ -1,0 +1,3 @@
+Puts down the thingscript version, the same as 
+<code>$dollar$cat thingscript_version$dollar$</code>; gets its data from 
+$a ts/thingscript_version$

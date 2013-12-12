@@ -1,0 +1,5 @@
+## uuid
+
+[Universally unique identifier](https://en.wikipedia.org/wiki/Uuid), for project.
+
+Generates with `uuidgen`.

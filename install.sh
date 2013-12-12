@@ -40,6 +40,11 @@ run()
                 run test_page test_tracker test_summary test_release;;
             make)
                 run node_modules ;;
+            figure_version)
+                git show |head -n 1 | cut -f 2 -d' ' > ~/.thingscript_share/main/thingscript_version;;
+            gen-docs) #Generates the documentation.
+                share_thingscript/rootlike/bin/gen-doc-for.sh all share_thingscript/physible/ ;;
+            
             userlevel_install) #Places symlinks to install it at userlevel.
                 cd ~/
                 mkdir -p .bin .thingscript/main/
@@ -49,7 +54,7 @@ run()
               #Only works if `source install.sh userlevel_install` is used.
                 export PATH=$PATH:~/.bin/ 
               #Get some stuff.
-                run node_modules
+                run node_modules figure_version gen-docs
               #Notify user
                 echo Recommend adding user author name > ~/.thingscript/main/author
                 echo 'Recommend adding user author name in ~/.thingscript/main/author,'

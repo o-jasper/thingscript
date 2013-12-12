@@ -1,8 +1,10 @@
+# Element files directory
+
 `thingscript handle $FILE` will output the file to standard output excepting stuff
-between dollar signs(`$`), which are taken as commands.
+between dollar signs(`$dollar$`), which are taken as commands.
 
 The binaries/scripts are 'elements' and are in `el/`. The commands may also
-have arguments. `$some_element arg1 arg2$`
+have arguments. <code>$dollar$some_element arg1 arg2$dollar$</code>
 
 In order for the binary/scripts to work, they have to be permitted to execute.
 (`chmod +x ..those files..`)

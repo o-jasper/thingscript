@@ -1,0 +1,3 @@
+#!/bin/bash
+
+thingscript cat_get thingscript_version #Suppose you could just do $cat thingscript_version$

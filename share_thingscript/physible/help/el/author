@@ -1,2 +1,2 @@
-Makes a html representation of the author using $a author$, and $a author_link$
+Makes a html representation of the author using $a ts/author$, and $a ts/author_link$
 as available.

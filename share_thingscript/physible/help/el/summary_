@@ -1,2 +1,3 @@
-Layout for a summary page, no header or such. Uses $a el/thumbnail$, $a el/summary_url$,
-$a title$, $a author$ and $a short_description$.
+Layout for a summary page, no header or such. Uses $a ts/thumbnail$, 
+$a el/summary_url$,
+$a ts/title$, $a ts/author$ and $a ts/short_description$.

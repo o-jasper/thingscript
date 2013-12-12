@@ -1,0 +1,8 @@
+'List' of things to put in a gallery, not actually a list; each line is a
+command, and the first argument *must* be the file itself.
+
+The commands call $a el/sel/gallery/ sub-element programs$ of $a el/gallery$
+
+$a on_absence/gallery_list$ creates the default if none exists when needed.
+
+$related el/sel/gallery el/$

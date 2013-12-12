@@ -1,3 +1,2 @@
-Puts the description of the thing, which is placed in the $a description$ file
-
-Typically, `readme.md` contains the description.
+Puts the description of the thing, which is placed in the 
+$a ts/description$ file, or more likely, `readme.md`.

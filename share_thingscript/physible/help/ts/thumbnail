@@ -1,0 +1,4 @@
+The thumbnail to represent the project. 
+
+If it doesnt exist, `on_absence/thumbnail` tries to figure it one out from 
+`ts/gallery_list`.

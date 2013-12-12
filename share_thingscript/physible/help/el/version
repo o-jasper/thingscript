@@ -1,4 +1,0 @@
-# Command `version`
-Gets the version of thingscript.
-
-Effectively `cat /usr/share/thingscript/version`
