@@ -42,10 +42,10 @@ STL2POV_DIR=$ROOTLIKE/share/stl2pov/
 PRE=$STL2POV_DIR/template_pre.pov
 POST=$STL2POV_DIR/template_post.pov
 if [ "$2" != "" ]; then
-    PRE=$1
+    PRE="$1"
 fi
 if [ "$3" != "" ]; then
-    POST=$2
+    POST="$2"
 fi
 
 echo '# declare draw_model = mesh {'

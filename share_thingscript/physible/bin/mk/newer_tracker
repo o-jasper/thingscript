@@ -1,0 +1,120 @@
+#!/bin/bash
+#
+#  Copyright (C) 30-05-2013 Jasper den Ouden.
+#
+#  This is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published
+#  by the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+
+#Start of working with thingtracker.
+#TODO we MUST additionally enforce `self_link`(`URL`)
+
+if [ "$1" != "" ]; then
+    cd $1
+    export OPWD=$OPWD
+    export PWD=$PWD
+fi
+
+g()
+{   FILE=$(thingscript get $1)
+    if [ "$FILE" != "" ]; then
+        cat $FILE
+    else
+        echo -n $2
+    fi
+} 
+NEED_COMMA=''
+p()
+{   GOT=$(g $1)
+    if [ "$GOT" != "" ]; then
+        if [ "$NEED_COMMA" != '' ]; then
+            echo ,
+        fi
+        NEED_COMMA=true
+        NAME=$2
+        if [ "$NAME" == "" ]; then
+            NAME=$1
+        fi
+        echo -n \"$NAME\":
+        case "$3" in
+            '')
+                echo -n \"$GOT\" ;;
+            arr)
+                echo -n '["'$GOT'"]' ;;
+        esac
+    fi
+}
+
+run() #Just elements.
+{   echo -n '{' #TODO now i am just
+    echo '"version":0, "url":"https://github.com/o-jasper/thingscript",
+"description":"List created for test only!",
+"updated":"'$(date --rfc-3339=seconds)'",'
+    echo '"things-count":1,"trackers-count":1,"trackers-traversal-depth":1,
+"maintainers":[],
+"things":[{'
+    p title
+    URL=$(thingscript url self_link)
+    if [ "$URL" != "" ]; then
+        echo ',
+"url":"'$URL\",
+    else
+        echo 'An url is required! Need file thingscript/self_url' > /dev/stderr
+    fi
+    echo -n '"authors":[{'
+    NEED_COMMA=''
+    p author name
+    p author_link url
+    p author_email email
+    echo '}],'
+    if [ ! -e thingscript/uuid ]; then #Create uuid file for object if needed.
+        uuidgen > thingscript/uuid
+    fi
+    echo -n '"uuid":"'$(cat thingscript/uuid)\"
+    p short_description description
+    p license licenses arr
+    echo ',
+"version":'$(g version $(g version_n 0)),
+    echo '"updated":"'$(g tso/update_time "$(date --rfc-3339=seconds)")\",
+    THUMB_URL=$URL$(thingscript url thumbnail)
+    if [ "$THUMB_URL-urls" != "" ]; then #TODO deal with there being more now.
+        echo '"thumbnail-urls":["'$THUMB_URL'"],'
+    fi
+    TAGS=$(thingscript get tags)
+    if [ "$TAGS" != "" ]; then
+        echo -n '"tags":['
+        FIRST="true"
+        grep -xvP '#.+' $TAGS | while read line; do
+            if [ "$FIRST" == "true" ]; then
+                FIRST="false"
+                echo -n \"$line\"
+            else
+                echo -n ,\"$line\"
+            fi 
+        done
+        echo ']'
+    fi
+    echo  '}],'
+    echo -n '"trackers":[{'
+    if [ "$URL" != "" ]; then
+        echo  '"URL":"'$(echo $URL)thing.tracker.json\",
+        echo '"uuid":"'$(g tracker_uuid)\"
+    fi
+    echo '}]
+}'
+}
+
+if [ "$2" == stdout ]; then
+    run
+else
+    if [ "$THINGSCRIPT_TESTY" != "" ]; then #Verifying with yajl http://lloyd.github.com/yajl/
+        echo 'Validating as json'
+        run | tee one_thing.tracker.json | json_verify
+        echo 'Validating as tracker(schema)'
+        thingtracker_validate one_thing.tracker.json
+    else
+        run > one_thing.tracker.json
+    fi
+fi

@@ -21,15 +21,15 @@ run()
                 fi
                 cd $ROOTLIKE/share/
                 npm install schema schema-validator ;; # Needed for validators.
-            clean_testpage) #Scrubs the test page clean
+            testpage_clean) #Scrubs the test page clean
                 cd testpage
                 rm index.html one_thing.tracker.json summary.html pics/*.png
                 rm -r releases/ output/tso/ pics/tso/ thingscript/etc/tso/
                 cd thingscript/ #Thingscript files defaulted.
-                rm main_image release_files thumbnail version ;;
+                rm main_image release_files thumbnail version uuid;;
             clean_test) #Test after cleaning.
                 run clean_testpage test_prep test ;;
-            gen_test_pics)
+            gen_test_pics) #Generates the images of the test.
                 cd testpage/pics/
                 sh gen.sh ;;
             test_prep)
