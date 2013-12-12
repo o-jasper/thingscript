@@ -55,7 +55,10 @@ and browse directly.
 #### Use help
 
     thingscript help mk/tracker_list
-    thingscript help_browser el/author
+    thingscript help_browser el/author #Opens a browser.
+    
+If the static html is build, you can view it directly 
+`share/physible/tso/html/index.html`.
 
 #### Demonstrates getti
 
