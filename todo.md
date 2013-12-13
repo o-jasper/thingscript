@@ -21,6 +21,10 @@ of course, currently still developping on branch master.
 
 ## Other, sorted by type a bit
 
+* Add `el/sel/gallery/auto` for last-second defaults as an option, using the 
+  same thing as `on_absence/gallery_list` functionality. 
+  (Also some more configuration of defaults, perhaps)
+
 * Make more kinds of files representable 
   (see [`have.md`](have.md)) 
   and handle (lack)of dependencies. (default figures the best it can)
@@ -37,6 +41,10 @@ of course, currently still developping on branch master.
   to be implemented that way.
 
 * Test/deal with browser-sizes.(mobile)
+
+* Comments for each image.
+  Subelements could already implement it, that is right approach?
+  (maybe if it can refer to external files for overly long comments)
 
 * Set the files using a simple gui? 
   Maybe `zenity`, sequentially or going back/forth to list of things to potentially set,

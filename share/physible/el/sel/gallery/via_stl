@@ -1,0 +1,9 @@
+#!/bin/bash
+# Uses the other `via_` commands that go through .stl based on the filetype.
+
+case $1; do
+    *.scad)
+        thingscript exec el/sel/gallery/via_openscad $@ ;;
+    *)
+        thingscript exec el/sel/gallery/via_assimp $@ ;;
+esac

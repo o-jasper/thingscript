@@ -1,0 +1,10 @@
+#!/bin/bash
+#First use assimp to convert to .stl, then do the other thing.
+# (which can be any .stl gallery subelement, idential use as `via_openscad`)
+#Example entries: `via_assimp some.md3  initially_povray`
+#                 `via_assimp some.dxf  just_povray`
+#                 `via_assimp some.ply  stl2js`
+#Use `assimp listext` to see what files are possible. (a lot)
+
+stl=$(thingscript exec scripts/assimp_stl $1)
+thingscript exec el/sel/gallery/$2 $stl $3

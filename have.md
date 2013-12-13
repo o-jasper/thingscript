@@ -52,7 +52,7 @@ if CoffeeSCad can be used with javascript)</td></tr>
 <tr><td><code>.stl</code>,<code>.obj</code></td>
 <td><b>have</b>; Using <a href="https://github.com/tbuser/thingiview.js">thingiview.js</a> to basically
   see exactly the model.(<code>*/bin/stl2js</code>)</td></tr>
-<tr><td><code>.scad,.escad</code></td><td><b>have</b>, using (in the gallery list)
+<tr><td><code>.scad</code>,<code>.escad</code></td><td><b>have</b>, using (in the gallery list)
 <code>via_openscad your.scad initially_povray</code>, which goes via <code>.stl</code>. 
 <code>initially_povray</code> can be replaced with any gallery subelement 
 dealing with <code>.stl</code>
@@ -94,7 +94,7 @@ Maybe instructions picture sequence with text.(not sure how)
   so lower priority.(Note but being able to print `.md3` is nice; convert to `x3d`
   and then use blender to export to `.stl`)
 * Other raytracers, [luxrender](http://www.luxrender.net/en_GB/index)?
-* `.stl` rendering via blender.
+* [blender](http://blender.org/).
 * [assimp](https://github.com/assimp/assimp) to convert a lot.
 * [qcad](http://www.qcad.org/en/qcad-documentation/qcad-command-line-tools),
   however i dont see them in my install of qcad..

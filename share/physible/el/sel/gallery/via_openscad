@@ -3,6 +3,7 @@
 #Example entries: `via_openscad some.scad initially_povray`
 #                 `via_openscad some.scad just_povray`
 #                 `via_openscad some.scad stl2js`
+#(used same way as via_assimp)
 
 #echo === > /dev/stderr
 #thingscript get script/openscad > /dev/stderr
@@ -10,4 +11,4 @@
 #thingscript get el/sel/gallery/$2 > /dev/stderr
 
 stl=$(thingscript exec scripts/openscad $1)
-thingscript exec el/sel/gallery/$2 $stl # $(echo "$@" | cut -f 3- -d' ')
+thingscript exec el/sel/gallery/$2 $stl $3

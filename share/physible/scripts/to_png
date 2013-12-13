@@ -1,9 +1,13 @@
 #!/bin/bash
+#Uses openscad or convert to generate a .png directly.
 
 ofile=$(tso $1).png
 case $1 in
     *.scad | *.escad)
         thingscript exec scripts/openscad $1 png ;;
+    *.png) #Already png.
+        echo $1
+        exit 0 ;;
     *)
         if_newer $1 $ofile "convert $1 $ofile" ;;
 esac
