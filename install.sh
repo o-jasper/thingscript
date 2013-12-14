@@ -28,7 +28,7 @@ run()
                 cd thingscript/ #Thingscript files defaulted.
                 rm main_image thumbnail version uuid;;
             clean_test) #Test after cleaning.
-                run clean_testpage test_prep test ;;
+                run testpage_clean test_prep test ;;
             gen_test_pics) #Generates the images of the test.
                 cd testpage/pics/
                 sh gen.sh ;;

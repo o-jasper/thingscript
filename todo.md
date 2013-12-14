@@ -4,9 +4,6 @@ of course, currently still developping on branch master.
 ## Needed for first release
 * Get ThingTracker output to be correct.(also instruct)
   + Appears that just the date is incorrect.
-* It isnt clear what clicking on the main image does. What it does depends on what is used/
-  `share_thingscript/main/el/sel/gallery/initially_povray` needs a symbol to 
-   indicate.(Probably best to add that in javascript)
    
 #### done for first release
 * Static html generations, `thingscript help_browser ..` opens them.
@@ -15,6 +12,8 @@ of course, currently still developping on branch master.
 * Generate (downloadable)release.
   + Note: just based on globbed patterns,(superset of plain list) not very handy, that. 
 * Lists of 'packages' that can be loaded in some order, instead of types.
+* Icon to indicate that clicking gets you the 3d model for
+  `share/physible/el/sel/gallery/initially_povray` (icon looks a bit out of place though)
 
 ## Second release
 * Packages for managers. (ArchLinux, Debian) tests-as-if-new-install.(moved it later)
@@ -62,6 +61,9 @@ of course, currently still developping on branch master.
 
 * Picture of Tester McTest? Download/release symbol, development link symbol.
 
+* `share/physible/resource/overlay_icon/3d.svg` looks a bit heavy...
+  Also need script using `convert` to convert to the `.png` variants.
+
 ### Povray
 * A few 'floors' in povray(of course in such a way that anyone can add)
   + 1cm grid with 'vague reflection' (best default)
@@ -80,6 +82,7 @@ of course, currently still developping on branch master.
   system in order to give users more control. Or maybe 
   [noscript surrogates](http://hackademix.net/2011/09/29/script-surrogates-quick-reference/).
 
-* thingiview javascript data in `.json` files.
+* Thingiview data is currently in a `.js` file, but i dont see a way to make those
+  proper `.json` files, and still be able to load them.
 
 * Stl-to-javascript php is slow. (And it is php....) Make C version or something.

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#Use the one right on the project.
+if [ -e thingscript/resource/thingiview_icon.png ]; then
+    echo -n thingscript/resource/thingiview_icon.png
+    exit 0
+fi
+
+url=$(thingscript url thingiview_icon_url)
+if [ "$url" == "" ]; then #Copy the default.
+    STYLE_FILE=thingscript/resource/tso/thingiview_icon.png
+    cp $(thingscript get resource/thingiview_overlay_icon/3d.png) $STYLE_FILE
+    echo -n $STYLE_FILE
+else #Use provided url.
+    echo -n $url
+fi

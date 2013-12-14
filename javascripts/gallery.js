@@ -25,6 +25,7 @@ function want_h()
 
 function js_img()
 {
+    var viewer= document.getElementById("viewer");
     viewer.style.width = want_w();
     viewer.src=null;
     if( js_import(file + ".js") )
@@ -45,6 +46,8 @@ function to_img(file,action_file)
     var ext  = file.substr(file.length-4);
 
     viewer.style.height= want_h();
+    document.getElementById("pre_viewer").innerHTML =""; //Reset pre and post.
+    document.getElementById("post_viewer").innerHTML="";
     
     if( ext==".jpg" || ext==".png" || ext==".gif" ) //Put an image there.
     {   viewer.style.width = "";

@@ -1,1 +1,1 @@
-Test of thingscript physibles.
+Test of thingscript physibles representation page.

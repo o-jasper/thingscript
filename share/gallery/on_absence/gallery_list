@@ -1,0 +1,9 @@
+#!/bin/bash
+FILE=thingscript/gallery_list
+
+#Assumes gallery items in pics/ and models in output/
+ls  pics/*.png pics/*.gif pics/*.jpg pics/*.jpeg \
+    output/*.stl *.scad output/*.dxf \
+    | while read line; do thingscript exec scripts/figure_gallery_default $line; done > $FILE
+
+echo $FILE

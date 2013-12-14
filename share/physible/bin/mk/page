@@ -38,6 +38,9 @@ Use \$(thingscript get help/\$FILE\) for information about the file.
 fi
 #(Beyond the above files are optional, missing ignored)
 
+#Get rid of old settings that arent configuration.
+rm tso/gallery_other.js
+
 FROM=$2 #Default layout is 'layout' as `thingscript getpage` gets.
 if [ "$2" == "" ]; then
     FROM=el/layout

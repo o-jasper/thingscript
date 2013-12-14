@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #Povray image first, then load if clicked on.
 
 pov=$(thingscript exec scripts/stl2pov $1)
@@ -7,4 +6,21 @@ js_stl=$(thingscript exec scripts/stl2js $1)
 
 BIG_PIC=$(thingscript exec scripts/main_povray $pov)
 
-echo '<img onclick="to_img_re_url('\'$BIG_PIC\',\'$js_stl\'')" src="'$(thingscript exec scripts/thumb_povray $pov)'" class="gal">'
+mkdir -p tso/ #If indicator not provided yet, make it.
+
+add_indicator()
+{   echo  "var gallery_thingiview_indicator ='"
+    thingscript handle_get el/thingiview_indicator_overlay_
+    echo "';"
+}
+
+if grep 'var gallery_thingiview_indicator =' tso/gallery_other.js > /dev/null; then 
+    echo '' > /dev/null
+else
+    add_indicator | tr -d '\n' >> tso/gallery_other.js
+fi
+
+#NOTE: defaultly this does nothing at the moment.(i think they're already identifiable)
+thingscript handle_get el/thingiview_tiny_indicator_overlay_ 
+echo -n '<img onclick="to_img_re_url('\'$BIG_PIC\',\'$js_stl\'');'
+echo -n 'document.getElementById('\'post_viewer\'').innerHTML=gallery_thingiview_indicator;" src="'$(thingscript exec scripts/thumb_povray $pov)'" class="gal">'
