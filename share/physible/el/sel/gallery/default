@@ -1,0 +1,9 @@
+#!/bin/bash
+#Uses the default way of handling the file.
+#
+#Via same thing as `gallery_list` is generated, except that way keeps 
+# `gallery_list` as is, even if the defaults change.
+#(because it figures out the default at the last moment)
+
+#(thingscript exec also does arguments)
+thingscript exec el/sel/gallery/$(thingscript exec scripts/figure_gallery_default $1)

@@ -21,10 +21,6 @@ of course, currently still developping on branch master.
 
 ## Other, sorted by type a bit
 
-* Add `el/sel/gallery/auto` for last-second defaults as an option, using the 
-  same thing as `on_absence/gallery_list` functionality. 
-  (Also some more configuration of defaults, perhaps)
-
 * Make more kinds of files representable 
   (see [`have.md`](have.md)) 
   and handle (lack)of dependencies. (default figures the best it can)

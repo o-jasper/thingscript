@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo Couldnt figure out a default for a gallery element for $1
+echo 
+echo '`scripts/figure_gallery_default` determines defaults.

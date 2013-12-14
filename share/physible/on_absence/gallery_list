@@ -2,15 +2,8 @@
 FILE=thingscript/gallery_list
 
 #Assumes gallery items in pics/ and models in output/
-ls pics/*.png pics/*.gif pics/*.jpg pics/*.jpeg \
-    | while read line; do echo plain $line; done > $FILE
-ls output/*.stl output/*.STL \
-    | while read line; do echo initially_povray $line; done >> $FILE
-
-ls *.scad \
-    | while read line; do echo via_openscad $line initially_povray; done >> $FILE
-
-ls output/*.dxf \
-    | while read line; do echo via_assimp $line initially_povray
+ls  pics/*.png pics/*.gif pics/*.jpg pics/*.jpeg \
+    output/*.stl *.scad output/*.dxf \
+    | while read line; do thingscript exec scripts/figure_gallery_default $line; done > $FILE
 
 echo $FILE
