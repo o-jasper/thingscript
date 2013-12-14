@@ -21,34 +21,68 @@ g()
 {   FILE=$(thingscript get $1)
     if [ "$FILE" != "" ]; then
         cat $FILE
+    else
+        echo -n $2
     fi
 } 
+NEED_COMMA=''
 p()
 {   GOT=$(g $1)
     if [ "$GOT" != "" ]; then
+        if [ "$NEED_COMMA" != '' ]; then
+            echo ,
+        fi
+        NEED_COMMA=true
         NAME=$2
         if [ "$NAME" == "" ]; then
             NAME=$1
         fi
-        echo \"$NAME\":\"$GOT\",
+        echo -n \"$NAME\":
+        case "$3" in
+            '')
+                echo -n \"$GOT\" ;;
+            arr)
+                echo -n '["'$GOT'"]' ;;
+        esac
     fi
 }
 
+CUR_TIME="$(date --iso-8601=minutes)"
+
 run() #Just elements.
-{   echo '{"things":[{'
+{   echo -n '{' #TODO now i am just
+    echo '"version":0, "url":"https://github.com/o-jasper/thingscript",
+"description":"List created for test only!",
+"updated":"'$CUR_TIME'",'
+    echo '"things-count":1,"trackers-count":1,"trackers-traversal-depth":1,
+"maintainers":[],
+"things":[{'
     p title
     URL=$(thingscript url self_link)
     if [ "$URL" != "" ]; then
-        echo '"URL":"'$URL\",
+        echo ',
+"url":"'$URL\",
     else
         echo 'An url is required! Need file thingscript/self_url' > /dev/stderr
     fi
-    p author
-    p license
+    echo -n '"authors":[{'
+    NEED_COMMA=''
+    p author name
+    p author_link url
+    p author_email email
+    echo '}],'
+    if [ ! -e thingscript/uuid ]; then #Create uuid file for object if needed.
+        uuidgen > thingscript/uuid
+    fi
+    echo -n '"uuid":"'$(cat thingscript/uuid)\"
     p short_description description
+    p license licenses arr
+    echo ',
+"version":'$(g version $(g version_n 0)),
+    echo '"updated":"'$(g tso/update_time "$CUR_TIME")\",
     THUMB_URL=$URL$(thingscript url thumbnail)
-    if [ "$THUMB_URL" != "" ]; then
-        echo '"thumbnailURL":"'$THUMB_URL\",
+    if [ "$THUMB_URL-urls" != "" ]; then #TODO deal with there being more now.
+        echo '"thumbnail-urls":["'$THUMB_URL'"],'
     fi
     TAGS=$(thingscript get tags)
     if [ "$TAGS" != "" ]; then
@@ -67,7 +101,8 @@ run() #Just elements.
     echo  '}],'
     echo -n '"trackers":[{'
     if [ "$URL" != "" ]; then
-        echo -n '"URL":"'$(echo $URL)thing.tracker.json\"
+        echo  '"URL":"'$(echo $URL)thing.tracker.json\",
+        echo '"uuid":"'$(g tracker_uuid)\"
     fi
     echo '}]
 }'
