@@ -21,6 +21,8 @@ of course, currently still developping on branch master.
 
 ## Other, sorted by type a bit
 
+* assimp is completely untested, havent been able to display the `.stl` from the `.dxf`.
+
 * Make more kinds of files representable 
   (see [`have.md`](have.md)) 
   and handle (lack)of dependencies. (default figures the best it can)
@@ -45,6 +47,7 @@ of course, currently still developping on branch master.
 * Set the files using a simple gui? 
   Maybe `zenity`, sequentially or going back/forth to list of things to potentially set,
   not perfect, but simple..
+  Maybe better to use a nodejs thingy?
 
 ### Organization, docs, arts
 * Some of the stuff in `thingscript_share/main/scripts/` could be better organized..
