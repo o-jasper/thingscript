@@ -3,31 +3,33 @@
 For linux(perhaps macosx/unix too) currently. 
 
 ## Features
-* Very general. Much more general than just this case.
-* Creates files to be used by [thingtracker](http://thingtracker.net/).(not well tested yet)
-* [thingiview.js](https://github.com/tbuser/thingiview.js)`.stl` and `.obj` viewing,
-  `.stl` model preview using [povray](http://povray.org/), 
-  a bit to figure out the location. Checks the timestamps to see what is needed.
-
+* For representing physical designs, can represent files, for instance `.stl` 
+  using [thingiview.js](https://github.com/tbuser/thingiview.js) or
+  [povray](http://povray.org/), or use it indirectly, (`.scad`).
+  Creates files to be used by [thingtracker](http://thingtracker.net/).
+  (latter untested) [`have.md`](have.md) contains a list of files that are/could
+  be represented.
+  
 * Configurable, but with good defaults. Sequence of overriding preferences means 
   that you can change behavior, or provide behavior as defaults.
 
   A sufficiently high power user is indistinguishable from a developper, *no* 
-  language is special in extending this, everything is executed as if it is a
-  program.(other than it being an extra dependency of course)
+  programming language is special in extending this, everything is executed as
+  if it is a program.(other than it being an extra dependency of course)
 
-* Good documentation, build into the system itself but also in the converted to
+* Documentation build into the system itself but also in the converted to
   of (static)html, which can be generated using the thingscript itself. 
   (`thingscript help`,`thingscript help_browser`) Users can document their
   own stuff too, just plunk the file in at the correct location.
 
 * If you expose the input of the program to the internet, its incredibly insecure.
+  (Files handled as with having thingscript elements )
 
 ### Install
 Get it with `git clone https://github.com/o-jasper/thingscript`.
 
-Dependencies, basically, bash and markdown. With lack of other dependencies,
-like `povray` or `admesh`, it will just fail at those tasks.
+Dependencies, bash, markdown. All other lacking dependencies will just make it
+fail tasks that use the programs. ()
 
 The following should produce a user level install:
 
@@ -35,12 +37,26 @@ The following should produce a user level install:
     PATH=$PATH:~/.bin/ #Add that to bashrc if you havent already.
 
 ### Usage examples
-Use `thingscript help_browser` or start from `share/main/tso/html/index.html`
-and browse directly.
+For anything using a project directory, there are files in the `thingscript/` 
+directory in the project that indicate how to deal with it.
 
 #### Make representation page
+To make a representation page, you first make some files to provide the info regarding 
+the object. (There are more optional ones)
 
-    thingscript mk page project
+    mkdir $PROJECT/thingscript; cd $PROJECT/thingscript;
+    echo 'my title' > title
+    echo 'your name/alias' > author
+    echo 'in category' > category
+    echo 'Describe your project'  > short_description
+    echo 'What license you put the project under'  > license
+    cd -;
+    thingscript mk page $PROJECT
+
+Making the files yourself will be fine for many people, but raise brows for many
+more, but overall in the future it should provide a way to fill the entries from
+a (web)gui.
+
 #### Makes a release
 
     thingscript mk release project/
@@ -64,8 +80,6 @@ If the static html is build, you can view it directly
 
     cd testpage/; thingscript get author; thingscript cat_get author;
     cat $(thingscript get author) #Demonstrate get, cat_get
-
-
 
 ### Useful bits
 Maybe some bits are useful as script in another context. Most of them will be in
