@@ -1,0 +1,6 @@
+<table>
+  <tr><td colspan=2>$top_bar_$</td></tr>$
+  <tr><td>$side_bar_$</td>
+  <td>$actual_body$</td>
+  <tr><td colspan=2>$bottom_bar_$</td></tr>$
+</td></tr></table>

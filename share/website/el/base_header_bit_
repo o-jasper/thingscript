@@ -1,0 +1,4 @@
+$style_$
+<title>$cat title$</title>
+<meta name=author content="$cat author$">
+$tags html_head$

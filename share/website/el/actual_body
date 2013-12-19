@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# BODY_AT_POINT contains what file represents the current page.
+# It is `thingscript handle`d.
+
+thingscript handle $BODY_AT_POINT
