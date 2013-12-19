@@ -6,7 +6,7 @@
       $description$
     </td>
     <td>
-      $author_$
+      $author say_img$
       $license_$
       $tags html$
       $dev_link$

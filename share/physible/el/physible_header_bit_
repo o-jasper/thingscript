@@ -1,0 +1,13 @@
+
+$src/thingiview_prep.html_$
+
+<script>
+    window.onload = function() {
+      thingiurlbase = $rootdir javascripts$;
+      thingiview = new Thingiview("viewer");
+      thingiview.setObjectColor('#C0D8F0');
+      thingiview.initScene();
+
+      by_url(location.href);
+    }
+</script>

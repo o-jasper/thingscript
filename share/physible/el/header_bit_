@@ -1,18 +1,5 @@
-$style_$
-<title>$cat title$</title>
-<meta name=author content="$cat author$">
-$tags html_head$
-<script src=$rootdir javascripts/import.js$></script>
-$src/thingiview_prep.html_$
-<script src=$rootdir javascripts/gallery.js$></script>
+$base_header_bit_$
 
-<script>
-    window.onload = function() {
-      thingiurlbase = $rootdir javascripts$;
-      thingiview = new Thingiview("viewer");
-      thingiview.setObjectColor('#C0D8F0');
-      thingiview.initScene();
+$gallery_header_bit_$
 
-      by_url(location.href);
-    }
-</script>
+$physible_header_bit_$

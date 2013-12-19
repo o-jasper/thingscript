@@ -48,12 +48,29 @@ of course, currently still developping on branch master.
   not perfect, but simple..
   Maybe better to use a nodejs thingy?
 
+* 'Page as a process', basically, make a page with less data, and extend it as needed.
+  + More statistics, like volume.
+  + Slicing for estimating duration/costs for instance takes long.
+    (though it may be an overkill method)
+  + Maybe stuff like overhang detection.
+    (this is a 'conduit' program, it doesnt do stuff itself so much, just drags
+     things into the system.)
+
+* A website thingscript directory.
+
+* The main program in `bin/thingscript` written in C or something?
+  (What makes it slow/fast? Not sure how to tell things to get things in memory,
+   not on the harddisk)
+
+* [Cygwin?](http://cygwin.com/)
+
 ### Organization, docs, arts
 * Some of the stuff in `thingscript_share/main/scripts/` could be better organized..
   It is basically a kind of `on_absence` for files inhabiting the project?
 
-* Help pages dont cross different thingscript directories at all.
-  (dont know what to do about it)
+* **Help pages dont cross different thingscript directories at all.**
+  Probably put pages on the search for pages across multiple and make a help for
+  a whole sequence?
 
 * Add CSS to help pages, and give stuff some class.
 
@@ -62,7 +79,8 @@ of course, currently still developping on branch master.
 * Picture of Tester McTest? Download/release symbol, development link symbol.
 
 * `share/physible/resource/overlay_icon/3d.svg` looks a bit heavy...
-  Also need script using `convert` to convert to the `.png` variants.
+  Also need script using `convert` to convert to the `.png` variants. Also, the
+  indicator doesnt get added at the right time?(only when item selected with click)
 
 ### Povray
 * A few 'floors' in povray(of course in such a way that anyone can add)
@@ -86,3 +104,4 @@ of course, currently still developping on branch master.
   proper `.json` files, and still be able to load them.
 
 * Stl-to-javascript php is slow. (And it is php....) Make C version or something.
+  (contribute origin thingiview project, of course)

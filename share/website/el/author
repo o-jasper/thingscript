@@ -1,0 +1,37 @@
+#!/bin/bash
+# Produces the author name in some way.
+# '', 'say'  just says the author, potentially with link.
+# 'say_img', adds the image if relevant.
+# 'header' makes an header entry.
+
+say()
+{
+    LINK=$(thingscript url author_link)
+    if [ "$LINK" != "" ]; then
+        echo '<a href='$LINK'>'$(thingscript cat_get author)'</a>'
+    else
+        thingscript cat_get author
+    fi
+}
+img()
+{
+    AUTHOR_IMG_SCRIPT=$(thingscript get el/author_img) 
+    if [ "$AUTHOR_IMG_SCRIPT" != "" ]; then
+        $AUTHOR_IMG_SCRIPT
+    fi ;;
+}
+case "$1" in
+    '' | say )
+        say ;;
+    say_img )
+        say ; img ;; #Run the script to output the image drawing html.
+    img)
+        img ;;
+    header) #As in header.
+        AF=$(thingscript get author)
+        if [ -e "$AF" ]; then
+            echo '<meta name=author content="'$AF'">'
+        fi ;;
+    plain)
+        thingscript cat_get author ;;
+esac

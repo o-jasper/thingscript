@@ -1,0 +1,2 @@
+<script src=$rootdir javascripts/import.js$></script>
+<script src=$rootdir javascripts/gallery.js$></script>

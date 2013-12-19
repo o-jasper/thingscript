@@ -1,6 +1,9 @@
 
-# Script that generates a page for 
-For linux(perhaps macosx/unix too) currently. 
+# Script that generates pages/data inserting bits based on commands
+Originally it was intended just for representing physical designs, but it can
+really replace more generally.
+
+For linux(perhaps macosx/unix too) currently.
 
 ## Features
 * For representing physical designs, can represent files, for instance `.stl` 
@@ -9,7 +12,7 @@ For linux(perhaps macosx/unix too) currently.
   Creates files to be used by [thingtracker](http://thingtracker.net/).
   (latter untested) [`have.md`](have.md) contains a list of files that are/could
   be represented.
-  
+
 * Configurable, but with good defaults. Sequence of overriding preferences means 
   that you can change behavior, or provide behavior as defaults.
 

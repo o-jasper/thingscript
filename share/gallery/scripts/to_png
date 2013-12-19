@@ -1,5 +1,6 @@
 #!/bin/bash
-#Uses openscad or convert to generate a .png directly.
+#Generates .png for instance with imagemagick.
+# (Also has openscad, inclusive for now)
 
 ofile=$(tso $1).png
 case $1 in
