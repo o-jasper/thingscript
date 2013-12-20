@@ -1,0 +1,97 @@
+#!/bin/bash
+# Puts all the files in a directory smaller than some size in a 
+# json/tar/zip file.
+
+OFILE=$2
+MAX_SIZE=$3
+if [ "$MAX_SIZE" == "" ]; then
+    MAX_SIZE=80 #TODO maximum size to some max URL size i reckon.
+fi
+
+ROUGH_MAX_SIZE=$4
+if [ "$ROUGH_MAX_SIZE" == "" ]; then
+    ROUGH_MAX_SIZE=7979095 #Should be larger than a block.
+fi
+
+json_add()
+{
+    echo -n '{'
+    add $1$2 $1 json_add json_entry
+    echo -n '}'
+}
+json_entry()
+{
+    echo -n '"'
+    cat $1
+    echo -n '"'
+}
+
+tar_add()
+{   add $1$2 $1 tar_add tar_entry 
+}
+tar_entry()
+{   if [ -e "$OFILE" ]; then
+        tar -arf $OFILE $1
+    else
+        tar -acf $OFILE $1
+    fi
+}
+
+zip_add()
+{   add $1$2 $1 zip_add "zip $OFILE"
+}
+
+echo_add()
+{  add $1$2 $1 echo_add echo 
+}
+
+add()
+{   TREE=$3
+    ENTRY=$4
+    FIRST='t'
+    if [ "$(ls -u | head -n 1)" == "" ]; then
+        echo -n
+        return 0
+    fi
+    ls -1us $1 |  tail -n+2 | while read el; do #(one line each, unordered, and with size.)
+        ROUGH_SIZE=$(echo $el | cut -f1 -d' ')
+        FILE=$(echo $el | cut -f2 -d' ')
+        if [ "$ROUGH_SIZE" -lt "$ROUGH_MAX_SIZE" ]; then
+            if [ "$TREE" == "json_add" ]; then
+                if [ "$FIRST" == 't' ]; then
+                    FIRST=f
+                else
+                    echo ','
+                fi
+                echo -n '"'$FILE'":'
+            fi
+            if [ -d "$1/$FILE/" ]; then #Its a directory!
+                $TREE $1 $FILE/
+            else #Enough to enter.
+                if [ "$(wc -c $1/$FILE | cut -f1 -d' ')" -lt "$MAX_SIZE" ]; then 
+                    $ENTRY $1$FILE
+                elif [ "$TREE" == "json_add" ]; then
+                    echo -n "'file'"
+                fi
+            fi
+        fi
+    done
+}
+
+
+case  "$2" in 
+    *.json) #Into json file.
+        json_add $1 > $2 ;;
+    'json')  #json stdout.
+        json_add $1 ;;
+    #(NOTE: compression during use .. slow?)
+    *.tar)
+        rm $2 #Clear the old one.
+        tar_add $1 ;;
+#    *.tar.gz) #TODO compressed .tar?       
+    *.zip)
+        ech
+        zip_add $1 ;;
+    '' | echo) #Just echo the files.
+        echo_add $1 ;;
+esac

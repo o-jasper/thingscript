@@ -1,7 +1,8 @@
 #!/bin/bash
-
 #Generate docs using a thingscript file and the respective help file
 # Place an indicator if the help file doesnt exist.
+
+#TODO needs to search down a THINGSCRIPT_PATH instead.
 
 cd $2
 
