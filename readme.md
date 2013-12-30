@@ -5,11 +5,24 @@ really replace more generally.
 
 For linux(perhaps macosx/unix too) currently.
 
+## What it does
+You feed it files, and stuff between dollar signs;
+`$some_program argument 1 2 3$` are run as programs found with
+`el/some_program`, which is searched in a list of 'thingscript directories'.
+
+Thingscript directories are directories files are searched from, basically uses
+first existing file `$THINGSCRIPT_DIRECTORY/$searched_file`.
+
+As such it is meant to make the use of many different tools easy. It is not
+intended as a place of development of tools, just to make them usable.
+
 ## Features
-* For representing physical designs, can represent files, for instance `.stl` 
+* There is a gallery, thingscript directory, and website in development.
+* For physical designs a lot of elements and scripts around already, 
+  for instance `.stl` 
   using [thingiview.js](https://github.com/tbuser/thingiview.js) or
-  [povray](http://povray.org/), or use it indirectly, (`.scad`).
-  Creates files to be used by [thingtracker](http://thingtracker.net/).
+  [povray](http://povray.org/), or use it indirectly, (`.scad`). Also can
+  creates files to be used by [thingtracker](http://thingtracker.net/).
   (latter untested) [`have.md`](have.md) contains a list of files that are/could
   be represented.
 
@@ -24,6 +37,8 @@ For linux(perhaps macosx/unix too) currently.
   of (static)html, which can be generated using the thingscript itself. 
   (`thingscript help`,`thingscript help_browser`) Users can document their
   own stuff too, just plunk the file in at the correct location.
+  (note: there is an important todo item to make it cover multiple thingscript
+  directories)
 
 * If you expose the input of the program to the internet, its incredibly insecure.
   (Files handled as with having thingscript elements )
@@ -36,7 +51,7 @@ fail tasks that use the programs. ()
 
 The following should produce a user level install:
 
-    cd $where_you_put_it/thingscript/; sh install.sh userlevel_install` should install
+    cd $where_you_put_it/thingscript/; sh install.sh userlevel_install
     PATH=$PATH:~/.bin/ #Add that to bashrc if you havent already.
 
 ### Usage examples

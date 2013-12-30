@@ -1,0 +1,5 @@
+#!/bin/bash
+# CUR_BODY contains what file represents the current page.
+# It is `thingscript handle`d.
+
+thingscript handle $CUR_BODY

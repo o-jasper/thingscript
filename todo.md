@@ -28,10 +28,13 @@ of course, currently still developping on branch master.
 
 * More/better .css for defaults.(maybe more than one theme, javascript-selectable themes?)
 
-* Put a lot of the data in files now in a json file and make a 
-  html+javascript page that generates that json. Part of the issue is that
-  `thingscript get ..` gets a file location.(distinguish between items that do/dont
-      warrant a file?) Not sure...
+* All bits of data is now stored in files, it would be better to have more of a system.
+  `share/rootlike/bin/pack_small_file` can turn  stuff in files into `.json`, 
+  `.zip`,`.tar` then `unzip -c file.zip some/file` and `tar -xf file.tar some/file -O`
+  can output to stdout.
+  
+  Not sure how to best get the small files into memory and have the scripts able
+  to access it efficiently.
 
 * (maybe)Sometimes you want something, ..but only if.. currently that requires an
   element to be a script. This could be no problem, but some of the elements do need

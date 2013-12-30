@@ -36,7 +36,7 @@ if [ "$THINGSCRIPT_PATH" == "" ]; then
     if [ "$?" != "0" ]; then #Then here..
         THINGSCRIPT_PATH=$(cat /usr/share/thingscript/sets/$THINGSCRIPT_TYPE)
     fi
-    export THINGSCRIPT_PATH=thingscript:$(over_dirs $THINGSCRIPT_PATH):$THINGSSCRIPT_ADDITIONAL_PATH
+    export THINGSCRIPT_PATH=$THINGSSCRIPT_FIRST_PATH:thingscript:$(over_dirs $THINGSCRIPT_PATH):$THINGSSCRIPT_LAST_PATH
 fi
 
 export PATH=/home/$USER/.thingscript_share/rootlike/bin:$PATH

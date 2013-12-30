@@ -1,0 +1,61 @@
+#!/bin/bash
+# Lists an item from a file, meant to be used internally.
+#
+# Arguments:
+# * The file used.
+# * What to do, defaultly it outputs 'rss', 'html' is currently another option.
+
+# `pwd` must be the project/webiste directory, `content/` will contain the output.
+
+#Prepend path regarding this page.
+export THINGSCRIPT_FIRST_PATH=thingscript_about/$1
+export THINGSCRIPT_TYPE=website
+get() #Shorter.
+{   thingscript cat_get $1 }
+
+TAGS=$(get tags)
+TITLE=$(get title)
+WEBSITE_LINK=$(cat website_link)
+CATEGORIES=$(get categories)
+
+RSS_ENTRY="" #TODO
+if [ "$RSS_FEED" != "" ]; then
+    RSS_ENTRY="<link rel=\"alternate\" type=\"application/rss+xml\" title=\"$RSS_FEED\" 
+        href=\"$(echo $WEBSITE_LINK)rss/$RSS_FEED.rss\"/>"
+fi
+
+RSS_DATE=$(get rss_date)
+if [ "$RSS_DATE" == "" ]; then #Ensures it now has a date, by prepending it.
+    RSS_DATE=$(date +%s.%N)  #TODO gotta be a better way.
+    mkdir -p $(dirname /tmp/website/$1) #Prepend this date.
+    cp $FROM /tmp/website/$1.md
+    echo rss_date $RSS_DATE > $FROM
+    cat /tmp/website/$1.md >> $FROM
+    rm /tmp/website/$1.md
+fi
+
+GIVE_DATE=$(date --date=@$RSS_DATE '+%d %b %Y')
+
+#TODO fetch the change date of the file for the given date?
+
+DESCRIPTION=$(get description) 
+
+case "$2" in #Figure what to do.
+    html) #Html tidbit representing it.
+        echo "<small>$GIVE_DATE</small>&nbsp;<a href=\"$WEBSITE_LINK$1.html\">$TITLE</a><br>" ;;
+    if [ "$DESCRIPTION" != "" ]; then
+        echo "&nbsp;&nbsp; <span class=\"blog_descr\">$DESCRIPTION</span><br>" >> rss/$el.html/$RSS_DATE
+    fi ;;
+
+    '' | rss) #Stdout the item.
+        echo "<item>
+<title>$TITLE</title>
+<description>$DESCRIPTION</description>
+<link>$WEBSITE_LINK$1.html</link>
+<guid>$RSS_DATE</guid>
+<category>$TAGS</category> 
+<enclosure>$(get enclosure)</enclosure>
+<pubDate>$(date --date=@$RSS_DATE '+%c')</pubDate>
+</item>" ;;
+esac
+

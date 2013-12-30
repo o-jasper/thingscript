@@ -1,0 +1,9 @@
+#!/bin/bash
+# Makes the entire website.
+
+#TODO 
+# * Look at thingscript/list for a list of pages. Then `bin/mk/webpage` each.
+# * List stuff under tags/topics which are indicated to be .rss items and make
+#   RSS/html lists from them.
+
+
