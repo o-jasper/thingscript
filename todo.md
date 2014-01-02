@@ -2,7 +2,7 @@ NOTE: i'll mark the ones which have an issue, see the latest development commit,
 of course, currently still developping on branch master.
 
 ## Needed for first release
-* Get ThingTracker output to be correct.(also instruct)
+* Get ThingTracker output to be correct.
   + Appears that just the date is incorrect.
    
 #### done for first release
@@ -20,11 +20,22 @@ of course, currently still developping on branch master.
 
 ## Other, sorted by type a bit
 
-* assimp is completely untested, havent been able to display the `.stl` from the `.dxf`.
+* Maybe -for-instance- gallery objects makes gallery stuff from what is available,
+  but have 'wants' which when forfilled make get the page created again.
+  'Page as a process', basically, there is data in, and there is a tree of stuff to do.
+  + More statistics, like volume.
+  + Slicing for estimating duration/costs for instance takes long.
+    (though it may be an overkill method)
+  + Maybe stuff like overhang detection.
+    (this is a 'conduit' program, it doesnt do stuff itself so much, just drags
+     things into the system.)
+
+* `assimp` is completely untested, havent been able to display the `.stl` from the `.dxf`.
 
 * Make more kinds of files representable 
   (see [`have.md`](have.md)) 
-  and handle (lack)of dependencies. (default figures the best it can)
+  and handle (lack)of dependencies. Suppose best if default figures the best it
+  can, given dependencies, and a way to explore the possibilities.
 
 * More/better .css for defaults.(maybe more than one theme, javascript-selectable themes?)
 
@@ -51,21 +62,13 @@ of course, currently still developping on branch master.
   not perfect, but simple..
   Maybe better to use a nodejs thingy?
 
-* 'Page as a process', basically, make a page with less data, and extend it as needed.
-  + More statistics, like volume.
-  + Slicing for estimating duration/costs for instance takes long.
-    (though it may be an overkill method)
-  + Maybe stuff like overhang detection.
-    (this is a 'conduit' program, it doesnt do stuff itself so much, just drags
-     things into the system.)
-
 * A website thingscript directory.
 
 * The main program in `bin/thingscript` written in C or something?
   (What makes it slow/fast? Not sure how to tell things to get things in memory,
    not on the harddisk)
 
-* [Cygwin?](http://cygwin.com/)
+* [Cygwin](http://cygwin.com/) for getting it on windows?(no idea currently)
 
 ### Organization, docs, arts
 * Some of the stuff in `thingscript_share/main/scripts/` could be better organized..
@@ -81,7 +84,7 @@ of course, currently still developping on branch master.
 
 * Picture of Tester McTest? Download/release symbol, development link symbol.
 
-* `share/physible/resource/overlay_icon/3d.svg` looks a bit heavy...
+* `share/physible/resource/overlay_icon/3d.svg` looks a bit heavy on the eyes...
   Also need script using `convert` to convert to the `.png` variants. Also, the
   indicator doesnt get added at the right time?(only when item selected with click)
 
@@ -107,4 +110,4 @@ of course, currently still developping on branch master.
   proper `.json` files, and still be able to load them.
 
 * Stl-to-javascript php is slow. (And it is php....) Make C version or something.
-  (contribute origin thingiview project, of course)
+  (contribute back to origin thingiview project, of course)
