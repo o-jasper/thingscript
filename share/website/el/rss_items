@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#Current tag handled.
+RSS_TAG=$(thingscript cat_get rss_tag)
+
+thingscript exec bin/figure_files | while read line; do #List that item.
+    thingscript mk listing_item $line "$1" $RSS_TAG
+done

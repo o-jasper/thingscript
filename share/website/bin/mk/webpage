@@ -6,12 +6,18 @@ export THINGSCRIPT_TYPE=website
 
 export CUR_BODY=$1 #This makes it actually look at the body!
 
-TO=$3
-if [ "$3" == "" ]; then
+#TODO if something has a tag that has a news reader, add it to that list.
+#thingscript cat_get tags | while read line; do
+#    grep $line $(thingscript get tags) | tr -d '\n'
+#done
+
+TO=$2
+if [ "$2" == "" ]; then
     TO=$1.html
 fi
 if [ "$TO" == "stdout" ]; then
     thingscript handle_get el/layout 
 else
     thingscript handle_get el/layout > $TO
+    echo $TO
 fi

@@ -6,4 +6,8 @@
 # * List stuff under tags/topics which are indicated to be .rss items and make
 #   RSS/html lists from them.
 
+#Figure out files. (globbed entries)
+thingscript exec bin/figure_files | while read line; do
+    thingscript exec bin/mk/webpage $line #Make the pages.
+done
 

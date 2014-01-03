@@ -8,12 +8,20 @@
 # `pwd` must be the project/webiste directory, `content/` will contain the output.
 
 #Prepend path regarding this page.
+
 export THINGSCRIPT_FIRST_PATH=thingscript_about/$1
 export THINGSCRIPT_TYPE=website
 get() #Shorter.
 {   thingscript cat_get $1 }
 
 TAGS=$(get tags)
+
+if [ "$3" != "" ]; then #If choosing specific tag...
+    if [ "$(echo $TAGS | grep -F "$(echo $3 |tr , \n)")" == "" ]; then #And cant find it..
+        exit #Then dont add.
+    fi
+fi
+
 TITLE=$(get title)
 WEBSITE_LINK=$(cat website_link)
 CATEGORIES=$(get categories)
@@ -41,7 +49,7 @@ GIVE_DATE=$(date --date=@$RSS_DATE '+%d %b %Y')
 DESCRIPTION=$(get description) 
 
 case "$2" in #Figure what to do.
-    html) #Html tidbit representing it.
+    html) #Html tidbit representing it. #TODO use `thingscript handle`?
         echo "<small>$GIVE_DATE</small>&nbsp;<a href=\"$WEBSITE_LINK$1.html\">$TITLE</a><br>" ;;
     if [ "$DESCRIPTION" != "" ]; then
         echo "&nbsp;&nbsp; <span class=\"blog_descr\">$DESCRIPTION</span><br>" >> rss/$el.html/$RSS_DATE
