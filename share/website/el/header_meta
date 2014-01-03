@@ -1,0 +1,10 @@
+#!/bin/bash
+#Puts a meta element based on thingscript information
+# First argument is the meta element name,
+# Second argument is the location in some thingscript directory.
+#  (likely at `thingscript/` in this case)
+
+DESCRIPTION=$(thingscript cat_get $2)
+if [ "$DESCRIPTION" != "" ]; then
+    echo '<meta name="'$1'" content="'$DESCRIPTION'">'
+fi

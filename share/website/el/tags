@@ -1,23 +1,28 @@
 #!/bin/bash
 
 TAGSFILE=$(thingscript get tags)
+plain_tags()
+{
+    COMMA=''
+    grep -vxP '#.+' $TAGSFILE | while read line; do
+        echo $COMMA$line
+        COMMA=',';
+    done | tr -d '\n'
+}
+
 if [ "$TAGSFILE" != "" ]; then
     COMMA='';
     case "$2" in
         html)
             echo '<span class="info_name">tags:</span>'
             grep -vxP '#.+' $TAGSFILE | while read line; do
-                echo $COMMA '<span class="tag">'$line'</span>'
+                echo -n $COMMA '<span class="tag">'$line'</span>'
                 COMMA=',';
             done | tr -d '\n';;
         plain)
-            grep -vxP '#.+' $TAGSFILE | while read line; do
-                echo $COMMA$line
-                COMMA=',';
-            done | tr -d '\n';;
+            plain_tags ;;
         html_head)
-            command=$(thingscript get el/tags)
-            echo '<meta name=keywords, content="'$($command dud plain)'">' |tr -d '\n';;
+            echo '<meta name=keywords, content="'$(plain_tags)'">' ;;
         *)
             echo E: What way do you want the tags? dont have \"$2\" > /dev/stderr;;
     esac
