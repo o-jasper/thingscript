@@ -1,0 +1,4 @@
+#!/bin/bash
+#Makes it a thumbnail.
+
+convert $1 -resize 100x100 $2 >/dev/null

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ofile=$(thingscript exec scripts/to_png $1)
+ofile=$(want $1-to.png)
         
 after="$2"
 if [ "$after" == "" ]; then

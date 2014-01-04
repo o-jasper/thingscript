@@ -1,7 +1,0 @@
-#!/bin/bash
-
-ofile=$(tso $1)
-
-memoize $1 $ofile.js "stl2js_2 $1" no_stdout > /dev/stderr;
-
-echo $ofile.js

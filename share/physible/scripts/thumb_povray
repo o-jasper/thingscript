@@ -1,5 +1,0 @@
-#!/bin/bash
-ofile=$(tso $1 thumb_).png
-
-memoize $1 $ofile "povray $1 $(thingscript cat_get etc/thumb_povray_args) +O$ofile" > /dev/null
-echo $ofile

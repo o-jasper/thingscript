@@ -1,7 +1,7 @@
 #!/bin/bash
 
 case $1 in
-    tso/*) #Already has tso on it.
+    tso/* | */tso/*) #Already has tso on it.
         ret=$(dirname $1)/$2$(basename $1)
         mkdir -p $(dirname $ret)
         echo $ret

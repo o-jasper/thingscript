@@ -18,7 +18,7 @@ img()
     AUTHOR_IMG_SCRIPT=$(thingscript get el/author_img) 
     if [ "$AUTHOR_IMG_SCRIPT" != "" ]; then
         $AUTHOR_IMG_SCRIPT
-    fi ;;
+    fi
 }
 case "$1" in
     '' | say )

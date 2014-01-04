@@ -35,7 +35,8 @@ while read line; do #Figure out the sizes from stdin.
     esac
 done
 
-FILE=$(echo $@ | tr ' ' '\n' | tail -n 1)
+#FILE=$(echo $@ | tr ' ' '\n' | tail -n 1) #TODO why?
+FILE=$1
 
 STL2POV_DIR=$ROOTLIKE/share/stl2pov/
 

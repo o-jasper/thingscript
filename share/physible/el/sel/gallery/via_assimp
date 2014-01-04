@@ -6,5 +6,5 @@
 #                 `via_assimp some.ply  stl2js`
 #Use `assimp listext` to see what files are possible. (a lot)
 
-stl=$(thingscript exec scripts/assimp_stl $1)
+stl=$(want $1-assimp.stl)
 thingscript exec el/sel/gallery/$2 $stl $3

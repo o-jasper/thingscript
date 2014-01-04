@@ -1,0 +1,12 @@
+#!/bin/bash
+#Generates .png for instance with imagemagick.
+# (Also has openscad, inclusive for now)
+
+case $1 in
+    *.scad | *.escad) #NOTE: we want the other thing, basically.
+        thingscript exec file_gen/openscad $1 $2 ;;
+#    *.png) #Already png. (silly)
+#        cp $1 $2 ;;
+    *)
+        convert $1 $2 ;;
+esac

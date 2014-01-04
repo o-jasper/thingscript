@@ -4,11 +4,22 @@
 # Manner
 
 #Figure the latest method found:
-FILE_GEN=$(echo $1 | tr _ \n | tail -n 1)
-FROM=$(echo $1 | tr _ \n | head -n -1)
-TO=$(tso $1)
+FILE_GEN=$(echo $1 | tr "-" \\n | tail -n 1)
+FROM=$(echo $1 | tr "-" \\n | head -n -1 | tr \\n "-" | head -c -1) #(Terrible)
+TO=$(tso $1) #Extension is added explicitly.
 
-if [ $FROM -nt $TO ]; then #TO doesnt exist or is older than source.
-    thingscript exec file_gen/$FILE_GEN $FROM $TO #Run script on it.
+whine()
+{   echo $2: $1 \($FILE_GEN\) \($FROM\)
+}
+
+PROG=$(thingscript get file_gen/$FILE_GEN)
+if [ "$PROG" == "" ]; then #Cut off the extension to find the generator.
+    PROG=$(thingscript get file_gen/$(echo $FILE_GEN | cut -f 1 -d.))
+fi
+if [ "$FROM" -nt "$TO" -o "$PROG" -nt "$TO" ]; then #TO doesnt exist or is older than source.
+    whine $1 Want > /dev/stderr
+    $PROG $FROM $TO #Run script on it.
+else
+    whine $1 Have > /dev/stderr
 fi
 echo $TO

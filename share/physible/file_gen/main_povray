@@ -1,0 +1,2 @@
+#!/bin/bash
+povray $1 $(thingscript cat_get etc/main_povray_args) +O$2 > /dev/null

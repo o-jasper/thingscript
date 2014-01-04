@@ -10,5 +10,5 @@
 #echo > /dev/stderr
 #thingscript get el/sel/gallery/$2 > /dev/stderr
 
-stl=$(thingscript exec scripts/openscad $1)
+stl=$(want $1-openscad.stl)
 thingscript exec el/sel/gallery/$2 $stl $3

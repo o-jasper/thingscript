@@ -1,7 +1,4 @@
 #!/bin/bash
 #Uses assimp to convert a bunch of file types to .stl
 # Use `assimp listext` to see which.
-
-ofile=$(tso $1).stl
-if_newer $1 $ofile "assimp export $1 $ofile"
-echo $ofile
+assimp export $1 $2 > /dev/null

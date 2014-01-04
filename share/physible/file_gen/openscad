@@ -1,0 +1,9 @@
+#!/bin/bash
+#Uses openscad or extopenscad(implicitcad) 
+#to convert to image/stl(previous is default)
+case $1 in
+    *.escad)
+        extopenscad $1 -o $2 ;;
+    *)
+        openscad $1 -o $2 ;;
+esac

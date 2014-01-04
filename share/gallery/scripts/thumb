@@ -1,6 +1,0 @@
-#!/bin/bash
-
-ofile=$(tso $1 thumb/).png
-
-if_newer $1 $ofile "convert $1 -resize 100x100 $ofile" > /dev/null
-echo $ofile

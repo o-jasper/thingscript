@@ -2,11 +2,11 @@
 #Povray image first, then load if clicked on.
 
 #Make povray and raytrace with it.
-pov=$(thingscript exec scripts/stl2pov $1)
-BIG_PIC=$(thingscript exec scripts/main_povray $pov)
+pov=$(want $1-stl2.pov)
+BIG_PIC=$(want $(echo $pov)-main_povray.png)
 
 #Make javascript data file.
-js_stl=$(thingscript exec scripts/stl2js $1)
+js_stl=$(want $1-stl2.js)
 
 mkdir -p tso/ #If indicator not provided yet, make it.
 
@@ -25,4 +25,4 @@ fi
 #NOTE: defaultly this does nothing at the moment.(i think they're already identifiable)
 thingscript handle_get el/thingiview_tiny_indicator_overlay_ 
 echo -n '<img onclick="to_img_re_url('\'$BIG_PIC\',\'$js_stl\'');'
-echo -n 'document.getElementById('\'post_viewer\'').innerHTML=gallery_thingiview_indicator;" src="'$(thingscript exec scripts/thumb_povray $pov)'" class="gal">'
+echo -n 'document.getElementById('\'post_viewer\'').innerHTML=gallery_thingiview_indicator;" src="'$(want $(echo $pov)-thumb_povray.png)'" class="gal">'

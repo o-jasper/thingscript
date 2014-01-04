@@ -23,10 +23,10 @@ run()
                 npm install schema schema-validator ;; # Needed for validators.
             testpage_clean) #Scrubs the test page clean
                 cd testpage
-                rm index.html one_thing.tracker.json summary.html pics/*.png
-                rm -r tso/ releases/ output/tso/ pics/tso/ thingscript/etc/tso/
+                rm -vindex.html one_thing.tracker.json summary.html pics/*.png
+                rm -rv tso/ releases/ output/tso/ pics/tso/ thingscript/etc/tso/
                 cd thingscript/ #Thingscript files defaulted.
-                rm main_image thumbnail version uuid;;
+                rm -v main_image thumbnail version uuid;;
             clean_test) #Test after cleaning.
                 run testpage_clean test_prep test ;;
             gen_test_pics) #Generates the images of the test.
