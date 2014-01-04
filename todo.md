@@ -20,16 +20,6 @@ of course, currently still developping on branch master.
 
 ## Other, sorted by type a bit
 
-* Maybe -for-instance- gallery objects makes gallery stuff from what is available,
-  but have 'wants' which when forfilled make get the page created again.
-  'Page as a process', basically, there is data in, and there is a tree of stuff to do.
-  + More statistics, like volume.
-  + Slicing for estimating duration/costs for instance takes long.
-    (though it may be an overkill method)
-  + Maybe stuff like overhang detection.
-    (this is a 'conduit' program, it doesnt do stuff itself so much, just drags
-     things into the system.)
-
 * `assimp` is completely untested, havent been able to display the `.stl` from the `.dxf`.
 
 * Make more kinds of files representable 
@@ -88,6 +78,7 @@ of course, currently still developping on branch master.
   Also need script using `convert` to convert to the `.png` variants. Also, the
   indicator doesnt get added at the right time?(only when item selected with click)
 
+
 ### Povray
 * A few 'floors' in povray(of course in such a way that anyone can add)
   + 1cm grid with 'vague reflection' (best default)
@@ -111,3 +102,9 @@ of course, currently still developping on branch master.
 
 * Stl-to-javascript php is slow. (And it is php....) Make C version or something.
   (contribute back to origin thingiview project, of course)
+
+### Mission creep
+
+* Maybe -for-instance- gallery objects makes gallery stuff from what is available,
+  but have 'wants' which when forfilled make get the page created again.
+  'Page as a process', basically, there is data in, and there is a tree of stuff to do.

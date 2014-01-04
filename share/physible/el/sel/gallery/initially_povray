@@ -1,10 +1,12 @@
 #!/bin/bash
 #Povray image first, then load if clicked on.
 
+#Make povray and raytrace with it.
 pov=$(thingscript exec scripts/stl2pov $1)
-js_stl=$(thingscript exec scripts/stl2js $1)
-
 BIG_PIC=$(thingscript exec scripts/main_povray $pov)
+
+#Make javascript data file.
+js_stl=$(thingscript exec scripts/stl2js $1)
 
 mkdir -p tso/ #If indicator not provided yet, make it.
 

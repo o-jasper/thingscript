@@ -11,7 +11,7 @@
 #Lays out a list of the images in javascript.
 
 if [ "$2" != "" ]; then #Argument specifies a gallery
-    GALLERY_LIST_FILE=$2 #TODO multiple galleries wont actually work.
+    GALLERY_LIST_FILE="$2" #TODO multiple galleries wont actually work.(TODO why not??)
 else
     GALLERY_LIST_FILE=$(thingscript get gallery_list) #(has on_absense script)
 fi

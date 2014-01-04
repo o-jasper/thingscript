@@ -1,0 +1,14 @@
+#!/bin/bash
+#Arguments: 
+# Input file
+# Manner
+
+#Figure the latest method found:
+FILE_GEN=$(echo $1 | tr _ \n | tail -n 1)
+FROM=$(echo $1 | tr _ \n | head -n -1)
+TO=$(tso $1)
+
+if [ $FROM -nt $TO ]; then #TO doesnt exist or is older than source.
+    thingscript exec file_gen/$FILE_GEN $FROM $TO #Run script on it.
+fi
+echo $TO

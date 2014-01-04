@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cat thingscript/release_files | while read line; do
+    ls -d $line | while read el; do  echo $NAME/$el; done
+done | sort | uniq -u

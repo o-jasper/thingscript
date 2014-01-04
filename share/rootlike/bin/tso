@@ -1,12 +1,12 @@
 #!/bin/bash
 
-echo $1 | grep '/tso/' > /dev/null
-if [ "$?" == "0" ]; then
-    ret=$(dirname $1)/$2$(basename $1)
-    mkdir -p $(dirname $ret)
-    echo $ret
-    exit 0
-fi
+case $1 in
+    tso/*) #Already has tso on it.
+        ret=$(dirname $1)/$2$(basename $1)
+        mkdir -p $(dirname $ret)
+        echo $ret
+        exit 0;;
+esac
 
 # Puts the 'thing script objects' directory in the name.
 #(very thingscript specific thing to do)
