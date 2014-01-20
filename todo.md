@@ -1,10 +1,12 @@
+
 NOTE: i'll mark the ones which have an issue, see the latest development commit,
 of course, currently still developping on branch master.
 
 ## Needed for first release
 * Get ThingTracker output to be correct.
   + Appears that just the date is incorrect.
-   
+* First page is grey again?
+
 #### done for first release
 * Static html generations, `thingscript help_browser ..` opens them.
   + Set of static html pages based on current documentation using thingscript itself.
@@ -47,7 +49,7 @@ of course, currently still developping on branch master.
   Subelements could already implement it, that is right approach?
   (maybe if it can refer to external files for overly long comments)
 
-* Set the files using a simple gui? 
+* Tools to set the data, also one using a simple gui? 
   Maybe `zenity`, sequentially or going back/forth to list of things to potentially set,
   not perfect, but simple..
   Maybe better to use a nodejs thingy?
@@ -61,9 +63,6 @@ of course, currently still developping on branch master.
 * [Cygwin](http://cygwin.com/) for getting it on windows?(no idea currently)
 
 ### Organization, docs, arts
-* Some of the stuff in `thingscript_share/main/scripts/` could be better organized..
-  It is basically a kind of `on_absence` for files inhabiting the project?
-
 * **Help pages dont cross different thingscript directories at all.**
   Probably put pages on the search for pages across multiple and make a help for
   a whole sequence?
@@ -102,6 +101,10 @@ of course, currently still developping on branch master.
 
 * Stl-to-javascript php is slow. (And it is php....) Make C version or something.
   (contribute back to origin thingiview project, of course)
+
+### CSS
+* Could make a thingscript directory for it. For ideas could trawl through
+  things that [Sass](http://sass-lang.com/) does.
 
 ### Mission creep
 

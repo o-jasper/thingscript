@@ -252,14 +252,17 @@ case "$1" in
         cat /usr/share/thingscript/version;;
 
     handle)
-        handle $2;;
+        handle $2 ;;
     handle_get)
-        handle_get $2;;
+        handle_get $2 ;;
     
  #Forces markdown and handle_whole to be used regardless of extension.
     markdown_handle)
-        markdown $2 | handle_whole;;
+        markdown $2 | handle_whole ;;
     
+    handle_whole_stdin)
+        handle_whole ;;
+
     cat_get) #Opens the file obtained with `get`
         cat_get $@;;
     url)
