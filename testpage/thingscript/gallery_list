@@ -2,7 +2,7 @@ via_openscad 2cube.scad initially_povray
 via_png 2cube.scad
 initially_povray output/cube.stl
 via_assimp output/example009.dxf initially_povray
-initially_povray output/shell.stl
+just_povray output/shell.stl
 default pics/10.png
 plain pics/1.png
 plain pics/2.png
@@ -13,3 +13,4 @@ plain pics/6.png
 plain pics/7.png
 plain pics/8.png
 plain pics/9.png
+

@@ -41,24 +41,8 @@ fi
 
 export PATH=/home/$USER/.thingscript_share/rootlike/bin:$PATH
 
-#Dont know why the double loop didnt work, bash sucks.
-get_locations()
+get_if_not()
 {
-    for dir in $(echo $THINGSCRIPT_PATH | tr : '\n'); do
-        for el in $@; do #First what the user tells you to do.
-            echo $dir/$el
-        done
-    done
-}
-
-#Gets layout information.
-get()
-{   for el in $(get_locations $@); do #Go through all the files.
-        if [ -e $el ]; then  #See if the file exists.
-            echo -n $el
-            return #Have one.
-        fi
-    done
     case "$2" in
         "--dont-recurse")
             ;;
@@ -72,39 +56,108 @@ get()
             GET_SCRIPT=$(get on_absence/$1 --dont-recurse)
             if [ "$GET_SCRIPT" !=  "" ]; then
                 $GET_SCRIPT $@
+            else 
+                return 1
             fi;;
+        
+    esac 
+    return 0
+}
 
-    esac
+#Gets layout information.
+get()
+{   
+    for dir in $(echo $THINGSCRIPT_PATH | tr : '\n'); do
+        if [ -e $dir/$1 ]; then  #See if the file exists.
+            echo -n $dir/$1
+            return 0 #Have one.
+        fi
+    done
+    get_if_not $@
+}
+get_mult()
+{
+    for el in $@; do
+        if get $el; then
+            return
+        fi
+    done
+}
+
+cat_get()
+{
+    if which jshon >/dev/null; then
+        for dir in $(echo $THINGSCRIPT_PATH | tr : '\n'); do
+            if [ -e $dir/$1 ]; then  #See if the file exists.
+                cat $dir/$1
+                return #Have one.
+            fi
+            if [ -e $dir.json ]; then #Look in the file
+#                echo $dir.json $1
+#                echo $1 | while read -d / subdir; do echo -n "-e $subdir"; done
+                cat $dir.json | jshon $(for subdir in $(echo $1 | tr '/' '\n'); do
+                    echo -n "-e $subdir"
+                done) -u
+                if [ "$?" == 0 ]; then
+                    return
+                fi
+            fi
+        done
+        ALT=$(get_if_not $@)
+        if [ "$ALT" == "" ]; then
+            return 1
+        else 
+            cat $ALT
+        fi
+    else
+        GOT=$(get $@)
+        if [ -e $GOT ]; then cat $GOT; fi
+    fi
+}
+get_mult()
+{   
+    for el in $@; do
+        if get $el; then
+            return
+        fi
+    done
+}
+cat_get_mult()
+{   
+    for el in $@; do
+        if cat_get $el; then
+            return
+        fi
+    done
 }
 if [ "$IS_TEST" == "" ]; then
-    export IS_TEST=$(get is_test)
+    export IS_TEST=$(get is_test --dont-recurse)
 fi
 
+
 get_page()
-{   get $1.html $1.md $1.html_ $1.md_ $1
+{   get_mult $1.html $1.md $1.html_ $1.md_ $1
 }
 
 get_image()
 { 
-    get $1.png $1.jpg $1.svg $1.gif
+    get_mult $1.png $1.jpg $1.svg $1.gif
 }
 
+# WARNING this looks to lower ones first, _if_ it is in the regular files.
+#approach is showing weakness...
 handle_get()
-{
-    handle "$(get_page $@)"
-}
-
-cat_get()
-{   FILE="$(get $@)"
-    if [ -e "$FILE" -a "$FILE" != "" ]; then
-        cat "$FILE"
+{   GOT=$(get_page $@)
+    if [ "$GOT" == "" ]; then
+        cat_get_mult $@ | handle_whole 
     else
-        return 0
+        handle $GOT
     fi
 }
+
 #if [ "$GOT_THINGSCRIPT_ROOT" == "" ]; then
 #    export GOT_THINGSCRIPT_ROOT=yes
-#    export THINGSCRIPT_ROOT=$(cat_get ignored root)
+#    export THINGSCRIPT_ROOT=$(cat_get root)
 #fi
 
 url()
@@ -226,8 +279,8 @@ case "$1" in
         get_image $2;;
     
     '--help')
-        cat "$(get_help)";;
-    help) 
+        cat "$(get_help)" ;;
+    help)
         case "$(cat_get prefer/help_default)" in
             cli) #Help stdout.
                 cat "$(get_help $2)"
@@ -264,7 +317,7 @@ case "$1" in
         handle_whole ;;
 
     cat_get) #Opens the file obtained with `get`
-        cat_get $@;;
+        cat_get $2;;
     url)
         url $@;;
    

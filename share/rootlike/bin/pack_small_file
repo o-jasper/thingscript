@@ -1,6 +1,13 @@
 #!/bin/bash
 # Puts all the files in a directory smaller than some size in a 
 # json/tar/zip file.
+#
+# First argument is the directory, second the json file.
+#
+#TODO:
+# * Directory must currently end with 
+# * JSON is not correct.
+# * Whether to simply indicate 'file' should be optional.
 
 OFILE=$2
 MAX_SIZE=$3

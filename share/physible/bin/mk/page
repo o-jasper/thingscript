@@ -17,15 +17,18 @@ fi
 #See if we have the required stuff. #TODO move somewhere else.
 MISSING=''
 for el in $(echo author category title); do
-    if [ "$(thingscript get $el)" == "" ]; then
+    if thingscript cat_get $el | head -n 0; then
+        echo -n ''
+    else
         MISSING=$MISSING" $el"
     fi
 done
-for el in $(echo short_description license el/layout); do
-    if [ "$(thingscript get_page $el)" == "" ]; then
-        MISSING=$MISSING" $el"
-    fi
-done
+#TODO reinstate..
+#for el in $(echo short_description license el/layout); do
+#    if [ "$(thingscript get_page $el)" == "" ]; then
+#        MISSING=$MISSING" $el"
+#    fi
+#done
 if [ "$MISSING" != "" ]; then
     echo '
 Error: For each line, in the directory '$1/thingscript/'

@@ -9,12 +9,17 @@
 #
 
 #Lays out a list of the images in javascript.
-
 if [ "$2" != "" ]; then #Argument specifies a gallery
     GALLERY_LIST_FILE="$2" #TODO multiple galleries wont actually work.(TODO why not??)
-else
-    GALLERY_LIST_FILE=$(thingscript get gallery_list) #(has on_absense script)
 fi
+gallery_list()
+{
+    if [ "$GALLERY_LIST_FILE" != "" ]; then
+        cat "$GALLERY_LIST_FILE"
+    else
+        thingscript cat_get gallery_list
+    fi
+}
 
 PATH=$PATH:$ROOTLIKE/bin/
 
@@ -24,7 +29,7 @@ echo '<span style="position:absolute" id="post_viewer"></span><br>'
 echo '<p class="gal_bar">'
 
 #Array of image file names so an index can identify them.
-grep -vxP "#.+" $GALLERY_LIST_FILE | while read el; do
+gallery_list | grep -vxP "#.+" | while read el; do
     name=$(echo $el | cut -f1 -d' ')
     #Basically thingscript exec but checks if it exists so it can say it is a gallery subel.
     GOT=$(thingscript get el/sel/gallery/$name)

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-FILE=$(thingscript get rootdir)
-if [ "$FILE" != "" ]; then
-   echo \"$(cat $FILE | tr -d '\n')$2\"
-fi
+echo -n \"
+thingscript cat_get rootdir | tr -d '\n'
+echo $2\"
