@@ -1,6 +1,6 @@
 {
 "license":"Thingscript is currently GPLv2",
-"rootdir":"../",
+"rootdir":"../../",
 "author":"Dr. Tester McTest",
 "dev_link":"https://github.com/o-jasper/thingscript",
 "tags":"test,thingscript",
