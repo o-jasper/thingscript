@@ -45,7 +45,7 @@ fi
 TO=$NAME$PREF
 case "$PREF" in
     .zip) 
-        zip $TO $FILES;;
+        zip -r $TO $FILES;;
     .tar.gz)
         tar -cf --bzip2 $TO $FILES;;
     .tar.xz)
@@ -59,5 +59,9 @@ esac
 rm $NAME #Remove the temporary  stuff.
 mv $TO $AT_DIR/releases/
 rmdir /tmp/thingscript_release_maker_$NAME
+
 #Go back.
 cd $AT_DIR
+
+echo releases/$(basename $TO) $(basename $TO) > thingscript/releases
+

@@ -7,6 +7,6 @@ handle_release()
 
 RELEASES_FILE=$(thingscript get releases)
 if [ "$RELEASES_FILE" != "" ]; then
-    echo Can be found on:
-    cat $RELEASES_FILE | while line=read; do handle_release $line; done
+    echo '<span class="info_name">Releases:</span>'
+    cat $RELEASES_FILE | while read line; do handle_release $line; done
 fi

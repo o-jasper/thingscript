@@ -20,7 +20,7 @@ img()
         $AUTHOR_IMG_SCRIPT
     fi
 }
-case "$1" in
+case "$2" in
     '' | say )
         say ;;
     say_img )

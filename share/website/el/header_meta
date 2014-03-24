@@ -4,7 +4,7 @@
 # Second argument is the location in some thingscript directory.
 #  (likely at `thingscript/` in this case)
 
-DESCRIPTION=$(thingscript cat_get $2)
+DESCRIPTION=$(thingscript cat_get $3)
 if [ "$DESCRIPTION" != "" ]; then
-    echo '<meta name="'$1'" content="'$DESCRIPTION'">'
+    echo '<meta name="'$2'" content="'$DESCRIPTION'">'
 fi
