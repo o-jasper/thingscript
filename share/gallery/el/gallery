@@ -24,7 +24,10 @@ gallery_list()
 PATH=$PATH:$ROOTLIKE/bin/
 
 echo '<span style="position:absolute" id="pre_viewer"></span>'
-echo '<img class="viewer" id="viewer" onclick="use_action_file()">' #Lays out main image.
+#Lays out main image. Thingiview uses a div.
+echo '<div class="viewer" id="viewer_img" onclick="use_action_file()"> </div>'
+echo '<div class="viewer" id="viewer" onclick="use_action_file()" 
+    style="width:100%"></div>' 
 echo '<span style="position:absolute" id="post_viewer"></span><br>'
 echo '<p class="gal_bar">'
 

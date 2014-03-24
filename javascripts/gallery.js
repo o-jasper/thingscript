@@ -38,15 +38,14 @@ function js_img(file)
 }*/
 
 function load_img(file)
-{   alert(designs[file]);
-    thingiview.loadArray(designs[file]);
-}
+{   thingiview.loadArray(designs[file]); }
 
 function to_img(file,action_file)
 {      
     cur_gal_file = file;
     cur_gal_action_file = action_file;
-    var viewer= document.getElementById("viewer");
+    var viewer     = document.getElementById("viewer");
+    var viewer_img = document.getElementById("viewer_img");
     var ext  = file.substr(file.length-4);
 
     viewer.style.height= want_h();
@@ -54,12 +53,17 @@ function to_img(file,action_file)
     document.getElementById("post_viewer").innerHTML="";
     
     if( ext==".jpg" || ext==".png" || ext==".gif" ) //Put an image there.
-    {   viewer.style.width = "";
-        viewer.src=file;
+    {   viewer_img.innerHTML = "<img src = \"" + file + "\">";
+        viewer.style.visibility = "invisible";
+        viewer.style.display = "none";
+        viewer.height = 0;
     }
     else if( ext.substr(1)==".js" ) //Disable image, put design.
-    {   viewer.style.width = want_w();
-        viewer.src=null;
+    {   
+        viewer.style.display = "";
+        viewer.style.width = want_w();
+        viewer.style.height = '';
+        viewer_img.innerHTML = "";
         if( js_import(file) ) //Import file(returns true if we should already have it.)
         {   load_img(file); 
         }
@@ -86,4 +90,5 @@ function by_url(url) //Pick image based on url.
     {   to_img(main_image); }
 }
 function gallery_initial()
-{   viewer_prep(); }
+{ //  viewer_prep();
+ }
