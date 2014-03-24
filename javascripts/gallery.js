@@ -5,7 +5,8 @@ var cur_gal_action_file;
 var main_image;
 
 function to_img_re_url(file,action_file)
-{   var to_ind = location.href.indexOf("#img_");
+{   
+    var to_ind = location.href.indexOf("#img_");
     if( to_ind != -1 )
     {   location.href = location.href.substr(0,to_ind) + "#img_" + file; }
     else
@@ -13,17 +14,18 @@ function to_img_re_url(file,action_file)
     to_img(file,action_file)
 }
 
-function use_action_file()
-{   to_img(cur_gal_action_file); }
-
 var designs =[]; //Dictionary of designs.
+
+function use_action_file()
+{   to_img(cur_gal_action_file); 
+}
 
 function want_w()
 {   return Math.floor(window.innerWidth*0.6) + "px"; }
 function want_h()
 {   return Math.floor(window.innerHeight*0.6) + "px"; }
-
-function js_img()
+/*
+function js_img(file)
 {
     var viewer= document.getElementById("viewer");
     viewer.style.width = want_w();
@@ -33,10 +35,12 @@ function js_img()
     else //Wait until it is loaded.(TODO better, can you wait for something to finish?)
     {    setTimeout(function(){thingiview.loadArray(designs[file]);},500);
     }
-}
+}*/
 
 function load_img(file)
-{   thingiview.loadArray(designs[file]); }
+{   alert(designs[file]);
+    thingiview.loadArray(designs[file]);
+}
 
 function to_img(file,action_file)
 {      
@@ -57,7 +61,8 @@ function to_img(file,action_file)
     {   viewer.style.width = want_w();
         viewer.src=null;
         if( js_import(file) ) //Import file(returns true if we should already have it.)
-        {   load_img(file); }
+        {   load_img(file); 
+        }
         else //Wait until it is loaded.(TODO better, can you wait for something to finish?)
         {   setTimeout(function(){ load_img(file); },250);
         }
