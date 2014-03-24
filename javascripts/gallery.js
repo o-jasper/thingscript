@@ -24,18 +24,6 @@ function want_w()
 {   return Math.floor(window.innerWidth*0.6) + "px"; }
 function want_h()
 {   return Math.floor(window.innerHeight*0.6) + "px"; }
-/*
-function js_img(file)
-{
-    var viewer= document.getElementById("viewer");
-    viewer.style.width = want_w();
-    viewer.src=null;
-    if( js_import(file + ".js") )
-    {   thingiview.loadArray(designs[file]); }
-    else //Wait until it is loaded.(TODO better, can you wait for something to finish?)
-    {    setTimeout(function(){thingiview.loadArray(designs[file]);},500);
-    }
-}*/
 
 function load_img(file)
 {   thingiview.loadArray(designs[file]); }
@@ -90,5 +78,4 @@ function by_url(url) //Pick image based on url.
     {   to_img(main_image); }
 }
 function gallery_initial()
-{ //  viewer_prep();
- }
+{   viewer_prep(); }
