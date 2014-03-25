@@ -13,4 +13,8 @@ if [ "$2" == "" ]; then
     TO=summary.html
 fi
 
-thingscript mk page $1 el/summary_ $TO 
+AT=$1
+if [ "$1" == "" ]; then
+    AT=.
+fi
+thingscript mk page $AT el/summary_ $TO 

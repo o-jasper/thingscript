@@ -1,4 +1,5 @@
 $style_$
+$cat resource/more_style$
 <title>$cat title$</title>
 $header_meta author author$
 $header_meta description description$

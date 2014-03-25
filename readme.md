@@ -1,4 +1,7 @@
 
+# NOTE Likely to be discontinued
+No-one uses it, and, well meh. Reckon there is some advantage to it though.
+
 # Script that generates pages/data inserting bits based on commands
 Originally it was intended just for representing physical designs, but it can
 really replace more generally.
